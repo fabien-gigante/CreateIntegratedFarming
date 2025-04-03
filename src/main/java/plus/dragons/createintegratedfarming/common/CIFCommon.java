@@ -18,14 +18,16 @@
 
 package plus.dragons.createintegratedfarming.common;
 
-
 import com.simibubi.create.foundation.item.ItemDescription;
 import net.createmod.catnip.lang.FontHelper;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import plus.dragons.createdragonsplus.common.CDPRegistrate;
+import plus.dragons.createintegratedfarming.config.CIFConfig;
+import plus.dragons.createintegratedfarming.integration.Integration;
+import plus.dragons.createintegratedfarming.integration.farmersdelight.FarmersDelightIntegration;
+import plus.dragons.createintegratedfarming.integration.mynethersdelight.MyNethersDelightIntegration;
 
 @Mod(CIFCommon.ID)
 public class CIFCommon {
@@ -33,11 +35,14 @@ public class CIFCommon {
     public static final CDPRegistrate REGISTRATE = new CDPRegistrate(ID)
             .setTooltipModifier(item -> new ItemDescription.Modifier(item, FontHelper.Palette.STANDARD_CREATE));
 
-    public CIFCommon(IEventBus modBus) {
+    public CIFCommon(IEventBus modBus, ModContainer modContainer) {
         REGISTRATE.registerEventListeners(modBus);
-        modBus.register(this);
+        if (Integration.FARMERS_DELIGHT.isLoaded()) {
+            modBus.register(new FarmersDelightIntegration());
+        }
+        if (Integration.MY_NETHERS_DELIGHT.isLoaded()) {
+            modBus.register(new MyNethersDelightIntegration());
+        }
+        modBus.register(new CIFConfig(modContainer));
     }
-
-    @SubscribeEvent
-    public void setup(final FMLCommonSetupEvent event) {}
 }

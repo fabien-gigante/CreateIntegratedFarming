@@ -72,6 +72,9 @@ neoForge {
 }
 
 configurations {
+    localImplementation
+    compileClasspath.extendsFrom localImplementation
+    runtimeClasspath.extendsFrom localImplementation
     runtimeClasspath.extendsFrom localRuntime
 }
 
@@ -101,25 +104,30 @@ dependencies {
 
     compileOnly("top.theillusivec4.curios:curios-neoforge:${curios_version}+${curios_minecraft_version}:api")
     localRuntime("top.theillusivec4.curios:curios-neoforge:${curios_version}+${curios_minecraft_version}")
+
+    localImplementation("maven.modrinth:farmers-delight:${farmers_delight_version}")
+    localImplementation("maven.modrinth:my-nethers-delight:${my_nethers_delight_version}")
+    localImplementation("maven.modrinth:mmlib:${mmlib_version}")
+    localImplementation("maven.modrinth:corn-delight:${corn_delight_version}")
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
     var replaceProperties = [
-            minecraft_version      : minecraft_version,
-            minecraft_version_range: minecraft_version_range,
-            neo_version            : neo_version,
-            neo_version_range      : neo_version_range,
-            loader_version_range   : loader_version_range,
-            mod_id                 : mod_id,
-            mod_name               : mod_name,
-            mod_license            : mod_license,
-            mod_version            : mod_version,
-            mod_authors            : mod_authors,
-            mod_description        : mod_description,
-            mod_github             : mod_github,
-            mod_logo               : mod_logo,
-            create_version_range   : create_version_range,
-            create_dragons_plus_version_range   : create_version_range
+            minecraft_version                   : minecraft_version,
+            minecraft_version_range             : minecraft_version_range,
+            neo_version                         : neo_version,
+            neo_version_range                   : neo_version_range,
+            loader_version_range                : loader_version_range,
+            mod_id                              : mod_id,
+            mod_name                            : mod_name,
+            mod_license                         : mod_license,
+            mod_version                         : mod_version,
+            mod_authors                         : mod_authors,
+            mod_description                     : mod_description,
+            mod_github                          : mod_github,
+            mod_logo                            : mod_logo,
+            create_version_range                : create_version_range,
+            create_dragons_plus_version_range   : create_dragons_plus_version_range
     ]
     inputs.properties replaceProperties
     expand replaceProperties
