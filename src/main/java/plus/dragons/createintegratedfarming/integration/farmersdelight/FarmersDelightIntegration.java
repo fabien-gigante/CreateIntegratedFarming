@@ -18,13 +18,11 @@
 
 package plus.dragons.createintegratedfarming.integration.farmersdelight;
 
-import net.minecraft.world.level.block.Blocks;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import plus.dragons.createintegratedfarming.api.harvest.CustomHarvestBehaviour;
 import plus.dragons.createintegratedfarming.integration.farmersdelight.harvest.MushroomColonyHarvestBehaviour;
 import plus.dragons.createintegratedfarming.integration.farmersdelight.harvest.TomatoHarvestBehaviour;
-import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 import vectorwing.farmersdelight.common.block.TomatoVineBlock;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
 
@@ -35,16 +33,7 @@ public class FarmersDelightIntegration {
     }
 
     private void registerHarvestBehaviours() {
-        var brownMushroomColony = (MushroomColonyBlock) ModBlocks.BROWN_MUSHROOM_COLONY.get();
-        CustomHarvestBehaviour.REGISTRY.register(
-                brownMushroomColony,
-                new MushroomColonyHarvestBehaviour(brownMushroomColony, Blocks.BROWN_MUSHROOM)
-        );
-        var redMushroomColony = (MushroomColonyBlock) ModBlocks.RED_MUSHROOM_COLONY.get();
-        CustomHarvestBehaviour.REGISTRY.register(
-                redMushroomColony,
-                new MushroomColonyHarvestBehaviour(redMushroomColony, Blocks.RED_MUSHROOM)
-        );
+        CustomHarvestBehaviour.REGISTRY.registerProvider(MushroomColonyHarvestBehaviour::create);
         var tomato = (TomatoVineBlock) ModBlocks.TOMATO_CROP.get();
         CustomHarvestBehaviour.REGISTRY.register(tomato, new TomatoHarvestBehaviour(tomato));
     }

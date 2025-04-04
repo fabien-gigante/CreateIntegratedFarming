@@ -108,7 +108,8 @@ dependencies {
     localImplementation("maven.modrinth:farmers-delight:${farmers_delight_version}")
     localImplementation("maven.modrinth:my-nethers-delight:${my_nethers_delight_version}")
     localImplementation("maven.modrinth:mmlib:${mmlib_version}")
-    localImplementation("maven.modrinth:corn-delight:${corn_delight_version}")
+    compileOnly("maven.modrinth:create-enchantable-machinery:${create_enchantable_machinery_version}")
+    localRuntime("maven.modrinth:corn-delight:${corn_delight_version}")
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {

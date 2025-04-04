@@ -23,13 +23,14 @@ import net.neoforged.fml.ModList;
 import org.jetbrains.annotations.ApiStatus.Internal;
 
 @Internal
-public class Integration {
-    public static final Integration FARMERS_DELIGHT = new Integration("farmersdelight");
-    public static final Integration MY_NETHERS_DELIGHT = new Integration("mynethersdelight");
+public class ModIntegration {
+    public static final ModIntegration FARMERS_DELIGHT = new ModIntegration("farmersdelight");
+    public static final ModIntegration MMLIB = new ModIntegration("mysterious_mountain_lib");
+    public static final ModIntegration CREATE_ENCHANTABLE_MACHINERY = new ModIntegration("createenchantablemachinery");
 
     private final String id;
 
-    public Integration(String id) {
+    public ModIntegration(String id) {
         this.id = id;
     }
 

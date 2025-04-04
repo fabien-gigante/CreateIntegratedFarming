@@ -16,15 +16,16 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package plus.dragons.createintegratedfarming.mixin;
+package plus.dragons.createintegratedfarming.mixin.integration;
 
-import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Invoker;
+import org.spongepowered.asm.mixin.Pseudo;
+import plus.dragons.createintegratedfarming.api.harvest.FragileVerticalPlant;
 
-@Mixin(CropBlock.class)
-public interface CropBlockAccessor {
-    @Invoker
-    IntegerProperty invokeGetAgeProperty();
-}
+@Pseudo
+@Mixin(targets = {
+        "com.soytutta.mynethersdelight.common.block.PowderyCaneBlock",
+        "com.soytutta.mynethersdelight.common.block.PowderyCannonBlock",
+        "com.soytutta.mynethersdelight.common.block.PowderyFlowerBlock"
+})
+public class FragileVerticalPlantMixin implements FragileVerticalPlant {}

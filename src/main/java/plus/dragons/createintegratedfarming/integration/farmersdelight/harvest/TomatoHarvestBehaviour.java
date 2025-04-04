@@ -68,7 +68,14 @@ public class TomatoHarvestBehaviour implements CustomHarvestBehaviour {
         if (stateAbove.is(tomato))
             breakTomatoes(level, behaviour, context, above, stateAbove);
         boolean ropelogged = state.getValue(TomatoVineBlock.ROPELOGGED);
-        BlockHelper.destroyBlock(level, pos, 1, stack -> behaviour.dropItem(context, stack));
+        BlockHelper.destroyBlockAs(
+                level,
+                pos,
+                null,
+                CustomHarvestBehaviour.getHarvestTool(context),
+                1,
+                stack -> behaviour.dropItem(context, stack)
+        );
         if (ropelogged)
             level.setBlockAndUpdate(pos, getRope());
     }

@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package plus.dragons.createintegratedfarming.mixin;
+package plus.dragons.createintegratedfarming.mixin.integration;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import com.simibubi.create.content.contraptions.actors.harvester.HarvesterMovementBehaviour;
@@ -24,19 +24,21 @@ import com.simibubi.create.content.contraptions.behaviour.MovementContext;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import plus.dragons.createintegratedfarming.api.harvest.CustomHarvestBehaviour;
 
-@Mixin(value = HarvesterMovementBehaviour.class)
-public class HarvesterMovementBehaviourMixin  {
-    @Inject(method = "visitNewPosition", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/contraptions/actors/harvester/HarvesterMovementBehaviour;isValidCrop(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z"), cancellable = true)
+@Pseudo
+@Mixin(targets = "io.github.cotrin8672.cem.content.block.harvester.EnchantableHarvesterMovementBehaviour")
+public class EnchantableHarvesterMovementBehaviourMixin extends HarvesterMovementBehaviour {
+    @Inject(method = "visitNewPosition", at = @At(value = "INVOKE", target = "Lio/github/cotrin8672/cem/content/block/harvester/EnchantableHarvesterMovementBehaviour;isValidCrop(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z"), cancellable = true)
     private void createintegratedfarming$applyCustomHarvesterBehaviour(MovementContext context, BlockPos pos, CallbackInfo ci, @Local BlockState stateVisited) {
         var behaviour = CustomHarvestBehaviour.REGISTRY.get(stateVisited);
         if (behaviour == null)
             return;
-        behaviour.harvest((HarvesterMovementBehaviour) (Object) this, context, pos, stateVisited);
+        behaviour.harvest(this, context, pos, stateVisited);
         ci.cancel();
     }
 }

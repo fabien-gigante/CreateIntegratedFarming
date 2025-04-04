@@ -25,11 +25,13 @@ import com.simibubi.create.foundation.utility.BlockHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.Nullable;
 import plus.dragons.createintegratedfarming.api.harvest.CustomHarvestBehaviour;
 import plus.dragons.createintegratedfarming.config.CIFConfig;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
@@ -38,9 +40,17 @@ public class MushroomColonyHarvestBehaviour implements CustomHarvestBehaviour {
     private final MushroomColonyBlock colony;
     private final Block mushroom;
 
-    public MushroomColonyHarvestBehaviour(MushroomColonyBlock colony, Block mushroom) {
+    protected MushroomColonyHarvestBehaviour(MushroomColonyBlock colony, Block mushroom) {
         this.colony = colony;
         this.mushroom = mushroom;
+    }
+
+    public static @Nullable MushroomColonyHarvestBehaviour create(Block block) {
+        if (!(block instanceof MushroomColonyBlock colony))
+            return null;
+        if (!(colony.mushroomType.value() instanceof BlockItem mushroom))
+            return null;
+        return new MushroomColonyHarvestBehaviour(colony, mushroom.getBlock());
     }
 
     @Override
@@ -52,7 +62,7 @@ public class MushroomColonyHarvestBehaviour implements CustomHarvestBehaviour {
         }
     }
 
-    public void harvestMushroom(HarvesterMovementBehaviour behaviour, MovementContext context, BlockPos pos, BlockState state) {
+    protected void harvestMushroom(HarvesterMovementBehaviour behaviour, MovementContext context, BlockPos pos, BlockState state) {
         int age = state.getValue(colony.getAgeProperty());
         if (age == 0)
             return;
@@ -64,11 +74,16 @@ public class MushroomColonyHarvestBehaviour implements CustomHarvestBehaviour {
         behaviour.dropItem(context, new ItemStack(mushroom, age));
     }
 
-    public void harvestColony(HarvesterMovementBehaviour behaviour, MovementContext context, BlockPos pos, BlockState state) {
+    protected void harvestColony(HarvesterMovementBehaviour behaviour, MovementContext context, BlockPos pos, BlockState state) {
         int age = state.getValue(colony.getAgeProperty());
         if (age < colony.getMaxAge() && !CustomHarvestBehaviour.partial())
             return;
-        BlockHelper.destroyBlockAs(context.world, pos, null, new ItemStack(Items.SHEARS), 1,
+        BlockHelper.destroyBlockAs(
+                context.world,
+                pos,
+                null,
+                CustomHarvestBehaviour.getHarvestTool(context, new ItemStack(Items.SHEARS)),
+                1,
                 stack -> behaviour.dropItem(context, stack)
         );
         replantMushroom(context, pos);

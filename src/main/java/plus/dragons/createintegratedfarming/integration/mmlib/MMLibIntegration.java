@@ -16,32 +16,20 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package plus.dragons.createintegratedfarming.integration.mynethersdelight;
+package plus.dragons.createintegratedfarming.integration.mmlib;
 
-import com.soytutta.mynethersdelight.common.registry.MNDBlocks;
-import net.minecraft.world.level.block.Blocks;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import plus.dragons.createintegratedfarming.api.harvest.CustomHarvestBehaviour;
-import plus.dragons.createintegratedfarming.integration.farmersdelight.harvest.MushroomColonyHarvestBehaviour;
-import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
+import plus.dragons.createintegratedfarming.integration.mmlib.harvest.HighCropHarvestBehaviour;
 
-public class MyNethersDelightIntegration {
+public class MMLibIntegration {
     @SubscribeEvent
     public void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(this::registerHarvestBehaviours);
     }
 
     private void registerHarvestBehaviours() {
-        var crimsonFungusColony = (MushroomColonyBlock) MNDBlocks.CRIMSON_FUNGUS_COLONY.get();
-        CustomHarvestBehaviour.REGISTRY.register(
-                crimsonFungusColony,
-                new MushroomColonyHarvestBehaviour(crimsonFungusColony, Blocks.CRIMSON_FUNGUS)
-        );
-        var warpedFungusColony = (MushroomColonyBlock) MNDBlocks.WARPED_FUNGUS_COLONY.get();
-        CustomHarvestBehaviour.REGISTRY.register(
-                warpedFungusColony,
-                new MushroomColonyHarvestBehaviour(warpedFungusColony, Blocks.WARPED_FUNGUS)
-        );
+        CustomHarvestBehaviour.REGISTRY.registerProvider(HighCropHarvestBehaviour::create);
     }
 }

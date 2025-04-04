@@ -25,9 +25,9 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import plus.dragons.createdragonsplus.common.CDPRegistrate;
 import plus.dragons.createintegratedfarming.config.CIFConfig;
-import plus.dragons.createintegratedfarming.integration.Integration;
+import plus.dragons.createintegratedfarming.integration.ModIntegration;
 import plus.dragons.createintegratedfarming.integration.farmersdelight.FarmersDelightIntegration;
-import plus.dragons.createintegratedfarming.integration.mynethersdelight.MyNethersDelightIntegration;
+import plus.dragons.createintegratedfarming.integration.mmlib.MMLibIntegration;
 
 @Mod(CIFCommon.ID)
 public class CIFCommon {
@@ -37,12 +37,10 @@ public class CIFCommon {
 
     public CIFCommon(IEventBus modBus, ModContainer modContainer) {
         REGISTRATE.registerEventListeners(modBus);
-        if (Integration.FARMERS_DELIGHT.isLoaded()) {
-            modBus.register(new FarmersDelightIntegration());
-        }
-        if (Integration.MY_NETHERS_DELIGHT.isLoaded()) {
-            modBus.register(new MyNethersDelightIntegration());
-        }
         modBus.register(new CIFConfig(modContainer));
+        if (ModIntegration.FARMERS_DELIGHT.isLoaded())
+            modBus.register(new FarmersDelightIntegration());
+        if (ModIntegration.MMLIB.isLoaded())
+            modBus.register(new MMLibIntegration());
     }
 }

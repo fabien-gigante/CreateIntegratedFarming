@@ -23,7 +23,7 @@ import com.simibubi.create.content.kinetics.saw.TreeCutter;
 import net.minecraft.world.level.block.BambooStalkBlock;
 
 /**
- * Marker interface for blocks that is a part of a vertially growned block with no branches like {@link BambooStalkBlock}.
+ * Marker interface for blocks that is a part of a vertically growned block with no branches like {@link BambooStalkBlock}.
  * <p>
  * Blocks implementing this interface will be recognized by {@link TreeCutter} and {@link SawBlockEntity}.
  * @see FragileVerticalPlant
