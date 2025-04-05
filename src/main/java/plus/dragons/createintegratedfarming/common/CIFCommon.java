@@ -20,14 +20,17 @@ package plus.dragons.createintegratedfarming.common;
 
 import com.simibubi.create.foundation.item.ItemDescription;
 import net.createmod.catnip.lang.FontHelper;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import plus.dragons.createdragonsplus.common.CDPRegistrate;
+import plus.dragons.createintegratedfarming.common.registry.CIFBlockEntities;
+import plus.dragons.createintegratedfarming.common.registry.CIFBlocks;
+import plus.dragons.createintegratedfarming.common.registry.CIFDataMaps;
+import plus.dragons.createintegratedfarming.common.registry.CIFHarvestBehaviours;
 import plus.dragons.createintegratedfarming.config.CIFConfig;
-import plus.dragons.createintegratedfarming.integration.ModIntegration;
-import plus.dragons.createintegratedfarming.integration.farmersdelight.FarmersDelightIntegration;
-import plus.dragons.createintegratedfarming.integration.mmlib.MMLibIntegration;
 
 @Mod(CIFCommon.ID)
 public class CIFCommon {
@@ -37,10 +40,17 @@ public class CIFCommon {
 
     public CIFCommon(IEventBus modBus, ModContainer modContainer) {
         REGISTRATE.registerEventListeners(modBus);
+        CIFBlocks.register(modBus);
+        CIFBlockEntities.register(modBus);
+        CIFDataMaps.register(modBus);
         modBus.register(new CIFConfig(modContainer));
-        if (ModIntegration.FARMERS_DELIGHT.isLoaded())
-            modBus.register(new FarmersDelightIntegration());
-        if (ModIntegration.MMLIB.isLoaded())
-            modBus.register(new MMLibIntegration());
+    }
+
+    public static void setup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(CIFHarvestBehaviours::register);
+    }
+
+    public static ResourceLocation asResource(String path) {
+        return ResourceLocation.fromNamespaceAndPath(ID, path);
     }
 }

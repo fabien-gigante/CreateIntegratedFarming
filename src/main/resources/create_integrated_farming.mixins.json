@@ -10,8 +10,10 @@
     "SawBlockEntityMixin",
     "SawMovementBehaviourMixin",
     "TreeCutterMixin",
+    "accessor.BeltInventoryAccessor",
     "integration.EnchantableHarvesterMovementBehaviourMixin",
-    "integration.FragileVerticalPlantMixin"
+    "integration.FragileVerticalPlantMixin",
+    "integration.IWrenchableMixin"
   ],
   "client": [],
   "injectors": {
