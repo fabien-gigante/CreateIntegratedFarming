@@ -1,12 +1,14 @@
-// 1.21.1	2025-04-06T01:31:25.8728871	Registrate Provider for create_integrated_farming [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (enchantments), Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+// 1.21.1	2025-04-06T03:32:06.4701685	Registrate Provider for create_integrated_farming [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (enchantments), Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
 14bb12915a46b582d1cff1052966c60ba1298388 assets/create_integrated_farming/blockstates/chicken_coop.json
-964bac045f3701d5277c748d69d91b38af084ce0 assets/create_integrated_farming/blockstates/coop.json
-0a965c7f20e28ecb120bd01120c0efc29e7ce9ef assets/create_integrated_farming/lang/en_ud.json
-3d582483ebaf6f6d3b1209fe8c627bf7179d8129 assets/create_integrated_farming/lang/en_us.json
+deaf235089c67d0ebf6b8d3cf0125a6aed657452 assets/create_integrated_farming/blockstates/empty_chicken_coop.json
+3e39eedb53e8586b13963428adb065062c602d57 assets/create_integrated_farming/lang/en_ud.json
+21e0627cba0d0217ef436074e37c2d5d93a227a6 assets/create_integrated_farming/lang/en_us.json
 4533019bf14518b27cc40b34d8bf504170e992c1 assets/create_integrated_farming/models/item/chicken_coop.json
-56bd4f20cbd89f0a09e4d9045fcb5c7a31406255 assets/create_integrated_farming/models/item/coop.json
+9a8be18ccd4838d0e404958b605d9c4a9fccdd32 assets/create_integrated_farming/models/item/empty_chicken_coop.json
+61617dc003d55d6dd4a882648629e6f9cb2c5279 data/create_integrated_farming/advancement/recipes/empty_chicken_coop.json
 d91961d60d5a3d7a99dd781a32043449d739659c data/create_integrated_farming/data_maps/fluid/chicken_food.json
 8c1cc46567010c403d1002ea8bdb7b0cbb14d1c2 data/create_integrated_farming/data_maps/item/chicken_food.json
 069f61fd96075a3c06c702d16aff52fd5a6ecc0d data/create_integrated_farming/loot_table/blocks/chicken_coop.json
-851b7166346936d3cc556e6ea5c1c5a5a951dbfa data/create_integrated_farming/loot_table/blocks/coop.json
-96c978c8b78fbb50fa7a038510ac40a577216efa data/minecraft/tags/block/mineable/axe.json
+e3267fa38af6dbf1fe9d187928f0bf991dd3f54b data/create_integrated_farming/loot_table/blocks/empty_chicken_coop.json
+4e603eae5c932a977c36e1f6edb2709b4280e3aa data/create_integrated_farming/recipe/crafting/empty_chicken_coop.json
+c735bcd7571210e901b39bf38cc3f296f976405c data/minecraft/tags/block/mineable/axe.json

@@ -33,8 +33,8 @@ import plus.dragons.createintegratedfarming.common.ranching.chicken.CoopBlockIte
 import vectorwing.farmersdelight.common.registry.ModItems;
 
 public class CIFBlocks {
-    public static final BlockEntry<CoopBlock> COOP = REGISTRATE
-            .block("coop", CoopBlock::new)
+    public static final BlockEntry<CoopBlock> EMPTY_CHICKEN_COOP = REGISTRATE
+            .block("empty_chicken_coop", CoopBlock::new)
             .properties(prop -> prop.strength(1.5F).sound(SoundType.BAMBOO_WOOD))
             .blockstate((ctx, prov) -> prov.horizontalBlock(ctx.get(), AssetLookup.standardModel(ctx, prov)))
             .transform(axeOnly())
@@ -46,7 +46,8 @@ public class CIFBlocks {
                     .define('w', Items.WHEAT)
                     .pattern("b  ")
                     .pattern("#w#")
-                    .pattern("b#b"))
+                    .pattern("b#b")
+                    .accept(prov))
             .build()
             .register();
     public static final BlockEntry<ChickenCoopBlock> CHICKEN_COOP = REGISTRATE

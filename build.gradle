@@ -54,7 +54,8 @@ neoForge {
                     '--existing', file('src/main/resources/').getAbsolutePath(),
                     '--existing', file('src/main/translations/').getAbsolutePath(),
                     "--existing-mod", "create",
-                    "--existing-mod", "create_dragons_plus"
+                    "--existing-mod", "create_dragons_plus",
+                    "--existing-mod", "farmersdelight"
         }
 
         configureEach {

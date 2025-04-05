@@ -28,6 +28,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import plus.dragons.createdragonsplus.common.CDPRegistrate;
 import plus.dragons.createintegratedfarming.common.registry.CIFBlockEntities;
 import plus.dragons.createintegratedfarming.common.registry.CIFBlocks;
+import plus.dragons.createintegratedfarming.common.registry.CIFCreativeModeTabs;
 import plus.dragons.createintegratedfarming.common.registry.CIFDataMaps;
 import plus.dragons.createintegratedfarming.common.registry.CIFHarvestBehaviours;
 import plus.dragons.createintegratedfarming.config.CIFConfig;
@@ -40,6 +41,7 @@ public class CIFCommon {
 
     public CIFCommon(IEventBus modBus, ModContainer modContainer) {
         REGISTRATE.registerEventListeners(modBus);
+        CIFCreativeModeTabs.register(modBus);
         CIFBlocks.register(modBus);
         CIFBlockEntities.register(modBus);
         CIFDataMaps.register(modBus);
