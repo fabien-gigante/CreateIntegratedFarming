@@ -12,6 +12,7 @@
     "TreeCutterMixin",
     "accessor.BeltInventoryAccessor",
     "integration.EnchantableHarvesterMovementBehaviourMixin",
+    "integration.EnchantableSawMovementBehaviourMixin",
     "integration.FragileVerticalPlantMixin",
     "integration.IWrenchableMixin"
   ],
