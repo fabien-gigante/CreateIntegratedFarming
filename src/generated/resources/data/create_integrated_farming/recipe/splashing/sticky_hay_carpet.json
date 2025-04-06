@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "create_integrated_farming:sticky_hay_carpet"
+    }
+  ],
+  "results": [
+    {
+      "id": "create_integrated_farming:hay_carpet"
+    }
+  ]
+}

@@ -8,13 +8,13 @@
     "b": {
       "item": "minecraft:bamboo"
     },
-    "w": {
-      "item": "minecraft:wheat"
+    "c": {
+      "item": "create_integrated_farming:sticky_hay_carpet"
     }
   },
   "pattern": [
-    "b  ",
-    "#w#",
+    "b b",
+    "#c#",
     "b#b"
   ],
   "result": {

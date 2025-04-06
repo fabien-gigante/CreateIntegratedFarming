@@ -19,18 +19,21 @@
 package plus.dragons.createintegratedfarming.common.registry;
 
 import static com.simibubi.create.foundation.data.TagGen.axeOnly;
-import static plus.dragons.createdragonsplus.data.recipe.VanillaRecipeBuilders.shaped;
 import static plus.dragons.createintegratedfarming.common.CIFCommon.REGISTRATE;
 
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import net.minecraft.world.item.Items;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.CarpetBlock;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
+import plus.dragons.createintegratedfarming.common.ranching.carpet.CarpetSeatBlock;
 import plus.dragons.createintegratedfarming.common.ranching.chicken.ChickenCoopBlock;
 import plus.dragons.createintegratedfarming.common.ranching.chicken.CoopBlock;
 import plus.dragons.createintegratedfarming.common.ranching.chicken.CoopBlockItem;
-import vectorwing.farmersdelight.common.registry.ModItems;
 
 public class CIFBlocks {
     public static final BlockEntry<CoopBlock> EMPTY_CHICKEN_COOP = REGISTRATE
@@ -39,15 +42,6 @@ public class CIFBlocks {
             .blockstate((ctx, prov) -> prov.horizontalBlock(ctx.get(), AssetLookup.standardModel(ctx, prov)))
             .transform(axeOnly())
             .item(CoopBlockItem::new)
-            .recipe((ctx, prov) -> shaped()
-                    .output(ctx.get())
-                    .define('b', Items.BAMBOO)
-                    .define('#', ModItems.CANVAS.get())
-                    .define('w', Items.WHEAT)
-                    .pattern("b  ")
-                    .pattern("#w#")
-                    .pattern("b#b")
-                    .accept(prov))
             .build()
             .register();
     public static final BlockEntry<ChickenCoopBlock> CHICKEN_COOP = REGISTRATE
@@ -55,6 +49,31 @@ public class CIFBlocks {
             .properties(prop -> prop.strength(1.5F).sound(SoundType.BAMBOO_WOOD))
             .blockstate((ctx, prov) -> prov.horizontalBlock(ctx.get(), AssetLookup.standardModel(ctx, prov)))
             .item()
+            .build()
+            .register();
+    public static final BlockEntry<CarpetBlock> HAY_CARPET = REGISTRATE
+            .block("hay_carpet", CarpetBlock::new)
+            .properties(prop -> prop
+                    .mapColor(MapColor.COLOR_YELLOW)
+                    .sound(SoundType.GRASS)
+                    .strength(0.1f)
+                    .pushReaction(PushReaction.DESTROY)
+            )
+            .blockstate((ctx, prov) -> prov.simpleBlock(ctx.get(), prov.models()
+                    .carpet(ctx.getName(), ResourceLocation.withDefaultNamespace("block/hay_block_top"))))
+            .tag(BlockTags.MINEABLE_WITH_HOE)
+            .item()
+            .compostable(.5f)
+            .build()
+            .register();
+    public static final BlockEntry<CarpetSeatBlock> STICKY_HAY_CARPET = REGISTRATE
+            .block("sticky_hay_carpet", CarpetSeatBlock::new)
+            .initialProperties(HAY_CARPET)
+            .blockstate((ctx, prov) -> prov.simpleBlock(ctx.get(), prov.models()
+                    .carpet(ctx.getName(), ResourceLocation.withDefaultNamespace("block/hay_block_top"))))
+            .tag(BlockTags.MINEABLE_WITH_HOE)
+            .item()
+            .compostable(.5f)
             .build()
             .register();
 
