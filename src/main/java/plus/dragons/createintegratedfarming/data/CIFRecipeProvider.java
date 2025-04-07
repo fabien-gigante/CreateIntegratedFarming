@@ -20,7 +20,7 @@ package plus.dragons.createintegratedfarming.data;
 
 import static net.minecraft.world.item.Items.*;
 import static plus.dragons.createdragonsplus.data.recipe.CreateRecipeBuilders.manualApplication;
-import static plus.dragons.createdragonsplus.data.recipe.CreateRecipeBuilders.splashinng;
+import static plus.dragons.createdragonsplus.data.recipe.CreateRecipeBuilders.splashing;
 import static plus.dragons.createdragonsplus.data.recipe.VanillaRecipeBuilders.shaped;
 import static plus.dragons.createdragonsplus.data.recipe.VanillaRecipeBuilders.shapeless;
 import static plus.dragons.createintegratedfarming.common.registry.CIFBlocks.*;
@@ -60,7 +60,7 @@ public class CIFRecipeProvider extends RecipeProvider {
                 .require(SLIME_BALL)
                 .output(STICKY_HAY_CARPET)
                 .build(output);
-        splashinng(STICKY_HAY_CARPET.getId())
+        splashing(STICKY_HAY_CARPET.getId())
                 .require(STICKY_HAY_CARPET.get())
                 .output(HAY_CARPET)
                 .build(output);

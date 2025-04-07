@@ -10,7 +10,7 @@
     "SawBlockEntityMixin",
     "SawMovementBehaviourMixin",
     "TreeCutterMixin",
-    "accessor.BeltInventoryAccessor",
+    "accessor.BasketBlockEntityAccessor",
     "integration.EnchantableHarvesterMovementBehaviourMixin",
     "integration.EnchantableSawMovementBehaviourMixin",
     "integration.FragileVerticalPlantMixin",

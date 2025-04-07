@@ -18,16 +18,20 @@
 
 package plus.dragons.createintegratedfarming.mixin.accessor;
 
-import com.simibubi.create.content.kinetics.belt.BeltBlockEntity;
-import com.simibubi.create.content.kinetics.belt.transport.BeltInventory;
+import org.spongepowered.asm.mixin.Intrinsic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
+import vectorwing.farmersdelight.common.block.entity.Basket;
+import vectorwing.farmersdelight.common.block.entity.BasketBlockEntity;
 
-@Mixin(BeltInventory.class)
-public interface BeltInventoryAccessor {
+// TODO: Remove this once https://github.com/vectorwing/FarmersDelight/pull/1097 got merged
+// Use field accessors here as methods will get renamed by the PR
+@Mixin(BasketBlockEntity.class)
+public interface BasketBlockEntityAccessor extends Basket {
     @Accessor
-    boolean getBeltMovementPositive();
+    int getTransferCooldown();
 
     @Accessor
-    BeltBlockEntity getBelt();
+    @Intrinsic
+    void setTransferCooldown(int ticks);
 }

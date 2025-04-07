@@ -25,7 +25,10 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import plus.dragons.createdragonsplus.common.CDPRegistrate;
+import plus.dragons.createintegratedfarming.common.registry.CIFArmInteractionPoints;
 import plus.dragons.createintegratedfarming.common.registry.CIFBlockEntities;
 import plus.dragons.createintegratedfarming.common.registry.CIFBlocks;
 import plus.dragons.createintegratedfarming.common.registry.CIFCreativeModeTabs;
@@ -37,6 +40,7 @@ import plus.dragons.createintegratedfarming.config.CIFConfig;
 @Mod(CIFCommon.ID)
 public class CIFCommon {
     public static final String ID = "create_integrated_farming";
+    public static final Logger LOGGER = LoggerFactory.getLogger("Create: Integrated Farming");
     public static final CDPRegistrate REGISTRATE = new CDPRegistrate(ID)
             .setTooltipModifier(item -> new ItemDescription.Modifier(item, FontHelper.Palette.STANDARD_CREATE));
 
@@ -46,6 +50,7 @@ public class CIFCommon {
         CIFBlocks.register(modBus);
         CIFBlockEntities.register(modBus);
         CIFEntities.register(modBus);
+        CIFArmInteractionPoints.register(modBus);
         CIFDataMaps.register(modBus);
         modBus.register(new CIFConfig(modContainer));
     }

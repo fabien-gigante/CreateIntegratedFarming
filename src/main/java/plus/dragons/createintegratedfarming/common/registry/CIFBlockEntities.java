@@ -18,15 +18,22 @@
 
 package plus.dragons.createintegratedfarming.common.registry;
 
+import static plus.dragons.createintegratedfarming.common.CIFCommon.LOGGER;
 import static plus.dragons.createintegratedfarming.common.CIFCommon.REGISTRATE;
 
 import com.simibubi.create.api.behaviour.spouting.BlockSpoutingBehaviour;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.capabilities.Capabilities.ItemHandler;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import plus.dragons.createdragonsplus.common.registry.CDPCapabilities;
+import plus.dragons.createintegratedfarming.common.logistics.basket.BasketBehaviourProvider;
+import plus.dragons.createintegratedfarming.common.logistics.basket.BasketInvWrapper;
 import plus.dragons.createintegratedfarming.common.ranching.chicken.ChickenCoopBlockEntity;
+import vectorwing.farmersdelight.common.registry.ModBlockEntityTypes;
+import vectorwing.farmersdelight.common.registry.ModBlocks;
 
 public class CIFBlockEntities {
     public static final BlockEntityEntry<ChickenCoopBlockEntity> CHICKEN_COOP = REGISTRATE
@@ -42,6 +49,30 @@ public class CIFBlockEntities {
 
     @SubscribeEvent
     public static void registerCapabilities(final RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(ItemHandler.BLOCK, CHICKEN_COOP.get(), ChickenCoopBlockEntity::getItemHandler);
+        event.registerBlockEntity(
+                CDPCapabilities.BEHAVIOUR_PROVIDER,
+                ModBlockEntityTypes.BASKET.get(),
+                (be, ignored) -> new BasketBehaviourProvider(be)
+        );
+        event.registerBlockEntity(
+                ItemHandler.BLOCK,
+                CHICKEN_COOP.get(),
+                ChickenCoopBlockEntity::getItemHandler
+        );
+    }
+
+    // TODO: Remove this once https://github.com/vectorwing/FarmersDelight/pull/1097 got merged
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public static void registerBasketFix(final RegisterCapabilitiesEvent event) {
+        if (event.isBlockRegistered(ItemHandler.BLOCK, ModBlocks.BASKET.get())) {
+            LOGGER.info("Found farmersdelight:basket with ItemHandler capability registered, skipping fix");
+        } else {
+            LOGGER.info("Found farmersdelight:basket with no ItemHandler capability registered, registering fix");
+            event.registerBlockEntity(
+                    ItemHandler.BLOCK,
+                    ModBlockEntityTypes.BASKET.get(),
+                    (be, ctx) -> new BasketInvWrapper(be)
+            );
+        }
     }
 }
