@@ -53,5 +53,6 @@ public class CIFCreativeModeTabs {
         output.accept(CHICKEN_COOP);
         output.accept(HAY_CARPET);
         output.accept(STICKY_HAY_CARPET);
+        output.accept(FISHING_NET);
     }
 }

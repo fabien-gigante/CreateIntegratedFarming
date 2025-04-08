@@ -18,6 +18,7 @@
 
 package plus.dragons.createintegratedfarming.data;
 
+import static com.simibubi.create.AllItems.ANDESITE_ALLOY;
 import static net.minecraft.world.item.Items.*;
 import static plus.dragons.createdragonsplus.data.recipe.CreateRecipeBuilders.manualApplication;
 import static plus.dragons.createdragonsplus.data.recipe.CreateRecipeBuilders.splashing;
@@ -25,12 +26,15 @@ import static plus.dragons.createdragonsplus.data.recipe.VanillaRecipeBuilders.s
 import static plus.dragons.createdragonsplus.data.recipe.VanillaRecipeBuilders.shapeless;
 import static plus.dragons.createintegratedfarming.common.registry.CIFBlocks.*;
 import static vectorwing.farmersdelight.common.registry.ModItems.CANVAS;
+import static vectorwing.farmersdelight.common.registry.ModItems.SAFETY_NET;
 
 import java.util.concurrent.CompletableFuture;
+
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.neoforged.neoforge.common.Tags;
 
 public class CIFRecipeProvider extends RecipeProvider {
     public CIFRecipeProvider(PackOutput output, CompletableFuture<Provider> registries) {
@@ -46,14 +50,17 @@ public class CIFRecipeProvider extends RecipeProvider {
                 .pattern("b b")
                 .pattern("#c#")
                 .pattern("b#b")
+                .unlockedBy("has_canvas", has(CANVAS.get()))
                 .accept(output);
         shaped().output(HAY_CARPET, 3)
                 .define('#', HAY_BLOCK)
                 .pattern("##")
+                .unlockedBy("has_hay_block", has(HAY_BLOCK))
                 .accept(output);
         shapeless().output(STICKY_HAY_CARPET)
                 .require(HAY_CARPET)
                 .require(SLIME_BALL)
+                .unlockedBy("has_hay_block", has(HAY_BLOCK))
                 .accept(output);
         manualApplication(STICKY_HAY_CARPET.getId())
                 .require(HAY_CARPET)
@@ -64,5 +71,13 @@ public class CIFRecipeProvider extends RecipeProvider {
                 .require(STICKY_HAY_CARPET.get())
                 .output(HAY_CARPET)
                 .build(output);
+        shaped().output(FISHING_NET, 2)
+                .define('#', SAFETY_NET.get())
+                .define('/', Tags.Items.RODS_WOODEN)
+                .define('a', ANDESITE_ALLOY)
+                .pattern("#/")
+                .pattern("/a")
+                .unlockedBy("has_andesite_alloy", has(ANDESITE_ALLOY))
+                .accept(output);
     }
 }

@@ -21,15 +21,21 @@ package plus.dragons.createintegratedfarming.common.registry;
 import static com.simibubi.create.foundation.data.TagGen.axeOnly;
 import static plus.dragons.createintegratedfarming.common.CIFCommon.REGISTRATE;
 
+import com.simibubi.create.api.behaviour.movement.MovementBehaviour;
 import com.simibubi.create.foundation.data.AssetLookup;
+import com.simibubi.create.foundation.data.BlockStateGen;
+import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.CarpetBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
+import plus.dragons.createintegratedfarming.common.fishing.net.FishingNetBlock;
+import plus.dragons.createintegratedfarming.common.fishing.net.FishingNetMovementBehaviour;
 import plus.dragons.createintegratedfarming.common.ranching.carpet.CarpetSeatBlock;
 import plus.dragons.createintegratedfarming.common.ranching.chicken.ChickenCoopBlock;
 import plus.dragons.createintegratedfarming.common.ranching.chicken.CoopBlock;
@@ -75,6 +81,18 @@ public class CIFBlocks {
             .item()
             .compostable(.5f)
             .build()
+            .register();
+    public static final BlockEntry<FishingNetBlock> FISHING_NET = REGISTRATE
+            .block("fishing_net", FishingNetBlock::new)
+            .initialProperties(SharedProperties::wooden)
+            .properties(prop -> prop
+                    .mapColor(DyeColor.BROWN)
+                    .sound(SoundType.SCAFFOLDING)
+                    .noOcclusion())
+            .transform(axeOnly())
+            .blockstate(BlockStateGen.directionalBlockProvider(false))
+            .onRegister(block -> MovementBehaviour.REGISTRY.register(block, new FishingNetMovementBehaviour()))
+            .simpleItem()
             .register();
 
     public static void register(IEventBus modBus) {}

@@ -1,5 +1,15 @@
 {
   "criteria": {
+    "has_canvas": {
+      "conditions": {
+        "items": [
+          {
+            "items": "farmersdelight:canvas"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "create_integrated_farming:empty_chicken_coop"
@@ -9,7 +19,8 @@
   },
   "requirements": [
     [
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_canvas"
     ]
   ],
   "rewards": {

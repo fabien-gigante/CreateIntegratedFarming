@@ -21,9 +21,21 @@ package plus.dragons.createintegratedfarming.config;
 import net.createmod.catnip.config.ConfigBase;
 
 public class CIFServerConfig extends ConfigBase {
+    public final ConfigGroup harvester = group(1, "harvester", Comments.harvester);
     public final ConfigBool mushroomColoniesDropSelf = b(false,
             "mushroomColoniesDropSelf",
             Comments.mushroomColoniesDropSelf);
+
+    public final ConfigGroup fishingNet = group(1, "fishingNet", Comments.fishingNet);
+    public final ConfigBool fishingNetChecksOpenWater = b(true,
+            "checksOpenWater",
+            Comments.fishingNetChecksOpenWater);
+    public final ConfigInt fishingNetCooldownMultiplier = i(8, 1, 256,
+            "cooldownMultiplier",
+            Comments.fishingNetCooldownMultiplier);
+    public final ConfigInt fishingNetMaxRecordedBlocks = i(8, 1, 64,
+            "maxRecordedBlocks",
+            Comments.fishingNetMaxRecordedBlocks);
 
     @Override
     public String getName() {
@@ -31,7 +43,25 @@ public class CIFServerConfig extends ConfigBase {
     }
 
     static class Comments {
+        static final String harvester =
+                "Settings for the Harvester";
         static final String mushroomColoniesDropSelf =
-                "If harvesting mushroom/fungus colonies drops itself instead of corresponding mushroom/fungus.";
+                "If harvesting mushroom colonies drops itself instead of corresponding mushroom.";
+        static final String fishingNet =
+                "Settings for the Fishing Net.";
+        static final String[] fishingNetChecksOpenWater = {
+                "If Fishing Net should check for open water.",
+                "When disabled, fishing treasures will not be available in caught items."
+        };
+        static final String[] fishingNetCooldownMultiplier = {
+                "Fishing Net's cooldown will be multiplied by this value.",
+                "The base cooldown is the same as Fishing Rod's lure speed (100 ~ 600 ticks)."
+        };
+        static final String[] fishingNetMaxRecordedBlocks = {
+                "The maximum amount of the visited valid blocks for fishing recorded by the Fishing Net.",
+                "Fishing Net's chance of successful catch depends on [amount] / [maximum amount] of visited valid blocks.",
+                "Increasing this value will reduce the efficiency of Fishing Net that travels in a fixed short route.",
+                "Example: Fishing Net placed near rotating axis"
+        };
     }
 }

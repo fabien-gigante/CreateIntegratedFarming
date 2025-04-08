@@ -1,10 +1,10 @@
 {
   "criteria": {
-    "has_hay_block": {
+    "has_andesite_alloy": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:hay_block"
+            "items": "create:andesite_alloy"
           }
         ]
       },
@@ -12,7 +12,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "create_integrated_farming:hay_carpet"
+        "recipe": "create_integrated_farming:fishing_net"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -20,12 +20,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_hay_block"
+      "has_andesite_alloy"
     ]
   ],
   "rewards": {
     "recipes": [
-      "create_integrated_farming:hay_carpet"
+      "create_integrated_farming:fishing_net"
     ]
   },
   "sends_telemetry_event": true

@@ -17,7 +17,7 @@ issueTrackerURL="${mod_github}/issues"
     config="${mod_id}.mixins.json"
 
 #[[accessTransformers]]
-    #file="META-INF/accesstransformer.cfg"
+    file="META-INF/accesstransformer.cfg"
 
 #[modproperties.${mod_id}]
 
