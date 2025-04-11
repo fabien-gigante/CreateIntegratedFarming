@@ -9,6 +9,7 @@
     "HarvesterMovementBehaviourMixin",
     "SawBlockEntityMixin",
     "SawMovementBehaviourMixin",
+    "SeatBlockMixin",
     "TreeCutterMixin",
     "accessor.BasketBlockEntityAccessor",
     "integration.EnchantableHarvesterMovementBehaviourMixin",

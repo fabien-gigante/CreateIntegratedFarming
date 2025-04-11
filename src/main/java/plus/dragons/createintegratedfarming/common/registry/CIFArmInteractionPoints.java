@@ -25,7 +25,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import plus.dragons.createintegratedfarming.common.CIFCommon;
 import plus.dragons.createintegratedfarming.common.logistics.basket.BasketArmInteractionPoint;
-import plus.dragons.createintegratedfarming.common.ranching.chicken.ChickenCoopArmInteractionPoint;
+import plus.dragons.createintegratedfarming.common.ranching.coop.ChickenCoopArmInteractionPoint;
 
 public class CIFArmInteractionPoints {
     private static final DeferredRegister<ArmInteractionPointType> TYPES = DeferredRegister

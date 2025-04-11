@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package plus.dragons.createintegratedfarming.common.ranching.chicken;
+package plus.dragons.createintegratedfarming.common.ranching.coop;
 
 import com.mojang.serialization.MapCodec;
 import com.simibubi.create.content.contraptions.actors.seat.SeatBlock;

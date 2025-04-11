@@ -18,27 +18,24 @@
 
 package plus.dragons.createintegratedfarming.data;
 
-import static com.simibubi.create.AllItems.ANDESITE_ALLOY;
+import static com.simibubi.create.AllItems.*;
 import static net.minecraft.world.item.Items.*;
-import static plus.dragons.createdragonsplus.data.recipe.CreateRecipeBuilders.manualApplication;
-import static plus.dragons.createdragonsplus.data.recipe.CreateRecipeBuilders.splashing;
-import static plus.dragons.createdragonsplus.data.recipe.VanillaRecipeBuilders.shaped;
-import static plus.dragons.createdragonsplus.data.recipe.VanillaRecipeBuilders.shapeless;
+import static plus.dragons.createdragonsplus.data.recipe.CreateRecipeBuilders.*;
+import static plus.dragons.createdragonsplus.data.recipe.VanillaRecipeBuilders.*;
 import static plus.dragons.createintegratedfarming.common.registry.CIFBlocks.*;
-import static vectorwing.farmersdelight.common.registry.ModItems.CANVAS;
-import static vectorwing.farmersdelight.common.registry.ModItems.SAFETY_NET;
+import static vectorwing.farmersdelight.common.registry.ModItems.*;
 
+import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import java.util.concurrent.CompletableFuture;
-
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
 import net.neoforged.neoforge.common.Tags;
+import plus.dragons.createintegratedfarming.common.CIFCommon;
 
-public class CIFRecipeProvider extends RecipeProvider {
+public class CIFRecipeProvider extends RegistrateRecipeProvider {
     public CIFRecipeProvider(PackOutput output, CompletableFuture<Provider> registries) {
-        super(output, registries);
+        super(CIFCommon.REGISTRATE, output, registries);
     }
 
     @Override
@@ -46,38 +43,25 @@ public class CIFRecipeProvider extends RecipeProvider {
         shaped().output(EMPTY_CHICKEN_COOP)
                 .define('#', CANVAS.get())
                 .define('b', BAMBOO)
-                .define('c', STICKY_HAY_CARPET)
+                .define('c', WHEAT)
                 .pattern("b b")
                 .pattern("#c#")
                 .pattern("b#b")
                 .unlockedBy("has_canvas", has(CANVAS.get()))
                 .accept(output);
-        shaped().output(HAY_CARPET, 3)
-                .define('#', HAY_BLOCK)
-                .pattern("##")
-                .unlockedBy("has_hay_block", has(HAY_BLOCK))
-                .accept(output);
-        shapeless().output(STICKY_HAY_CARPET)
-                .require(HAY_CARPET)
-                .require(SLIME_BALL)
-                .unlockedBy("has_hay_block", has(HAY_BLOCK))
-                .accept(output);
-        manualApplication(STICKY_HAY_CARPET.getId())
-                .require(HAY_CARPET)
-                .require(SLIME_BALL)
-                .output(STICKY_HAY_CARPET)
-                .build(output);
-        splashing(STICKY_HAY_CARPET.getId())
-                .require(STICKY_HAY_CARPET.get())
-                .output(HAY_CARPET)
-                .build(output);
         shaped().output(FISHING_NET, 2)
                 .define('#', SAFETY_NET.get())
                 .define('/', Tags.Items.RODS_WOODEN)
                 .define('a', ANDESITE_ALLOY)
                 .pattern("#/")
                 .pattern("/a")
+                .unlockedBy("has_safety_net", has(SAFETY_NET.get()))
                 .unlockedBy("has_andesite_alloy", has(ANDESITE_ALLOY))
                 .accept(output);
+        cutting(safeId(GRASS_BLOCK))
+                .require(GRASS_BLOCK)
+                .output(SHORT_GRASS)
+                .output(DIRT)
+                .build(output);
     }
 }

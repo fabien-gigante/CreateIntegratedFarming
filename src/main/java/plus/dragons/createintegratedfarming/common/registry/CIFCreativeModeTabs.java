@@ -51,8 +51,6 @@ public class CIFCreativeModeTabs {
     private static void buildBaseContents(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
         output.accept(EMPTY_CHICKEN_COOP);
         output.accept(CHICKEN_COOP);
-        output.accept(HAY_CARPET);
-        output.accept(STICKY_HAY_CARPET);
         output.accept(FISHING_NET);
     }
 }

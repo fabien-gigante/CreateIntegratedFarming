@@ -33,7 +33,6 @@ import plus.dragons.createintegratedfarming.common.registry.CIFBlockEntities;
 import plus.dragons.createintegratedfarming.common.registry.CIFBlocks;
 import plus.dragons.createintegratedfarming.common.registry.CIFCreativeModeTabs;
 import plus.dragons.createintegratedfarming.common.registry.CIFDataMaps;
-import plus.dragons.createintegratedfarming.common.registry.CIFEntities;
 import plus.dragons.createintegratedfarming.common.registry.CIFHarvestBehaviours;
 import plus.dragons.createintegratedfarming.config.CIFConfig;
 
@@ -49,7 +48,6 @@ public class CIFCommon {
         CIFCreativeModeTabs.register(modBus);
         CIFBlocks.register(modBus);
         CIFBlockEntities.register(modBus);
-        CIFEntities.register(modBus);
         CIFArmInteractionPoints.register(modBus);
         CIFDataMaps.register(modBus);
         modBus.register(new CIFConfig(modContainer));

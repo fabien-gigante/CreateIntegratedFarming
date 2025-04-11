@@ -34,8 +34,8 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.registries.datamaps.DataMapType;
 import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
 import plus.dragons.createintegratedfarming.common.CIFCommon;
-import plus.dragons.createintegratedfarming.common.ranching.chicken.ChickenFoodFluid;
-import plus.dragons.createintegratedfarming.common.ranching.chicken.ChickenFoodItem;
+import plus.dragons.createintegratedfarming.common.ranching.coop.ChickenFoodFluid;
+import plus.dragons.createintegratedfarming.common.ranching.coop.ChickenFoodItem;
 import plus.dragons.createintegratedfarming.integration.Integration;
 
 public class CIFDataMaps {

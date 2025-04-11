@@ -9,7 +9,7 @@
       "item": "minecraft:bamboo"
     },
     "c": {
-      "item": "create_integrated_farming:sticky_hay_carpet"
+      "item": "minecraft:wheat"
     }
   },
   "pattern": [

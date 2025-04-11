@@ -60,6 +60,13 @@ public class FishingNetMovementBehaviour implements MovementBehaviour {
         }
     }
 
+    @Override
+    public void stopMoving(MovementContext context) {
+        if (context.temporaryData instanceof FishingNetContext fishing && context.world instanceof ServerLevel level) {
+            fishing.invalidate(level);
+        }
+    }
+
     protected FishingNetContext getFishingNetContext(MovementContext context, ServerLevel level) {
         if (!(context.temporaryData instanceof FishingNetContext)) {
             context.temporaryData = new FishingNetContext(level, new ItemStack(Items.FISHING_ROD));

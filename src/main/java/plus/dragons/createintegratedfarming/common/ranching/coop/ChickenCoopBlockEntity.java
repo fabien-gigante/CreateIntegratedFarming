@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package plus.dragons.createintegratedfarming.common.ranching.chicken;
+package plus.dragons.createintegratedfarming.common.ranching.coop;
 
 import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
 import com.simibubi.create.content.kinetics.belt.behaviour.DirectBeltInputBehaviour;
@@ -34,6 +34,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -158,11 +159,14 @@ public class ChickenCoopBlockEntity extends SmartBlockEntity {
             return true;
         feed(food);
         Direction facing = getBlockState().getValue(HorizontalDirectionalBlock.FACING);
-        Vec3 particlePos = Vec3.atBottomCenterOf(worldPosition)
+        Vec3 feedPos = Vec3.atBottomCenterOf(worldPosition)
                 .add(facing.getStepX() * .5f, 13 / 16f, facing.getStepZ() * .5f);
+        food.usingConvertsTo().ifPresent(remainer -> Containers.dropItemStack(
+                level, feedPos.x, feedPos.y, feedPos.z, remainer
+        ));
         level.addParticle(
                 new ItemParticleOption(ParticleTypes.ITEM, stack),
-                particlePos.x, particlePos.y, particlePos.z,
+                feedPos.x, feedPos.y, feedPos.z,
                 0, 0, 0
         );
         return true;

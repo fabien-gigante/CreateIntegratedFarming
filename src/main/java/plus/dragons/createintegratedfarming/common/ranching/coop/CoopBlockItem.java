@@ -16,11 +16,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package plus.dragons.createintegratedfarming.common.ranching.chicken;
+package plus.dragons.createintegratedfarming.common.ranching.coop;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.player.Player;
@@ -36,7 +37,7 @@ public class CoopBlockItem extends BlockItem {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {
-        if (target instanceof Chicken chicken && !chicken.isChickenJockey()) {
+        if (target instanceof Chicken chicken && chicken.getType() == EntityType.CHICKEN && !chicken.isChickenJockey()) {
             if (!player.isCreative())
                 stack.shrink(1);
             if (stack.isEmpty())

@@ -31,7 +31,7 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import plus.dragons.createdragonsplus.common.registry.CDPCapabilities;
 import plus.dragons.createintegratedfarming.common.logistics.basket.BasketBehaviourProvider;
 import plus.dragons.createintegratedfarming.common.logistics.basket.BasketInvWrapper;
-import plus.dragons.createintegratedfarming.common.ranching.chicken.ChickenCoopBlockEntity;
+import plus.dragons.createintegratedfarming.common.ranching.coop.ChickenCoopBlockEntity;
 import vectorwing.farmersdelight.common.registry.ModBlockEntityTypes;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
 
@@ -50,14 +50,14 @@ public class CIFBlockEntities {
     @SubscribeEvent
     public static void registerCapabilities(final RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
-                CDPCapabilities.BEHAVIOUR_PROVIDER,
-                ModBlockEntityTypes.BASKET.get(),
-                (be, ignored) -> new BasketBehaviourProvider(be)
-        );
-        event.registerBlockEntity(
                 ItemHandler.BLOCK,
                 CHICKEN_COOP.get(),
                 ChickenCoopBlockEntity::getItemHandler
+        );
+        event.registerBlockEntity(
+                CDPCapabilities.BEHAVIOUR_PROVIDER,
+                ModBlockEntityTypes.BASKET.get(),
+                (be, ignored) -> new BasketBehaviourProvider(be)
         );
     }
 

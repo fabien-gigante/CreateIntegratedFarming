@@ -75,7 +75,7 @@ public class FishingNetContext {
                 .withParameter(LootContextParams.ORIGIN, context.position)
                 .withParameter(LootContextParams.TOOL, fishingRod)
                 .withParameter(LootContextParams.THIS_ENTITY, fishingHook)
-                .withLuck(EnchantmentHelper.getFishingLuckBonus(level, fishingRod, fishingHook))
+                .withLuck(EnchantmentHelper.getFishingLuckBonus(level, fishingRod, context.contraption.entity))
                 .create(LootContextParamSets.FISHING);
     }
 
@@ -84,6 +84,11 @@ public class FishingNetContext {
         if (maxRecorded == 0)
             return true;
         return fishingHook.getRandom().nextInt(maxRecorded) < visitedBlocks.size();
+    }
+
+    public void invalidate(ServerLevel level) {
+        reset(level);
+        fishingHook.discard();
     }
 
     public FishingHook getFishingHook() {
