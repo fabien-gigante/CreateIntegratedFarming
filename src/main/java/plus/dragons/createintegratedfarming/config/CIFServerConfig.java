@@ -48,13 +48,10 @@ public class CIFServerConfig extends ConfigBase {
     }
 
     static class Comments {
-        static final String farming =
-                "Settings for Farming utilities";
-        static final String mushroomColoniesDropSelf =
-                "When harvested by Harvester, if mushroom colonies drops itself instead of corresponding mushroom.";
+        static final String farming = "Settings for Farming utilities";
+        static final String mushroomColoniesDropSelf = "When harvested by Harvester, if mushroom colonies drops itself instead of corresponding mushroom.";
 
-        static final String fishing =
-                "Settings for Fishing utilities";
+        static final String fishing = "Settings for Fishing utilities";
         static final String[] fishingNetChecksOpenWater = {
                 "If Fishing Net should check for open water.",
                 "When disabled, the open water check will be skipped and return false."
@@ -70,8 +67,7 @@ public class CIFServerConfig extends ConfigBase {
                 "Example: Fishing Net placed near the rotating axis."
         };
 
-        static final String ranching =
-                "Settings for Ranching utilities";
+        static final String ranching = "Settings for Ranching utilities";
         static final String[] leashedEntitySitsAutomatically = {
                 "If leashed entity automatically sits on unoccupied seat.",
                 "When enabled, falls back to vanilla Create behaviour.",

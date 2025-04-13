@@ -20,7 +20,6 @@ package plus.dragons.createintegratedfarming.data;
 
 import static com.simibubi.create.AllItems.*;
 import static net.minecraft.world.item.Items.*;
-import static plus.dragons.createdragonsplus.data.recipe.CreateRecipeBuilders.*;
 import static plus.dragons.createdragonsplus.data.recipe.VanillaRecipeBuilders.*;
 import static plus.dragons.createintegratedfarming.common.registry.CIFBlocks.*;
 import static vectorwing.farmersdelight.common.registry.ModItems.*;
@@ -58,10 +57,5 @@ public class CIFRecipeProvider extends RegistrateRecipeProvider {
                 .unlockedBy("has_safety_net", has(SAFETY_NET.get()))
                 .unlockedBy("has_andesite_alloy", has(ANDESITE_ALLOY))
                 .accept(output);
-        cutting(safeId(GRASS_BLOCK))
-                .require(GRASS_BLOCK)
-                .output(SHORT_GRASS)
-                .output(DIRT)
-                .build(output);
     }
 }

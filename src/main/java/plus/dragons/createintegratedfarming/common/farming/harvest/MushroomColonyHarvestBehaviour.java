@@ -84,8 +84,7 @@ public class MushroomColonyHarvestBehaviour implements CustomHarvestBehaviour {
                 null,
                 CustomHarvestBehaviour.getHarvestTool(context, new ItemStack(Items.SHEARS)),
                 1,
-                stack -> behaviour.dropItem(context, stack)
-        );
+                stack -> behaviour.dropItem(context, stack));
         replantMushroom(context, pos);
     }
 
@@ -100,8 +99,7 @@ public class MushroomColonyHarvestBehaviour implements CustomHarvestBehaviour {
                 context.contraption.getStorage().getAllItems(),
                 stack -> stack.is(mushroom.asItem()),
                 1,
-                false
-        );
+                false);
         if (available.isEmpty())
             return;
         level.setBlockAndUpdate(pos, newState);

@@ -38,8 +38,7 @@ public class BlockBreakingMovementBehaviourMixin {
             var state = level.getBlockState(pos);
             if (state.getBlock() instanceof FragileVerticalPlant) {
                 TreeCutter.findTree(context.world, pos, state).destroyBlocks(level, null,
-                        (stack, dropPos) -> saw.dropItemFromCutTree(context, stack, dropPos)
-                );
+                        (stack, dropPos) -> saw.dropItemFromCutTree(context, stack, dropPos));
             }
         }
     }

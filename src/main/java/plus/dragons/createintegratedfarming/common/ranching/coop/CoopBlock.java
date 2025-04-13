@@ -51,8 +51,7 @@ public class CoopBlock extends HorizontalDirectionalBlock implements IWrenchable
     protected static final VoxelShape NORTH_SHAPE = Shapes.join(
             Shapes.block(),
             Shapes.or(box(2, 6, 2, 14, 11, 14), box(2, 11, 0, 14, 16, 14)),
-            BooleanOp.ONLY_FIRST
-    );
+            BooleanOp.ONLY_FIRST);
     protected static final VoxelShaper SHAPE = VoxelShaper.forHorizontal(NORTH_SHAPE, Direction.NORTH);
     protected static final VoxelShape INTERACTION_SHAPE = Shapes.block();
     protected static final VoxelShape OCCULUSION_SHAPE = box(0, 0, 0, 16, 11, 16);
@@ -61,8 +60,7 @@ public class CoopBlock extends HorizontalDirectionalBlock implements IWrenchable
         super(properties);
         registerDefaultState(defaultBlockState()
                 .setValue(FACING, Direction.NORTH)
-                .setValue(WATERLOGGED, false)
-        );
+                .setValue(WATERLOGGED, false));
     }
 
     @Override

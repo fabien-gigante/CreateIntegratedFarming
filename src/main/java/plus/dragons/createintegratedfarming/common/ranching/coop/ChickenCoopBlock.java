@@ -64,8 +64,7 @@ public class ChickenCoopBlock extends CoopBlock implements IBE<ChickenCoopBlockE
                 player.getInventory().placeItemBackInInventory(stack);
                 level.playSound(
                         player, pos, SoundEvents.CHICKEN_EGG, SoundSource.BLOCKS,
-                        1.0F, (level.random.nextFloat() - level.random.nextFloat()) * 0.2F + 1.0F
-                );
+                        1.0F, (level.random.nextFloat() - level.random.nextFloat()) * 0.2F + 1.0F);
                 return InteractionResult.sidedSuccess(level.isClientSide);
             }
             return InteractionResult.PASS;
@@ -101,8 +100,7 @@ public class ChickenCoopBlock extends CoopBlock implements IBE<ChickenCoopBlockE
         if (entity.level().isClientSide)
             return;
 
-        DirectBeltInputBehaviour inputBehaviour =
-                BlockEntityBehaviour.get(level, entity.blockPosition(), DirectBeltInputBehaviour.TYPE);
+        DirectBeltInputBehaviour inputBehaviour = BlockEntityBehaviour.get(level, entity.blockPosition(), DirectBeltInputBehaviour.TYPE);
         if (inputBehaviour == null)
             return;
         ItemStack remainder = inputBehaviour.handleInsertion(itemEntity.getItem(), Direction.UP, false);
@@ -130,8 +128,7 @@ public class ChickenCoopBlock extends CoopBlock implements IBE<ChickenCoopBlockE
     protected MapCodec<? extends ChickenCoopBlock> codec() {
         return RecordCodecBuilder.mapCodec(instance -> instance.group(
                 propertiesCodec(),
-                BuiltInRegistries.BLOCK.holderByNameCodec().fieldOf("empty").forGetter(block -> block.empty)
-        ).apply(instance, ChickenCoopBlock::new));
+                BuiltInRegistries.BLOCK.holderByNameCodec().fieldOf("empty").forGetter(block -> block.empty)).apply(instance, ChickenCoopBlock::new));
     }
 
     @Override

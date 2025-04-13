@@ -64,13 +64,11 @@ public class CIFDataMaps {
                 .add(ItemTags.CHICKEN_FOOD, new ChickenFoodItem(
                         ConstantInt.of(2400),
                         UniformInt.of(400, 800),
-                        Optional.empty()
-                ), false);
+                        Optional.empty()), false);
         provider.builder(CHICKEN_FOOD_FLUIDS)
                 .add(Integration.CREATE_CRAFT_AND_ADDITIONS.asResource("seed_oil"), new ChickenFoodFluid(
                         ConstantInt.of(2400),
                         UniformInt.of(400, 800),
-                        100
-                ), false, Integration.CREATE_CRAFT_AND_ADDITIONS.condition());
+                        100), false, Integration.CREATE_CRAFT_AND_ADDITIONS.condition());
     }
 }

@@ -35,8 +35,7 @@ public class BasketBehaviourProvider extends SmartBlockEntityBehaviourProvider<B
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
         behaviours.add(new DirectBeltInputBehaviour(this)
                 .allowingBeltFunnelsWhen(this::allowsBeltFunnels)
-                .onlyInsertWhen(this::canInsert)
-        );
+                .onlyInsertWhen(this::canInsert));
     }
 
     protected boolean allowsBeltFunnels() {

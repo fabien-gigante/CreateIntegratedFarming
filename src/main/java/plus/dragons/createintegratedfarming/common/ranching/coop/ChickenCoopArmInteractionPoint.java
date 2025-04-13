@@ -56,7 +56,8 @@ public class ChickenCoopArmInteractionPoint extends ArmInteractionPoint {
             return level.getBlockEntity(pos) instanceof ChickenCoopBlockEntity;
         }
 
-        @Nullable @Override
+        @Nullable
+        @Override
         public ArmInteractionPoint createPoint(Level level, BlockPos pos, BlockState state) {
             return new ChickenCoopArmInteractionPoint(this, level, pos, state);
         }

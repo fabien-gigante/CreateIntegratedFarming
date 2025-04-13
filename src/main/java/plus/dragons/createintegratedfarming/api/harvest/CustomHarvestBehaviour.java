@@ -78,11 +78,12 @@ public interface CustomHarvestBehaviour {
 
     /**
      * Harvest the block and collect the drops.
+     * 
      * @param behaviour the actual {@link HarvesterMovementBehaviour} of the harvester,
      *                  usually used for calling {@link MovementBehaviour#dropItem(MovementContext, ItemStack)}.
-     * @param context the {@link MovementContext} of the harvester.
-     * @param pos the {@link BlockPos} of the block to be harvested.
-     * @param state the {@link BlockState} of the block to be harvested.
+     * @param context   the {@link MovementContext} of the harvester.
+     * @param pos       the {@link BlockPos} of the block to be harvested.
+     * @param state     the {@link BlockState} of the block to be harvested.
      */
     void harvest(HarvesterMovementBehaviour behaviour, MovementContext context, BlockPos pos, BlockState state);
 
@@ -154,14 +155,12 @@ public interface CustomHarvestBehaviour {
         }
 
         if (level instanceof ServerLevel serverLevel &&
-            level.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) &&
-            !level.restoringBlockSnapshots &&
-            (player == null || !player.isCreative())
-        ) {
+                level.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) &&
+                !level.restoringBlockSnapshots &&
+                (player == null || !player.isCreative())) {
             List<ItemStack> drops = Block.getDrops(state, serverLevel, pos, blockEntity, player, usedTool);
             if (player != null) {
-                BlockDropsEvent
-                        event = new BlockDropsEvent(serverLevel, pos, state, blockEntity, List.of(), player, usedTool);
+                BlockDropsEvent event = new BlockDropsEvent(serverLevel, pos, state, blockEntity, List.of(), player, usedTool);
                 NeoForge.EVENT_BUS.post(event);
                 if (!event.isCanceled()) {
                     if (event.getDroppedExperience() > 0)

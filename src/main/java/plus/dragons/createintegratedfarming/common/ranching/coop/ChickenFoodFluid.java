@@ -25,12 +25,11 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 
 public record ChickenFoodFluid(IntProvider progress, IntProvider cooldown, int amount) implements ChickenFood {
+
     public static final Codec<ChickenFoodFluid> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             IntProvider.codec(0, 12000).fieldOf("progress").forGetter(ChickenFoodFluid::progress),
             IntProvider.NON_NEGATIVE_CODEC.fieldOf("cooldown").forGetter(ChickenFoodFluid::cooldown),
-            ExtraCodecs.POSITIVE_INT.fieldOf("amount").forGetter(ChickenFoodFluid::amount)
-    ).apply(instance, ChickenFoodFluid::new));
-
+            ExtraCodecs.POSITIVE_INT.fieldOf("amount").forGetter(ChickenFoodFluid::amount)).apply(instance, ChickenFoodFluid::new));
     public int getProgress(RandomSource random) {
         return progress.sample(random);
     }

@@ -77,8 +77,7 @@ public class ChickenCoopBlockEntity extends SmartBlockEntity {
         behaviours.add(new DirectBeltInputBehaviour(this)
                 .onlyInsertWhen(side -> side == getBlockState().getValue(HorizontalDirectionalBlock.FACING).getOpposite())
                 .considerOccupiedWhen(side -> feedCooldown > 0)
-                .setInsertionHandler(this::tryInsertFrom)
-        );
+                .setInsertionHandler(this::tryInsertFrom));
     }
 
     @Override
@@ -108,8 +107,7 @@ public class ChickenCoopBlockEntity extends SmartBlockEntity {
                 eggTime = 6000 + level.random.nextInt(6000);
                 level.playSound(
                         null, worldPosition, SoundEvents.CHICKEN_EGG, SoundSource.BLOCKS,
-                        1.0F, (level.random.nextFloat() - level.random.nextFloat()) * 0.2F + 1.0F
-                );
+                        1.0F, (level.random.nextFloat() - level.random.nextFloat()) * 0.2F + 1.0F);
                 changed = true;
             }
         }
@@ -162,13 +160,11 @@ public class ChickenCoopBlockEntity extends SmartBlockEntity {
         Vec3 feedPos = Vec3.atBottomCenterOf(worldPosition)
                 .add(facing.getStepX() * .5f, 13 / 16f, facing.getStepZ() * .5f);
         food.usingConvertsTo().ifPresent(remainer -> Containers.dropItemStack(
-                level, feedPos.x, feedPos.y, feedPos.z, remainer
-        ));
+                level, feedPos.x, feedPos.y, feedPos.z, remainer));
         level.addParticle(
                 new ItemParticleOption(ParticleTypes.ITEM, stack),
                 feedPos.x, feedPos.y, feedPos.z,
-                0, 0, 0
-        );
+                0, 0, 0);
         return true;
     }
 
@@ -190,8 +186,7 @@ public class ChickenCoopBlockEntity extends SmartBlockEntity {
         feedCooldown = food.getCooldown(level.random);
         level.playSound(
                 null, worldPosition, SoundEvents.CHICKEN_AMBIENT, SoundSource.BLOCKS,
-                1.0F, (level.random.nextFloat() - level.random.nextFloat()) * 0.2F + 1.0F
-        );
+                1.0F, (level.random.nextFloat() - level.random.nextFloat()) * 0.2F + 1.0F);
         notifyUpdate();
     }
 

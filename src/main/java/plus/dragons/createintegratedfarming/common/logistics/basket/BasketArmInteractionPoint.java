@@ -37,7 +37,8 @@ public class BasketArmInteractionPoint extends ArmInteractionPoint {
             return level.getBlockEntity(pos) instanceof BasketBlockEntity;
         }
 
-        @Nullable @Override
+        @Nullable
+        @Override
         public ArmInteractionPoint createPoint(Level level, BlockPos pos, BlockState state) {
             return new BasketArmInteractionPoint(this, level, pos, state);
         }

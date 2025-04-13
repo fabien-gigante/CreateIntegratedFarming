@@ -38,8 +38,7 @@ public class FishingNetContext {
     protected final ItemStack fishingRod;
     protected final FishingHook fishingHook;
     protected final Set<BlockPos> visitedBlocks = new HashSet<>(
-            Math.min(16, CIFConfig.server().fishingNetMaxRecordedBlocks.get())
-    );
+            Math.min(16, CIFConfig.server().fishingNetMaxRecordedBlocks.get()));
     public int timeUntilCatch;
 
     public FishingNetContext(ServerLevel level, ItemStack fishingRod) {
@@ -52,7 +51,7 @@ public class FishingNetContext {
         this.visitedBlocks.clear();
         int lureSpeed = (int) (EnchantmentHelper.getFishingTimeReduction(level, fishingRod, fishingHook) * 20.0F);
         this.timeUntilCatch = (Mth.nextInt(fishingHook.getRandom(), 100, 600) - lureSpeed) *
-                              CIFConfig.server().fishingNetCooldownMultiplier.get();
+                CIFConfig.server().fishingNetCooldownMultiplier.get();
     }
 
     public boolean visitNewPositon(ServerLevel level, BlockPos pos) {
@@ -68,8 +67,7 @@ public class FishingNetContext {
         fishingHook.setPos(context.position);
         if (CIFConfig.server().fishingNetChecksOpenWater.get()) {
             fishingHook.openWater = fishingHook.getOpenWaterTypeForArea(
-                    pos.offset(-2, 0, -2), pos.offset(2, 0, 2)
-            ) == OpenWaterType.INSIDE_WATER;
+                    pos.offset(-2, 0, -2), pos.offset(2, 0, 2)) == OpenWaterType.INSIDE_WATER;
         } else fishingHook.openWater = false;
         return new LootParams.Builder(level)
                 .withParameter(LootContextParams.ORIGIN, context.position)

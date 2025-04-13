@@ -57,8 +57,7 @@ public class FishingNetBlock extends WrenchableDirectionalBlock implements Prope
         super(properties);
         registerDefaultState(defaultBlockState()
                 .setValue(FACING, Direction.UP)
-                .setValue(WATERLOGGED, false)
-        );
+                .setValue(WATERLOGGED, false));
     }
 
     @Override
@@ -140,7 +139,7 @@ public class FishingNetBlock extends WrenchableDirectionalBlock implements Prope
         @Override
         public Predicate<ItemStack> getItemPredicate() {
             return stack -> stack.getItem() instanceof BlockItem blockItem &&
-                            blockItem.getBlock() instanceof FishingNetBlock;
+                    blockItem.getBlock() instanceof FishingNetBlock;
         }
 
         @Override
@@ -154,15 +153,13 @@ public class FishingNetBlock extends WrenchableDirectionalBlock implements Prope
                     pos,
                     hitResult.getLocation(),
                     state.getValue(FishingNetBlock.FACING).getAxis(),
-                    direction -> level.getBlockState(pos.relative(direction)).canBeReplaced()
-            );
+                    direction -> level.getBlockState(pos.relative(direction)).canBeReplaced());
             if (directions.isEmpty()) {
                 return PlacementOffset.fail();
             } else {
                 return PlacementOffset.success(
                         pos.relative(directions.getFirst()),
-                        placed -> placed.setValue(FACING, state.getValue(FACING))
-                );
+                        placed -> placed.setValue(FACING, state.getValue(FACING)));
             }
         }
     }

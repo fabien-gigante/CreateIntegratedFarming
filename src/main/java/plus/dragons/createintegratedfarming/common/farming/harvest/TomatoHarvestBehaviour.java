@@ -74,8 +74,7 @@ public class TomatoHarvestBehaviour implements CustomHarvestBehaviour {
                 null,
                 CustomHarvestBehaviour.getHarvestTool(context),
                 1,
-                stack -> behaviour.dropItem(context, stack)
-        );
+                stack -> behaviour.dropItem(context, stack));
         if (ropelogged)
             level.setBlockAndUpdate(pos, getRope());
     }

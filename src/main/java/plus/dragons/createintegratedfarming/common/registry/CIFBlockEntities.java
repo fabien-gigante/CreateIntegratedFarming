@@ -52,13 +52,11 @@ public class CIFBlockEntities {
         event.registerBlockEntity(
                 ItemHandler.BLOCK,
                 CHICKEN_COOP.get(),
-                ChickenCoopBlockEntity::getItemHandler
-        );
+                ChickenCoopBlockEntity::getItemHandler);
         event.registerBlockEntity(
                 CDPCapabilities.BEHAVIOUR_PROVIDER,
                 ModBlockEntityTypes.BASKET.get(),
-                (be, ignored) -> new BasketBehaviourProvider(be)
-        );
+                (be, ignored) -> new BasketBehaviourProvider(be));
     }
 
     // TODO: Remove this once https://github.com/vectorwing/FarmersDelight/pull/1097 got merged
@@ -71,8 +69,7 @@ public class CIFBlockEntities {
             event.registerBlockEntity(
                     ItemHandler.BLOCK,
                     ModBlockEntityTypes.BASKET.get(),
-                    (be, ctx) -> new BasketInvWrapper(be)
-            );
+                    (be, ctx) -> new BasketInvWrapper(be));
         }
     }
 }

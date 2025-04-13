@@ -109,8 +109,8 @@ dependencies {
     localImplementation("maven.modrinth:farmers-delight:${farmers_delight_version}")
     localImplementation("maven.modrinth:my-nethers-delight:${my_nethers_delight_version}")
     localImplementation("maven.modrinth:mmlib:${mmlib_version}")
-    compileOnly("maven.modrinth:create-enchantable-machinery:${create_enchantable_machinery_version}")
     localRuntime("maven.modrinth:corn-delight:${corn_delight_version}")
+    compileOnly("maven.modrinth:create-enchantable-machinery:${create_enchantable_machinery_version}")
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
@@ -151,10 +151,13 @@ tasks.withType(Jar) {
 
 spotless {
     java {
-        importOrder()
+        endWithNewline()
+        leadingTabsToSpaces()
         removeUnusedImports()
-        formatAnnotations()
-        licenseHeaderFile "HEADER.txt"
+        toggleOffOn()
+        importOrder()
+        eclipse().configFile "codeformat/formatter-config.xml"
+        licenseHeaderFile "codeformat/HEADER.txt"
     }
 }
 

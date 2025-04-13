@@ -30,7 +30,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import plus.dragons.createintegratedfarming.api.harvest.CustomHarvestBehaviour;
 
 @Mixin(value = HarvesterMovementBehaviour.class)
-public class HarvesterMovementBehaviourMixin  {
+public class HarvesterMovementBehaviourMixin {
     @Inject(method = "visitNewPosition", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/contraptions/actors/harvester/HarvesterMovementBehaviour;isValidCrop(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z"), cancellable = true)
     private void createintegratedfarming$applyCustomHarvesterBehaviour(MovementContext context, BlockPos pos, CallbackInfo ci, @Local BlockState stateVisited) {
         var behaviour = CustomHarvestBehaviour.REGISTRY.get(stateVisited);
