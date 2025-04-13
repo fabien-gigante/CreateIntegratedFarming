@@ -24,15 +24,16 @@ import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import org.jetbrains.annotations.ApiStatus.Internal;
 
 @Internal
-public class Integration {
-    public static final Integration FARMERS_DELIGHT = new Integration("farmersdelight");
-    public static final Integration MMLIB = new Integration("mysterious_mountain_lib");
-    public static final Integration CREATE_ENCHANTABLE_MACHINERY = new Integration("createenchantablemachinery");
-    public static final Integration CREATE_CRAFT_AND_ADDITIONS = new Integration("createadditions");
+public class CIFIntegration {
+    public static final CIFIntegration FARMERS_DELIGHT = new CIFIntegration("farmersdelight");
+    public static final CIFIntegration MY_NETHERS_DELIGHT = new CIFIntegration("mynethersdelight");
+    public static final CIFIntegration MMLIB = new CIFIntegration("mysterious_mountain_lib");
+    public static final CIFIntegration CREATE_ENCHANTABLE_MACHINERY = new CIFIntegration("createenchantablemachinery");
+    public static final CIFIntegration CREATE_CRAFT_AND_ADDITIONS = new CIFIntegration("createadditions");
 
     private final String modId;
 
-    public Integration(String modId) {
+    public CIFIntegration(String modId) {
         this.modId = modId;
     }
 

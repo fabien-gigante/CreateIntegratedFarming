@@ -52,7 +52,7 @@ import net.neoforged.neoforge.event.level.BlockDropsEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import org.jetbrains.annotations.ApiStatus.Internal;
 import plus.dragons.createdragonsplus.util.CodeReference;
-import plus.dragons.createintegratedfarming.integration.Integration;
+import plus.dragons.createintegratedfarming.integration.CIFIntegration;
 
 /**
  * CustomHarvestBehaviour provides full control for a block's interaction with {@link HarvesterMovementBehaviour}.
@@ -104,7 +104,7 @@ public interface CustomHarvestBehaviour {
     /**
      * Helper method for retrieving the correct harvest tool item from the context.
      * <p>
-     * Use this method for keeping consistency with {@link Integration#CREATE_ENCHANTABLE_MACHINERY}.
+     * Use this method for keeping consistency with {@link CIFIntegration#CREATE_ENCHANTABLE_MACHINERY}.
      */
     static ItemStack getHarvestTool(MovementContext context) {
         return getHarvestTool(context, ItemStack.EMPTY);
@@ -113,10 +113,10 @@ public interface CustomHarvestBehaviour {
     /**
      * Helper method for retrieving the correct harvest tool item from the context.
      * <p>
-     * Use this method for keeping consistency with {@link Integration#CREATE_ENCHANTABLE_MACHINERY}.
+     * Use this method for keeping consistency with {@link CIFIntegration#CREATE_ENCHANTABLE_MACHINERY}.
      */
     static ItemStack getHarvestTool(MovementContext context, ItemStack original) {
-        if (Integration.CREATE_ENCHANTABLE_MACHINERY.isLoaded()) {
+        if (CIFIntegration.CREATE_ENCHANTABLE_MACHINERY.isLoaded()) {
             if (original.isEmpty())
                 original = new ItemStack(Items.NETHERITE_PICKAXE);
             var tag = context.blockEntityData.get("Enchantments");

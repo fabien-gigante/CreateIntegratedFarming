@@ -18,7 +18,6 @@
 
 package plus.dragons.createintegratedfarming.common.ranching.coop;
 
-import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
 import com.simibubi.create.content.kinetics.belt.behaviour.DirectBeltInputBehaviour;
 import com.simibubi.create.content.kinetics.belt.transport.TransportedItemStack;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
@@ -37,7 +36,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -188,13 +186,5 @@ public class ChickenCoopBlockEntity extends SmartBlockEntity {
                 null, worldPosition, SoundEvents.CHICKEN_AMBIENT, SoundSource.BLOCKS,
                 1.0F, (level.random.nextFloat() - level.random.nextFloat()) * 0.2F + 1.0F);
         notifyUpdate();
-    }
-
-    @SuppressWarnings("unused")
-    public static int fillBySpout(Level level, BlockPos pos, SpoutBlockEntity spout, FluidStack fluid, boolean simulate) {
-        if (level.getBlockEntity(pos) instanceof ChickenCoopBlockEntity coop) {
-            return coop.feedFluid(fluid, simulate);
-        }
-        return 0;
     }
 }

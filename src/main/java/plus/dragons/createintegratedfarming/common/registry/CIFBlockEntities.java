@@ -21,7 +21,6 @@ package plus.dragons.createintegratedfarming.common.registry;
 import static plus.dragons.createintegratedfarming.common.CIFCommon.LOGGER;
 import static plus.dragons.createintegratedfarming.common.CIFCommon.REGISTRATE;
 
-import com.simibubi.create.api.behaviour.spouting.BlockSpoutingBehaviour;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
@@ -39,8 +38,6 @@ public class CIFBlockEntities {
     public static final BlockEntityEntry<ChickenCoopBlockEntity> CHICKEN_COOP = REGISTRATE
             .blockEntity("chicken_coop", ChickenCoopBlockEntity::new)
             .validBlock(CIFBlocks.CHICKEN_COOP)
-            .onRegister(type -> BlockSpoutingBehaviour.BY_BLOCK_ENTITY
-                    .register(type, ChickenCoopBlockEntity::fillBySpout))
             .register();
 
     public static void register(IEventBus modBus) {

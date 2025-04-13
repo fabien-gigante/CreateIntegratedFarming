@@ -22,14 +22,14 @@ import plus.dragons.createintegratedfarming.api.harvest.CustomHarvestBehaviour;
 import plus.dragons.createintegratedfarming.common.farming.harvest.HighCropHarvestBehaviour;
 import plus.dragons.createintegratedfarming.common.farming.harvest.MushroomColonyHarvestBehaviour;
 import plus.dragons.createintegratedfarming.common.farming.harvest.TomatoHarvestBehaviour;
-import plus.dragons.createintegratedfarming.integration.Integration;
+import plus.dragons.createintegratedfarming.integration.CIFIntegration;
 import vectorwing.farmersdelight.common.block.TomatoVineBlock;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
 
 public class CIFHarvestBehaviours {
     public static void register() {
         registerFarmersDelightIntegration();
-        if (Integration.MMLIB.isLoaded())
+        if (CIFIntegration.MMLIB.isLoaded())
             registerMmlibIntegration();
     }
 

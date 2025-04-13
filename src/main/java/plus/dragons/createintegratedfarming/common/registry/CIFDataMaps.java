@@ -36,7 +36,7 @@ import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
 import plus.dragons.createintegratedfarming.common.CIFCommon;
 import plus.dragons.createintegratedfarming.common.ranching.coop.ChickenFoodFluid;
 import plus.dragons.createintegratedfarming.common.ranching.coop.ChickenFoodItem;
-import plus.dragons.createintegratedfarming.integration.Integration;
+import plus.dragons.createintegratedfarming.integration.CIFIntegration;
 
 public class CIFDataMaps {
     public static final DataMapType<Item, ChickenFoodItem> CHICKEN_FOOD_ITEMS = DataMapType
@@ -66,9 +66,9 @@ public class CIFDataMaps {
                         UniformInt.of(400, 800),
                         Optional.empty()), false);
         provider.builder(CHICKEN_FOOD_FLUIDS)
-                .add(Integration.CREATE_CRAFT_AND_ADDITIONS.asResource("seed_oil"), new ChickenFoodFluid(
+                .add(CIFIntegration.CREATE_CRAFT_AND_ADDITIONS.asResource("seed_oil"), new ChickenFoodFluid(
                         ConstantInt.of(2400),
                         UniformInt.of(400, 800),
-                        100), false, Integration.CREATE_CRAFT_AND_ADDITIONS.condition());
+                        100), false, CIFIntegration.CREATE_CRAFT_AND_ADDITIONS.condition());
     }
 }
