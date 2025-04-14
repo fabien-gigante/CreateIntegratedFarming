@@ -32,7 +32,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
-import plus.dragons.createintegratedfarming.api.harvest.CustomHarvestBehaviour;
+import plus.dragons.createintegratedfarming.api.harvester.CustomHarvestBehaviour;
 import plus.dragons.createintegratedfarming.config.CIFConfig;
 import vectorwing.farmersdelight.common.block.MushroomColonyBlock;
 

@@ -28,7 +28,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 import org.jetbrains.annotations.Nullable;
-import plus.dragons.createintegratedfarming.api.harvest.CustomHarvestBehaviour;
+import plus.dragons.createintegratedfarming.api.harvester.CustomHarvestBehaviour;
 
 public class HighCropHarvestBehaviour implements CustomHarvestBehaviour {
     private final HighCropBlock crop;

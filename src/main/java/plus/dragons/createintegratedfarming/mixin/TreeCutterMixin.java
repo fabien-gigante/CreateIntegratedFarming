@@ -19,19 +19,16 @@
 package plus.dragons.createintegratedfarming.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import com.llamalad7.mixinextras.sugar.Local;
 import com.simibubi.create.content.kinetics.saw.TreeCutter;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import plus.dragons.createintegratedfarming.api.harvest.VerticalPlant;
+import plus.dragons.createintegratedfarming.api.saw.SawableBlockTags;
 
 @Mixin(TreeCutter.class)
 public class TreeCutterMixin {
     @ModifyReturnValue(method = "isVerticalPlant", at = @At("TAIL"))
-    private static boolean createintegratedfarming$addFragileVerticalPlants(boolean original, @Local Block block) {
-        if (block instanceof VerticalPlant)
-            return true;
-        return original;
+    private static boolean createintegratedfarming$addFragileVerticalPlants(boolean original, BlockState state) {
+        return state.is(SawableBlockTags.VERTICAL_PLANTS) || original;
     }
 }

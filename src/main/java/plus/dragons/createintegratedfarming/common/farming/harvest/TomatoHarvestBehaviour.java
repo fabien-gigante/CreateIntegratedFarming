@@ -28,7 +28,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import plus.dragons.createintegratedfarming.api.harvest.CustomHarvestBehaviour;
+import plus.dragons.createintegratedfarming.api.harvester.CustomHarvestBehaviour;
 import vectorwing.farmersdelight.common.Configuration;
 import vectorwing.farmersdelight.common.block.TomatoVineBlock;
 import vectorwing.farmersdelight.common.registry.ModBlocks;

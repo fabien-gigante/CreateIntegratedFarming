@@ -26,13 +26,13 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import plus.dragons.createintegratedfarming.api.harvest.FragileVerticalPlant;
+import plus.dragons.createintegratedfarming.api.saw.SawableBlockTags;
 
 @Mixin(SawMovementBehaviour.class)
 public class SawMovementBehaviourMixin {
     @Inject(method = "onBlockBroken", at = @At("HEAD"), cancellable = true)
     private void createintegratedfarming$skipFragileVerticalPlants(MovementContext context, BlockPos pos, BlockState state, CallbackInfo ci) {
-        if (state.getBlock() instanceof FragileVerticalPlant)
+        if (state.is(SawableBlockTags.FRAGILE_VERTICAL_PLANTS))
             ci.cancel();
     }
 }

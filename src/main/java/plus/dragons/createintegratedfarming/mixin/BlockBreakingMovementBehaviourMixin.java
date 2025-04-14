@@ -27,7 +27,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import plus.dragons.createintegratedfarming.api.harvest.FragileVerticalPlant;
+import plus.dragons.createintegratedfarming.api.saw.SawableBlockTags;
 
 @Mixin(value = BlockBreakingMovementBehaviour.class, priority = 2000)
 public class BlockBreakingMovementBehaviourMixin {
@@ -36,7 +36,7 @@ public class BlockBreakingMovementBehaviourMixin {
         if ((Object) this instanceof SawMovementBehaviour saw) {
             var level = context.world;
             var state = level.getBlockState(pos);
-            if (state.getBlock() instanceof FragileVerticalPlant) {
+            if (state.is(SawableBlockTags.FRAGILE_VERTICAL_PLANTS)) {
                 TreeCutter.findTree(context.world, pos, state).destroyBlocks(level, null,
                         (stack, dropPos) -> saw.dropItemFromCutTree(context, stack, dropPos));
             }

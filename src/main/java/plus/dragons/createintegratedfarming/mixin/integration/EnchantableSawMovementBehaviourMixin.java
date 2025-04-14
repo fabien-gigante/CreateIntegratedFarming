@@ -29,7 +29,7 @@ import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import plus.dragons.createintegratedfarming.api.harvest.FragileVerticalPlant;
+import plus.dragons.createintegratedfarming.api.saw.SawableBlockTags;
 
 @Pseudo
 @Mixin(targets = "io.github.cotrin8672.cem.content.block.saw.EnchantableSawMovementBehaviour")
@@ -38,7 +38,7 @@ public class EnchantableSawMovementBehaviourMixin extends SawMovementBehaviour {
     private void createintegratedfarming$handleFragileVerticalPlants(MovementContext context, BlockPos pos, CallbackInfo ci, @Local ItemStack tool) {
         var level = context.world;
         var state = level.getBlockState(pos);
-        if (state.getBlock() instanceof FragileVerticalPlant) {
+        if (state.is(SawableBlockTags.FRAGILE_VERTICAL_PLANTS)) {
             TreeCutter.findTree(context.world, pos, state).destroyBlocks(level, tool, null,
                     (dropPos, stack) -> this.dropItemFromCutTree(context, dropPos, stack));
         }

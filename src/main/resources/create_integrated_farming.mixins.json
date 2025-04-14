@@ -14,7 +14,6 @@
     "accessor.BasketBlockEntityAccessor",
     "integration.EnchantableHarvesterMovementBehaviourMixin",
     "integration.EnchantableSawMovementBehaviourMixin",
-    "integration.FragileVerticalPlantMixin",
     "integration.IWrenchableMixin"
   ],
   "client": [],

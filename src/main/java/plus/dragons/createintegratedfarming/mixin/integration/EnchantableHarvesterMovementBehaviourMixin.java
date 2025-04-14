@@ -28,7 +28,7 @@ import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import plus.dragons.createintegratedfarming.api.harvest.CustomHarvestBehaviour;
+import plus.dragons.createintegratedfarming.api.harvester.CustomHarvestBehaviour;
 
 @Pseudo
 @Mixin(targets = "io.github.cotrin8672.cem.content.block.harvester.EnchantableHarvesterMovementBehaviour")

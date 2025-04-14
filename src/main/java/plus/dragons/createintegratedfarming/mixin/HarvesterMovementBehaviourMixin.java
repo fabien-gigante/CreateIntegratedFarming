@@ -27,7 +27,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import plus.dragons.createintegratedfarming.api.harvest.CustomHarvestBehaviour;
+import plus.dragons.createintegratedfarming.api.harvester.CustomHarvestBehaviour;
 
 @Mixin(value = HarvesterMovementBehaviour.class)
 public class HarvesterMovementBehaviourMixin {

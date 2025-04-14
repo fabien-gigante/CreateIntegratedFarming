@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package plus.dragons.createintegratedfarming.api.harvest;
+package plus.dragons.createintegratedfarming.api.harvester;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;

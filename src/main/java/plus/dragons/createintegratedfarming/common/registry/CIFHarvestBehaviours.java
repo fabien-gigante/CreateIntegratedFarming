@@ -18,7 +18,7 @@
 
 package plus.dragons.createintegratedfarming.common.registry;
 
-import plus.dragons.createintegratedfarming.api.harvest.CustomHarvestBehaviour;
+import plus.dragons.createintegratedfarming.api.harvester.CustomHarvestBehaviour;
 import plus.dragons.createintegratedfarming.common.farming.harvest.HighCropHarvestBehaviour;
 import plus.dragons.createintegratedfarming.common.farming.harvest.MushroomColonyHarvestBehaviour;
 import plus.dragons.createintegratedfarming.common.farming.harvest.TomatoHarvestBehaviour;
