@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-22T14:51:17.6108251	Registrate Provider for create_integrated_farming [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (enchantments), Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+// 1.21.1	2025-04-22T16:54:17.9698588	Registrate Provider for create_integrated_farming [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (enchantments), Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
 d2daaafcc7312581d81f12ae589f2fc4d975330a assets/create_integrated_farming/blockstates/chicken_roost.json
 82f7b646b062071555479e9d2236279ab5283a33 assets/create_integrated_farming/blockstates/fishing_net.json
 534437005f9c8797a97191a8c2c86013f35e6bb4 assets/create_integrated_farming/blockstates/roost.json
@@ -13,4 +13,5 @@ d91961d60d5a3d7a99dd781a32043449d739659c data/create_integrated_farming/data_map
 1e84587641abfb41d054bf82d05e24b9332d46b3 data/create_integrated_farming/loot_table/blocks/chicken_roost.json
 17b4df3431d22ed0c3e02ebfe278d80cc6c90d08 data/create_integrated_farming/loot_table/blocks/fishing_net.json
 d414d8cce71c48303e008fb4c0d17a0e596e9cc4 data/create_integrated_farming/loot_table/blocks/roost.json
+92d8210091968f0c226208193a64d6a298f14265 data/create_integrated_farming/loot_table/gameplay/roost/chicken.json
 21b5db0a34fd513ca7996b3911308ea0fa1b80f0 data/minecraft/tags/block/mineable/axe.json

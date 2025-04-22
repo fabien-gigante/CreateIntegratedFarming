@@ -53,7 +53,7 @@ public class CIFCreativeModeTabs {
     private static void buildBaseContents(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
         output.accept(AllBlocks.MECHANICAL_HARVESTER);
         output.accept(FISHING_NET);
-        output.accept(ROOST, TabVisibility.SEARCH_TAB_ONLY);
+        output.accept(ROOST);
         output.accept(CHICKEN_ROOST);
     }
 }

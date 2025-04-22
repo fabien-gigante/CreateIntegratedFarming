@@ -61,7 +61,7 @@ public class ChickenRoostBlock extends RoostBlock implements IBE<ChickenRoostBlo
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         return onBlockEntityUse(level, pos, coop -> {
-            ItemStack stack = coop.itemHandler.extractItem(0, 64, false);
+            ItemStack stack = coop.outputHandler.extractItem(0, 64, false);
             if (!stack.isEmpty()) {
                 player.getInventory().placeItemBackInInventory(stack);
                 level.playSound(
@@ -85,7 +85,8 @@ public class ChickenRoostBlock extends RoostBlock implements IBE<ChickenRoostBlo
         }
         return onBlockEntityUseItemOn(level, pos, coop -> {
             if (coop != null && coop.feedItem(stack, false)) {
-                stack.shrink(1);
+                if (!player.hasInfiniteMaterials())
+                    stack.shrink(1);
                 return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
