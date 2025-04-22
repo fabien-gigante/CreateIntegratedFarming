@@ -25,7 +25,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import plus.dragons.createintegratedfarming.common.CIFCommon;
 import plus.dragons.createintegratedfarming.common.logistics.basket.BasketArmInteractionPoint;
-import plus.dragons.createintegratedfarming.common.ranching.coop.ChickenCoopArmInteractionPoint;
+import plus.dragons.createintegratedfarming.common.ranching.roost.chicken.ChickenRoostArmInteractionPoint;
 
 public class CIFArmInteractionPoints {
     private static final DeferredRegister<ArmInteractionPointType> TYPES = DeferredRegister
@@ -34,7 +34,7 @@ public class CIFArmInteractionPoints {
     public static final Holder<ArmInteractionPointType> BASKET = TYPES
             .register("basket", BasketArmInteractionPoint.Type::new);
     public static final Holder<ArmInteractionPointType> CHICKEN_COOP = TYPES
-            .register("chicken_coop", ChickenCoopArmInteractionPoint.Type::new);
+            .register("chicken_coop", ChickenRoostArmInteractionPoint.Type::new);
 
     public static void register(IEventBus modBus) {
         TYPES.register(modBus);

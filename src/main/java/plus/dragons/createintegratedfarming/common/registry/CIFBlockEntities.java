@@ -30,14 +30,14 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import plus.dragons.createdragonsplus.common.registry.CDPCapabilities;
 import plus.dragons.createintegratedfarming.common.logistics.basket.BasketBehaviourProvider;
 import plus.dragons.createintegratedfarming.common.logistics.basket.BasketInvWrapper;
-import plus.dragons.createintegratedfarming.common.ranching.coop.ChickenCoopBlockEntity;
+import plus.dragons.createintegratedfarming.common.ranching.roost.chicken.ChickenRoostBlockEntity;
 import vectorwing.farmersdelight.common.registry.ModBlockEntityTypes;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
 
 public class CIFBlockEntities {
-    public static final BlockEntityEntry<ChickenCoopBlockEntity> CHICKEN_COOP = REGISTRATE
-            .blockEntity("chicken_coop", ChickenCoopBlockEntity::new)
-            .validBlock(CIFBlocks.CHICKEN_COOP)
+    public static final BlockEntityEntry<ChickenRoostBlockEntity> CHICKEN_ROOST = REGISTRATE
+            .blockEntity("chicken_roost", ChickenRoostBlockEntity::new)
+            .validBlock(CIFBlocks.CHICKEN_ROOST)
             .register();
 
     public static void register(IEventBus modBus) {
@@ -48,8 +48,8 @@ public class CIFBlockEntities {
     public static void registerCapabilities(final RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
                 ItemHandler.BLOCK,
-                CHICKEN_COOP.get(),
-                ChickenCoopBlockEntity::getItemHandler);
+                CHICKEN_ROOST.get(),
+                ChickenRoostBlockEntity::getItemHandler);
         event.registerBlockEntity(
                 CDPCapabilities.BEHAVIOUR_PROVIDER,
                 ModBlockEntityTypes.BASKET.get(),

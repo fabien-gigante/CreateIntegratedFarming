@@ -39,7 +39,7 @@ public class CIFRecipeProvider extends RegistrateRecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput output) {
-        shaped().output(EMPTY_CHICKEN_COOP)
+        shaped().output(ROOST)
                 .define('#', CANVAS.get())
                 .define('b', BAMBOO)
                 .define('c', WHEAT)

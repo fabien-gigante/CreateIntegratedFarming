@@ -30,7 +30,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import plus.dragons.createintegratedfarming.common.ranching.coop.ChickenCoopBlockEntity;
+import plus.dragons.createintegratedfarming.common.ranching.roost.chicken.ChickenRoostBlockEntity;
 import plus.dragons.createintegratedfarming.integration.CIFIntegration;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
 
@@ -40,7 +40,7 @@ public class CIFBlockSpoutingBehaviours {
 
     public static void register() {
         BlockSpoutingBehaviour.BY_BLOCK.register(
-                CIFBlocks.CHICKEN_COOP.get(),
+                CIFBlocks.CHICKEN_ROOST.get(),
                 CIFBlockSpoutingBehaviours::fillChickenCoop);
         BlockSpoutingBehaviour.BY_BLOCK.register(
                 ModBlocks.ORGANIC_COMPOST.get(),
@@ -53,7 +53,7 @@ public class CIFBlockSpoutingBehaviours {
     }
 
     private static int fillChickenCoop(Level level, BlockPos pos, SpoutBlockEntity spout, FluidStack fluid, boolean simulate) {
-        if (level.getBlockEntity(pos) instanceof ChickenCoopBlockEntity coop) {
+        if (level.getBlockEntity(pos) instanceof ChickenRoostBlockEntity coop) {
             return coop.feedFluid(fluid, simulate);
         }
         return 0;

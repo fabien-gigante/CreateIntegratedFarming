@@ -20,6 +20,7 @@ package plus.dragons.createintegratedfarming.data;
 
 import static plus.dragons.createintegratedfarming.common.CIFCommon.REGISTRATE;
 
+import com.tterrag.registrate.providers.ProviderType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -27,12 +28,14 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.data.loading.DatagenModLoader;
 import plus.dragons.createintegratedfarming.client.ponder.CIFPonderPlugin;
 import plus.dragons.createintegratedfarming.common.CIFCommon;
+import plus.dragons.createintegratedfarming.common.registry.CIFLootTables;
 
 @Mod(CIFCommon.ID)
 public class CIFData {
     public CIFData(IEventBus modBus) {
         if (!DatagenModLoader.isRunningDataGen())
             return;
+        REGISTRATE.addDataGenerator(ProviderType.LOOT, CIFLootTables::generate);
         REGISTRATE.registerForeignLocalization();
         REGISTRATE.registerPonderLocalization(CIFPonderPlugin::new);
         modBus.register(this);

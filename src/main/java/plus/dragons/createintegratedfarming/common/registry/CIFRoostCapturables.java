@@ -16,12 +16,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package plus.dragons.createintegratedfarming.common.ranching.coop;
+package plus.dragons.createintegratedfarming.common.registry;
 
-import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.EntityType;
+import plus.dragons.createintegratedfarming.common.ranching.roost.RoostCapturable;
 
-public sealed interface ChickenFood permits ChickenFoodItem, ChickenFoodFluid {
-    int getProgress(RandomSource random);
-
-    int getCooldown(RandomSource random);
+public class CIFRoostCapturables {
+    public static void register() {
+        RoostCapturable.REGISTRY.register(EntityType.CHICKEN, CIFBlocks.CHICKEN_ROOST.get());
+    }
 }

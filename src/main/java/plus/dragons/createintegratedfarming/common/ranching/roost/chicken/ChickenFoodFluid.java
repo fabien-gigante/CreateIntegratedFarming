@@ -16,21 +16,20 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package plus.dragons.createintegratedfarming.common.ranching.coop;
+package plus.dragons.createintegratedfarming.common.ranching.roost.chicken;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import java.util.Optional;
+import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
-import net.minecraft.world.item.ItemStack;
 
-public record ChickenFoodItem(IntProvider progress, IntProvider cooldown, Optional<ItemStack> usingConvertsTo) implements ChickenFood {
+public record ChickenFoodFluid(IntProvider progress, IntProvider cooldown, int amount) implements ChickenFood {
 
-    public static final Codec<ChickenFoodItem> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            IntProvider.codec(0, 12000).fieldOf("progress").forGetter(ChickenFoodItem::progress),
-            IntProvider.NON_NEGATIVE_CODEC.fieldOf("cooldown").forGetter(ChickenFoodItem::cooldown),
-            ItemStack.SINGLE_ITEM_CODEC.optionalFieldOf("using_converts_to").forGetter(ChickenFoodItem::usingConvertsTo)).apply(instance, ChickenFoodItem::new));
+    public static final Codec<ChickenFoodFluid> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            IntProvider.codec(0, 12000).fieldOf("progress").forGetter(ChickenFoodFluid::progress),
+            IntProvider.NON_NEGATIVE_CODEC.fieldOf("cooldown").forGetter(ChickenFoodFluid::cooldown),
+            ExtraCodecs.POSITIVE_INT.fieldOf("amount").forGetter(ChickenFoodFluid::amount)).apply(instance, ChickenFoodFluid::new));
     public int getProgress(RandomSource random) {
         return progress.sample(random);
     }

@@ -16,38 +16,24 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package plus.dragons.createintegratedfarming.common.ranching.coop;
+package plus.dragons.createintegratedfarming.common.ranching.roost;
 
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
-import plus.dragons.createintegratedfarming.common.registry.CIFBlocks;
 
-public class CoopBlockItem extends BlockItem {
-    public CoopBlockItem(Block block, Properties properties) {
+public class RoostBlockItem extends BlockItem {
+    public RoostBlockItem(Block block, Properties properties) {
         super(block, properties);
     }
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {
-        if (target instanceof Chicken chicken && chicken.getType() == EntityType.CHICKEN && !chicken.isChickenJockey()) {
-            if (!player.isCreative())
-                stack.shrink(1);
-            if (stack.isEmpty())
-                player.setItemInHand(hand, new ItemStack(CIFBlocks.CHICKEN_COOP));
-            else
-                player.getInventory().placeItemBackInInventory(new ItemStack(CIFBlocks.CHICKEN_COOP));
-            chicken.playSound(SoundEvents.CHICKEN_HURT);
-            chicken.discard();
-            return InteractionResult.sidedSuccess(player.level().isClientSide);
-        }
-        return InteractionResult.PASS;
+        var capturable = RoostCapturable.REGISTRY.get(target.getType());
+        return capturable == null ? InteractionResult.PASS : capturable.captureItem(target.level(), stack, hand, player, target);
     }
 }

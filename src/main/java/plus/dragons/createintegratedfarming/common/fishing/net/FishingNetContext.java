@@ -73,6 +73,7 @@ public class FishingNetContext {
                 .withParameter(LootContextParams.ORIGIN, context.position)
                 .withParameter(LootContextParams.TOOL, fishingRod)
                 .withParameter(LootContextParams.THIS_ENTITY, fishingHook)
+                .withParameter(LootContextParams.ATTACKING_ENTITY, context.contraption.entity)
                 .withLuck(EnchantmentHelper.getFishingLuckBonus(level, fishingRod, context.contraption.entity))
                 .create(LootContextParamSets.FISHING);
     }

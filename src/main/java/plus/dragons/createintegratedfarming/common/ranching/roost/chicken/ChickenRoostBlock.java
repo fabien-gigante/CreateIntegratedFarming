@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package plus.dragons.createintegratedfarming.common.ranching.coop;
+package plus.dragons.createintegratedfarming.common.ranching.roost.chicken;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -46,12 +46,14 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import plus.dragons.createintegratedfarming.common.ranching.roost.RoostBlock;
+import plus.dragons.createintegratedfarming.common.ranching.roost.RoostCapturable;
 import plus.dragons.createintegratedfarming.common.registry.CIFBlockEntities;
 
-public class ChickenCoopBlock extends CoopBlock implements IBE<ChickenCoopBlockEntity> {
+public class ChickenRoostBlock extends RoostBlock implements IBE<ChickenRoostBlockEntity>, RoostCapturable {
     protected final Holder<Block> empty;
 
-    public ChickenCoopBlock(Properties properties, Holder<Block> empty) {
+    public ChickenRoostBlock(Properties properties, Holder<Block> empty) {
         super(properties);
         this.empty = empty;
     }
@@ -59,7 +61,7 @@ public class ChickenCoopBlock extends CoopBlock implements IBE<ChickenCoopBlockE
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         return onBlockEntityUse(level, pos, coop -> {
-            ItemStack stack = coop.itemHandler.extractItem(0, 64, false);
+            ItemStack stack = coop.outputHandler.extractItem(0, 64, false);
             if (!stack.isEmpty()) {
                 player.getInventory().placeItemBackInInventory(stack);
                 level.playSound(
@@ -83,7 +85,8 @@ public class ChickenCoopBlock extends CoopBlock implements IBE<ChickenCoopBlockE
         }
         return onBlockEntityUseItemOn(level, pos, coop -> {
             if (coop != null && coop.feedItem(stack, false)) {
-                stack.shrink(1);
+                if (!player.hasInfiniteMaterials())
+                    stack.shrink(1);
                 return ItemInteractionResult.sidedSuccess(level.isClientSide);
             }
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
@@ -125,19 +128,46 @@ public class ChickenCoopBlock extends CoopBlock implements IBE<ChickenCoopBlockE
     }
 
     @Override
-    protected MapCodec<? extends ChickenCoopBlock> codec() {
+    protected MapCodec<? extends ChickenRoostBlock> codec() {
         return RecordCodecBuilder.mapCodec(instance -> instance.group(
                 propertiesCodec(),
-                BuiltInRegistries.BLOCK.holderByNameCodec().fieldOf("empty").forGetter(block -> block.empty)).apply(instance, ChickenCoopBlock::new));
+                BuiltInRegistries.BLOCK.holderByNameCodec().fieldOf("empty").forGetter(block -> block.empty)).apply(instance, ChickenRoostBlock::new));
     }
 
     @Override
-    public Class<ChickenCoopBlockEntity> getBlockEntityClass() {
-        return ChickenCoopBlockEntity.class;
+    public Class<ChickenRoostBlockEntity> getBlockEntityClass() {
+        return ChickenRoostBlockEntity.class;
     }
 
     @Override
-    public BlockEntityType<? extends ChickenCoopBlockEntity> getBlockEntityType() {
-        return CIFBlockEntities.CHICKEN_COOP.get();
+    public BlockEntityType<? extends ChickenRoostBlockEntity> getBlockEntityType() {
+        return CIFBlockEntities.CHICKEN_ROOST.get();
+    }
+
+    @Override
+    public ItemInteractionResult captureBlock(Level level, BlockState state, BlockPos pos, ItemStack stack, Player player, Entity entity) {
+        if (entity instanceof Chicken chicken && !chicken.isBaby()) {
+            level.setBlockAndUpdate(pos, this.withPropertiesOf(state));
+            chicken.playSound(SoundEvents.CHICKEN_HURT);
+            chicken.discard();
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        }
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    }
+
+    @Override
+    public InteractionResult captureItem(Level level, ItemStack stack, InteractionHand hand, Player player, Entity entity) {
+        if (entity instanceof Chicken chicken && !chicken.isBaby()) {
+            if (!player.isCreative())
+                stack.shrink(1);
+            if (stack.isEmpty())
+                player.setItemInHand(hand, new ItemStack(this));
+            else
+                player.getInventory().placeItemBackInInventory(new ItemStack(this));
+            chicken.playSound(SoundEvents.CHICKEN_HURT);
+            chicken.discard();
+            return InteractionResult.sidedSuccess(player.level().isClientSide);
+        }
+        return InteractionResult.PASS;
     }
 }

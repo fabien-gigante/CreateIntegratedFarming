@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package plus.dragons.createintegratedfarming.common.ranching.coop;
+package plus.dragons.createintegratedfarming.common.ranching.roost.chicken;
 
 import com.simibubi.create.content.kinetics.mechanicalArm.ArmInteractionPoint;
 import com.simibubi.create.content.kinetics.mechanicalArm.ArmInteractionPointType;
@@ -29,8 +29,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-public class ChickenCoopArmInteractionPoint extends ArmInteractionPoint {
-    public ChickenCoopArmInteractionPoint(ArmInteractionPointType type, Level level, BlockPos pos, BlockState state) {
+public class ChickenRoostArmInteractionPoint extends ArmInteractionPoint {
+    public ChickenRoostArmInteractionPoint(ArmInteractionPointType type, Level level, BlockPos pos, BlockState state) {
         super(type, level, pos, state);
     }
 
@@ -44,7 +44,7 @@ public class ChickenCoopArmInteractionPoint extends ArmInteractionPoint {
     public ItemStack insert(ItemStack stack, boolean simulate) {
         if (stack.isEmpty())
             return ItemStack.EMPTY;
-        if (level.getBlockEntity(pos) instanceof ChickenCoopBlockEntity coop && coop.feedItem(stack, simulate)) {
+        if (level.getBlockEntity(pos) instanceof ChickenRoostBlockEntity coop && coop.feedItem(stack, simulate)) {
             return stack.getCount() == 1 ? ItemStack.EMPTY : stack.copyWithCount(stack.getCount() - 1);
         }
         return stack;
@@ -53,13 +53,13 @@ public class ChickenCoopArmInteractionPoint extends ArmInteractionPoint {
     public static class Type extends ArmInteractionPointType {
         @Override
         public boolean canCreatePoint(Level level, BlockPos pos, BlockState state) {
-            return level.getBlockEntity(pos) instanceof ChickenCoopBlockEntity;
+            return level.getBlockEntity(pos) instanceof ChickenRoostBlockEntity;
         }
 
         @Nullable
         @Override
         public ArmInteractionPoint createPoint(Level level, BlockPos pos, BlockState state) {
-            return new ChickenCoopArmInteractionPoint(this, level, pos, state);
+            return new ChickenRoostArmInteractionPoint(this, level, pos, state);
         }
     }
 }
