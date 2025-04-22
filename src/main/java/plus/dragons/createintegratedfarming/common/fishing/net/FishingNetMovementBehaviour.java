@@ -74,10 +74,8 @@ public class FishingNetMovementBehaviour implements MovementBehaviour {
                                 .withLuck(EnchantmentHelper.getFishingLuckBonus(level, getFishingNetContext(context, level).fishingRod, context.contraption.entity));
                         lootTable.getRandomItems(lootParams.create(LootContextParamSets.ENTITY), animal.getLootTableSeed(), item -> dropItem(context, item));
                         if (CIFConfig.server().fishingNetCapturedLivingBeingDropExpNugget.get()) {
-                            int reward = EventHooks.getExperienceDrop(animal, null, animal.getExperienceReward(level, entity));
-                            int count = reward / 3;
-                            if (reward > 0 && count == 0) count = 1;
-                            dropItem(context, new ItemStack(AllItems.EXP_NUGGET.get(), count));
+                            int experience = EventHooks.getExperienceDrop(animal, null, animal.getExperienceReward(level, entity));
+                            dropItem(context, new ItemStack(AllItems.EXP_NUGGET.get(), Math.ceilDiv(experience, 3)));
                         }
                         animal.discard();
                     }
