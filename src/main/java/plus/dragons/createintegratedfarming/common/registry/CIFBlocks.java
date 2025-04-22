@@ -32,9 +32,9 @@ import net.minecraft.world.level.block.SoundType;
 import net.neoforged.bus.api.IEventBus;
 import plus.dragons.createintegratedfarming.common.fishing.net.FishingNetBlock;
 import plus.dragons.createintegratedfarming.common.fishing.net.FishingNetMovementBehaviour;
-import plus.dragons.createintegratedfarming.common.ranching.roost.chicken.ChickenRoostBlock;
 import plus.dragons.createintegratedfarming.common.ranching.roost.RoostBlock;
 import plus.dragons.createintegratedfarming.common.ranching.roost.RoostBlockItem;
+import plus.dragons.createintegratedfarming.common.ranching.roost.chicken.ChickenRoostBlock;
 
 public class CIFBlocks {
     public static final BlockEntry<FishingNetBlock> FISHING_NET = REGISTRATE
