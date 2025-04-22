@@ -29,11 +29,11 @@ import plus.dragons.createintegratedfarming.common.registry.CIFBlocks;
 public class CIFPonderScenes {
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> helper) {
         PonderSceneRegistrationHelper<ItemProviderEntry<?, ?>> HELPER = helper.withKeyFunction(RegistryEntry::getId);
-        HELPER.forComponents(CIFBlocks.CHICKEN_COOP)
+        HELPER.forComponents(CIFBlocks.CHICKEN_ROOST)
                 .addStoryBoard("fishing_net/catch", FishingNetScene::catchFish, CIFPonderTags.FARMING_APPLIANCES)
                 .addStoryBoard("fishing_net/fishing", FishingNetScene::fishing);
 
-        HELPER.forComponents(CIFBlocks.CHICKEN_COOP)
+        HELPER.forComponents(CIFBlocks.CHICKEN_ROOST)
                 .addStoryBoard("chicken_coop", MiscScene::chickenCoop, CIFPonderTags.FARMING_APPLIANCES);
     }
 }

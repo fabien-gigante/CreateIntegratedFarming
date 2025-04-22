@@ -32,13 +32,13 @@ public class CIFPonderTags {
 
         helper.registerTag(FARMING_APPLIANCES)
                 .addToIndex()
-                .item(CIFBlocks.CHICKEN_COOP.get(), true, false)
+                .item(CIFBlocks.CHICKEN_ROOST, true, false)
                 .title("Farming Related")
                 .description("Components about farming, fishing and ranching")
                 .register();
 
         HELPER.addToTag(FARMING_APPLIANCES)
-                .add(CIFBlocks.CHICKEN_COOP)
+                .add(CIFBlocks.CHICKEN_ROOST)
                 .add(CIFBlocks.FISHING_NET);
     }
 }
