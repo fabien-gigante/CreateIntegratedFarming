@@ -36,6 +36,7 @@ import plus.dragons.createintegratedfarming.common.registry.CIFBlocks;
 import plus.dragons.createintegratedfarming.common.registry.CIFCreativeModeTabs;
 import plus.dragons.createintegratedfarming.common.registry.CIFDataMaps;
 import plus.dragons.createintegratedfarming.common.registry.CIFHarvestBehaviours;
+import plus.dragons.createintegratedfarming.common.registry.CIFRoostCapturables;
 import plus.dragons.createintegratedfarming.config.CIFConfig;
 
 @Mod(CIFCommon.ID)
@@ -58,8 +59,9 @@ public class CIFCommon {
 
     @SubscribeEvent
     public void setup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(CIFHarvestBehaviours::register);
         event.enqueueWork(CIFBlockSpoutingBehaviours::register);
+        event.enqueueWork(CIFHarvestBehaviours::register);
+        event.enqueueWork(CIFRoostCapturables::register);
     }
 
     public static ResourceLocation asResource(String path) {

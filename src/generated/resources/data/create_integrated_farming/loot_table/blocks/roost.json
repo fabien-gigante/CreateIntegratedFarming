@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "create_integrated_farming:empty_chicken_coop"
+          "name": "create_integrated_farming:roost"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "create_integrated_farming:blocks/empty_chicken_coop"
+  "random_sequence": "create_integrated_farming:blocks/roost"
 }

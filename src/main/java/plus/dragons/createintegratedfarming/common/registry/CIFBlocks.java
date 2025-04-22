@@ -32,9 +32,9 @@ import net.minecraft.world.level.block.SoundType;
 import net.neoforged.bus.api.IEventBus;
 import plus.dragons.createintegratedfarming.common.fishing.net.FishingNetBlock;
 import plus.dragons.createintegratedfarming.common.fishing.net.FishingNetMovementBehaviour;
-import plus.dragons.createintegratedfarming.common.ranching.coop.ChickenCoopBlock;
-import plus.dragons.createintegratedfarming.common.ranching.coop.CoopBlock;
-import plus.dragons.createintegratedfarming.common.ranching.coop.CoopBlockItem;
+import plus.dragons.createintegratedfarming.common.ranching.roost.chicken.ChickenRoostBlock;
+import plus.dragons.createintegratedfarming.common.ranching.roost.RoostBlock;
+import plus.dragons.createintegratedfarming.common.ranching.roost.RoostBlockItem;
 
 public class CIFBlocks {
     public static final BlockEntry<FishingNetBlock> FISHING_NET = REGISTRATE
@@ -50,16 +50,16 @@ public class CIFBlocks {
             .onRegister(block -> MovementBehaviour.REGISTRY.register(block, new FishingNetMovementBehaviour()))
             .simpleItem()
             .register();
-    public static final BlockEntry<CoopBlock> EMPTY_CHICKEN_COOP = REGISTRATE
-            .block("empty_chicken_coop", CoopBlock::new)
+    public static final BlockEntry<RoostBlock> ROOST = REGISTRATE
+            .block("roost", RoostBlock::new)
             .properties(prop -> prop.strength(1.5F).sound(SoundType.BAMBOO_WOOD))
             .blockstate((ctx, prov) -> prov.horizontalBlock(ctx.get(), AssetLookup.standardModel(ctx, prov)))
             .transform(axeOnly())
-            .item(CoopBlockItem::new)
+            .item(RoostBlockItem::new)
             .build()
             .register();
-    public static final BlockEntry<ChickenCoopBlock> CHICKEN_COOP = REGISTRATE
-            .block("chicken_coop", prop -> new ChickenCoopBlock(prop, EMPTY_CHICKEN_COOP))
+    public static final BlockEntry<ChickenRoostBlock> CHICKEN_ROOST = REGISTRATE
+            .block("chicken_roost", prop -> new ChickenRoostBlock(prop, ROOST))
             .properties(prop -> prop.strength(1.5F).sound(SoundType.BAMBOO_WOOD))
             .blockstate((ctx, prov) -> prov.horizontalBlock(ctx.get(), AssetLookup.standardModel(ctx, prov)))
             .item()

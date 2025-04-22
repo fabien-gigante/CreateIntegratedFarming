@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package plus.dragons.createintegratedfarming.common.ranching.coop;
+package plus.dragons.createintegratedfarming.common.ranching.roost.chicken;
 
 import com.simibubi.create.content.kinetics.belt.behaviour.DirectBeltInputBehaviour;
 import com.simibubi.create.content.kinetics.belt.transport.TransportedItemStack;
@@ -46,13 +46,13 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 import plus.dragons.createintegratedfarming.common.registry.CIFDataMaps;
 
-public class ChickenCoopBlockEntity extends SmartBlockEntity {
+public class ChickenRoostBlockEntity extends SmartBlockEntity {
     public final ItemStackHandler inventory;
     public final IItemHandler itemHandler;
     public int feedCooldown;
     public int eggTime = 12000;
 
-    public ChickenCoopBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+    public ChickenRoostBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
         setLazyTickRate(20);
         this.inventory = new ItemStackHandler();

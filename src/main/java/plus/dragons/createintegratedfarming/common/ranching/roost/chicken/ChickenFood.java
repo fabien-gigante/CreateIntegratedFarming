@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package plus.dragons.createintegratedfarming.common.ranching.coop;
+package plus.dragons.createintegratedfarming.common.ranching.roost.chicken;
 
 import net.minecraft.util.RandomSource;
 

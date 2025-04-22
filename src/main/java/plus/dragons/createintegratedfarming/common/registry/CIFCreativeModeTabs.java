@@ -21,11 +21,13 @@ package plus.dragons.createintegratedfarming.common.registry;
 import static plus.dragons.createintegratedfarming.common.CIFCommon.REGISTRATE;
 import static plus.dragons.createintegratedfarming.common.registry.CIFBlocks.*;
 
+import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllCreativeModeTabs;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTab.TabVisibility;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import plus.dragons.createintegratedfarming.common.CIFCommon;
@@ -43,14 +45,15 @@ public class CIFCreativeModeTabs {
         return CreativeModeTab.builder()
                 .title(REGISTRATE.addLang("itemGroup", id, "Create: Integrated Farming"))
                 .withTabsBefore(AllCreativeModeTabs.BASE_CREATIVE_TAB.getId())
-                .icon(CHICKEN_COOP::asStack)
+                .icon(AllBlocks.MECHANICAL_HARVESTER::asStack)
                 .displayItems(CIFCreativeModeTabs::buildBaseContents)
                 .build();
     }
 
     private static void buildBaseContents(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
-        output.accept(EMPTY_CHICKEN_COOP);
-        output.accept(CHICKEN_COOP);
+        output.accept(AllBlocks.MECHANICAL_HARVESTER);
         output.accept(FISHING_NET);
+        output.accept(ROOST, TabVisibility.SEARCH_TAB_ONLY);
+        output.accept(CHICKEN_ROOST);
     }
 }
