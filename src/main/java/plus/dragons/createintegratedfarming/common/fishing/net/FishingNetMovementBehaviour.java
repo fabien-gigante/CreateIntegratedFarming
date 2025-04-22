@@ -27,12 +27,12 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.entity.EntityTypeTest;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -51,33 +51,29 @@ public class FishingNetMovementBehaviour implements MovementBehaviour {
             var fishing = getFishingNetContext(context, level);
             if (fishing.timeUntilCatch > 0)
                 fishing.timeUntilCatch--;
-            if (level.getGameTime() % 20 == 0 && CIFConfig.server().fishingNetCaptureSmallLivingBeingInWater.get()) {
+            if (level.getGameTime() % 20 == 0 && CIFConfig.server().fishingNetCaptureCreatureInWater.get()) {
                 AABB effectiveArea = context.state.getShape(level, context.localPos).bounds().expandTowards(context.motion.multiply(5, 5, 5)).move(context.position).inflate(0.2);
-                var entities = level.getEntities((Entity) null, effectiveArea, entity -> {
-                    if (entity instanceof WaterAnimal animal) { // QUESTION: Should we support all mobs?
-                        return animal.getBbWidth() <= CIFConfig.server().fishingNetCapturedLivingBeingMaxSize.get() &&
-                                animal.getBbHeight() <= CIFConfig.server().fishingNetCapturedLivingBeingMaxSize.get();
-                    }
-                    return false;
-                });
+                // TODO: Support all entities if possible?
+                var entities = level.getEntities(EntityTypeTest.forClass(WaterAnimal.class), effectiveArea, entity -> entity.getBbWidth() <= CIFConfig.server().fishingNetCapturedCreatureMaxSize.get() &&
+                        entity.getBbHeight() <= CIFConfig.server().fishingNetCapturedCreatureMaxSize.get());
                 entities.forEach(entity -> {
-                    var animal = (WaterAnimal) entity;
-                    if (!animal.isBaby() && level.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
+                    if (!entity.isBaby() && level.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
                         var damageSource = new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.GENERIC_KILL), context.position);
-                        var lootTable = level.getServer().reloadableRegistries().getLootTable(animal.getLootTable());
+                        var lootTable = level.getServer().reloadableRegistries().getLootTable(entity.getLootTable());
                         var lootParams = (new LootParams.Builder(level))
-                                .withParameter(LootContextParams.THIS_ENTITY, animal)
-                                .withParameter(LootContextParams.ORIGIN, animal.position())
+                                .withParameter(LootContextParams.THIS_ENTITY, entity)
+                                .withParameter(LootContextParams.ORIGIN, entity.position())
                                 .withParameter(LootContextParams.DAMAGE_SOURCE, damageSource)
                                 .withOptionalParameter(LootContextParams.ATTACKING_ENTITY, context.contraption.entity)
                                 .withOptionalParameter(LootContextParams.DIRECT_ATTACKING_ENTITY, context.contraption.entity)
                                 .withLuck(EnchantmentHelper.getFishingLuckBonus(level, getFishingNetContext(context, level).fishingRod, context.contraption.entity));
-                        lootTable.getRandomItems(lootParams.create(LootContextParamSets.ENTITY), animal.getLootTableSeed(), item -> dropItem(context, item));
-                        if (CIFConfig.server().fishingNetCapturedLivingBeingDropExpNugget.get()) {
-                            int experience = EventHooks.getExperienceDrop(animal, null, animal.getExperienceReward(level, entity));
+                        lootTable.getRandomItems(lootParams.create(LootContextParamSets.ENTITY), entity.getLootTableSeed(), item -> dropItem(context, item));
+                        if (CIFConfig.server().fishingNetCapturedCreatureDropExpNugget.get()) {
+                            //noinspection DataFlowIssue
+                            int experience = EventHooks.getExperienceDrop(entity, null, entity.getExperienceReward(level, entity));
                             dropItem(context, new ItemStack(AllItems.EXP_NUGGET.get(), Math.ceilDiv(experience, 3)));
                         }
-                        animal.discard();
+                        entity.discard();
                     }
                 });
             }

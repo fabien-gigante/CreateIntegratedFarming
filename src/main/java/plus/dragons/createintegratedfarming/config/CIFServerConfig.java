@@ -36,15 +36,15 @@ public class CIFServerConfig extends ConfigBase {
     public final ConfigInt fishingNetMaxRecordedBlocks = i(8, 1, 64,
             "fishingNetMaxRecordedBlocks",
             Comments.fishingNetMaxRecordedBlocks);
-    public final ConfigBool fishingNetCaptureSmallLivingBeingInWater = b(true,
-            "fishingNetCaptureSmallLivingBeingInWater",
-            Comments.fishingNetCaptureSmallLivingBeingInWater);
-    public final ConfigFloat fishingNetCapturedLivingBeingMaxSize = f(0.7f, 0.01f, 10f,
-            "fishingNetCapturedLivingBeingMaxSize",
-            Comments.fishingNetCapturedLivingBeingMaxSize);
-    public final ConfigBool fishingNetCapturedLivingBeingDropExpNugget = b(true,
-            "fishingNetCapturedLivingBeingDropExpNugget",
-            Comments.fishingNetCapturedLivingBeingDropExpNugget);
+    public final ConfigBool fishingNetCaptureCreatureInWater = b(true,
+            "fishingNetCaptureCreatureInWater",
+            Comments.fishingNetCaptureCreatureInWater);
+    public final ConfigFloat fishingNetCapturedCreatureMaxSize = f(0.7f, 0.01f, 10f,
+            "fishingNetCapturedCreatureMaxSize",
+            Comments.fishingNetCapturedCreatureMaxSize);
+    public final ConfigBool fishingNetCapturedCreatureDropExpNugget = b(true,
+            "fishingNetCapturedCreatureDropExpNugget",
+            Comments.fishingNetCapturedCreatureDropExpNugget);
     public final ConfigGroup ranching = group(1, "ranching", Comments.ranching);
     public final ConfigBool leashedEntitySitsAutomatically = b(false,
             "leashedEntitySitsAutomatically",
@@ -74,15 +74,15 @@ public class CIFServerConfig extends ConfigBase {
                 "Increasing this value will reduce the efficiency of Fishing Net that travels in a fixed short route.",
                 "Example: Fishing Net placed near the rotating axis."
         };
-        static final String[] fishingNetCaptureSmallLivingBeingInWater = {
-                "If Fishing Net should capture small size animals and automatically process them.",
+        static final String[] fishingNetCaptureCreatureInWater = {
+                "If Fishing Net should capture small creature and automatically process them.",
                 "\"Process\" means captured entity will be discard and all drops will be collected."
         };
-        static final String[] fishingNetCapturedLivingBeingMaxSize = {
-                "The maximum size (width and height) of aquatic animal that can be caught by the Fishing Net."
+        static final String[] fishingNetCapturedCreatureMaxSize = {
+                "The maximum size (width and height) of creatures that can be caught by the Fishing Net."
         };
-        static final String[] fishingNetCapturedLivingBeingDropExpNugget = {
-                "If animals captured by Fishing Net should drop Nugget of Experience."
+        static final String[] fishingNetCapturedCreatureDropExpNugget = {
+                "If creatures captured by Fishing Net should drop Nugget of Experience."
         };
         static final String ranching = "Settings for Ranching utilities";
         static final String[] leashedEntitySitsAutomatically = {
