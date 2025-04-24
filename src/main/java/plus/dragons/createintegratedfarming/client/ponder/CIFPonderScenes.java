@@ -23,7 +23,7 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.minecraft.resources.ResourceLocation;
 import plus.dragons.createintegratedfarming.client.ponder.scene.FishingNetScene;
-import plus.dragons.createintegratedfarming.client.ponder.scene.MiscScene;
+import plus.dragons.createintegratedfarming.client.ponder.scene.RoostScene;
 import plus.dragons.createintegratedfarming.common.registry.CIFBlocks;
 
 public class CIFPonderScenes {
@@ -33,7 +33,13 @@ public class CIFPonderScenes {
                 .addStoryBoard("fishing_net/catch", FishingNetScene::catchFish, CIFPonderTags.FARMING_APPLIANCES)
                 .addStoryBoard("fishing_net/fishing", FishingNetScene::fishing);
 
+        HELPER.forComponents(CIFBlocks.ROOST)
+                .addStoryBoard("roost/catch", RoostScene::capture, CIFPonderTags.FARMING_APPLIANCES)
+                .addStoryBoard("roost/lead", RoostScene::lead);
+
+
         HELPER.forComponents(CIFBlocks.CHICKEN_ROOST)
-                .addStoryBoard("chicken_coop", MiscScene::chickenCoop, CIFPonderTags.FARMING_APPLIANCES);
+                .addStoryBoard("roost/operate", RoostScene::operate, CIFPonderTags.FARMING_APPLIANCES)
+                .addStoryBoard("roost/spout", RoostScene::fluid);
     }
 }
