@@ -18,13 +18,10 @@
 
 package plus.dragons.createintegratedfarming.common.ranching.roost;
 
-import com.simibubi.create.AllBlocks;
-import com.simibubi.create.AllTags;
-import net.createmod.catnip.math.VecHelper;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.random.WeightedEntry;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -40,11 +37,6 @@ import net.minecraft.world.level.SpawnData;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.SpawnerBlockEntity;
-import net.minecraft.world.phys.Vec3;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 public class RoostBlockItem extends BlockItem {
     public RoostBlockItem(Block block, Properties properties) {

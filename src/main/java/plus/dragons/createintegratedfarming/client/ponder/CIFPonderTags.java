@@ -18,6 +18,11 @@
 
 package plus.dragons.createintegratedfarming.client.ponder;
 
+import static com.simibubi.create.infrastructure.ponder.AllCreatePonderTags.ARM_TARGETS;
+import static com.simibubi.create.infrastructure.ponder.AllCreatePonderTags.CONTRAPTION_ACTOR;
+import static vectorwing.farmersdelight.common.registry.ModBlocks.BASKET;
+
+import com.simibubi.create.AllBlocks;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.createmod.catnip.registry.RegisteredObjectsHelper;
 import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;
@@ -25,9 +30,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import plus.dragons.createintegratedfarming.common.CIFCommon;
 import plus.dragons.createintegratedfarming.common.registry.CIFBlocks;
-
-import static com.simibubi.create.infrastructure.ponder.AllCreatePonderTags.ARM_TARGETS;
-import static vectorwing.farmersdelight.common.registry.ModBlocks.BASKET;
 
 public class CIFPonderTags {
     public static final ResourceLocation FARMING_APPLIANCES = CIFCommon.asResource("farming_appliances");
@@ -48,12 +50,16 @@ public class CIFPonderTags {
         HELPER.addToTag(FARMING_APPLIANCES)
                 .add(CIFBlocks.ROOST)
                 .add(CIFBlocks.CHICKEN_ROOST)
-                .add(CIFBlocks.FISHING_NET);
+                .add(CIFBlocks.FISHING_NET)
+                .add(AllBlocks.MECHANICAL_HARVESTER);
 
         HELPER.addToTag(ARM_TARGETS)
                 .add(CIFBlocks.CHICKEN_ROOST);
 
         itemHelper.addToTag(ARM_TARGETS)
                 .add(BASKET.get());
+
+        HELPER.addToTag(CONTRAPTION_ACTOR)
+                .add(CIFBlocks.FISHING_NET);
     }
 }

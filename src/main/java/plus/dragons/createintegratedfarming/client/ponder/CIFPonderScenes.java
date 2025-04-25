@@ -18,6 +18,7 @@
 
 package plus.dragons.createintegratedfarming.client.ponder;
 
+import com.simibubi.create.infrastructure.ponder.AllCreatePonderTags;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
@@ -30,15 +31,14 @@ public class CIFPonderScenes {
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> helper) {
         PonderSceneRegistrationHelper<ItemProviderEntry<?, ?>> HELPER = helper.withKeyFunction(RegistryEntry::getId);
         HELPER.forComponents(CIFBlocks.FISHING_NET)
-                .addStoryBoard("fishing_net/catch", FishingNetScene::catchFish, CIFPonderTags.FARMING_APPLIANCES)
-                .addStoryBoard("fishing_net/fishing", FishingNetScene::fishing);
+                .addStoryBoard("fishing_net", FishingNetScene::fishing, CIFPonderTags.FARMING_APPLIANCES, AllCreatePonderTags.CONTRAPTION_ACTOR);
 
         HELPER.forComponents(CIFBlocks.ROOST)
                 .addStoryBoard("roost/catch", RoostScene::capture, CIFPonderTags.FARMING_APPLIANCES)
                 .addStoryBoard("roost/lead", RoostScene::lead);
 
         HELPER.forComponents(CIFBlocks.CHICKEN_ROOST)
-                .addStoryBoard("roost/operate", RoostScene::operate, CIFPonderTags.FARMING_APPLIANCES)
+                .addStoryBoard("roost/operate", RoostScene::operate, CIFPonderTags.FARMING_APPLIANCES, AllCreatePonderTags.ARM_TARGETS)
                 .addStoryBoard("roost/spout", RoostScene::fluid);
     }
 }

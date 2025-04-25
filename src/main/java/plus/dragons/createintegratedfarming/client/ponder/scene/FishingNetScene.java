@@ -19,15 +19,68 @@
 package plus.dragons.createintegratedfarming.client.ponder.scene;
 
 import com.simibubi.create.foundation.ponder.CreateSceneBuilder;
+import net.createmod.catnip.math.Pointing;
+import net.createmod.ponder.api.element.ElementLink;
+import net.createmod.ponder.api.element.WorldSectionElement;
 import net.createmod.ponder.api.scene.SceneBuilder;
 import net.createmod.ponder.api.scene.SceneBuildingUtil;
+import net.minecraft.core.Direction;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Items;
 
 public class FishingNetScene {
-    public static void catchFish(SceneBuilder builder, SceneBuildingUtil util) {
-        CreateSceneBuilder scene = new CreateSceneBuilder(builder);
-    }
-
     public static void fishing(SceneBuilder builder, SceneBuildingUtil util) {
         CreateSceneBuilder scene = new CreateSceneBuilder(builder);
+        scene.title("fishing_net", "Using Fishing Net on Contraptions");
+        scene.configureBasePlate(0, 0, 6);
+        scene.scaleSceneView(0.7f);
+        var contraptionSelection = util.select().fromTo(4, 2, 4, 4, 3, 5)
+                .add(util.select().position(4, 4, 4))
+                .add(util.select().fromTo(3, 3, 5, 0, 1, 5));
+        scene.world().showSection(util.select().everywhere().substract(contraptionSelection), Direction.DOWN);
+        ElementLink<WorldSectionElement> contraption = scene.world().showIndependentSection(util.select().fromTo(4, 2, 4, 4, 3, 5)
+                .add(util.select().position(4, 4, 4))
+                .add(util.select().fromTo(3, 3, 5, 0, 1, 5)), Direction.DOWN);
+        scene.idle(5);
+
+        scene.world().configureCenterOfRotation(contraption, util.vector().centerOf(4, 1, 4));
+        scene.overlay().showText(60)
+                .placeNearTarget()
+                .attachKeyFrame()
+                .pointAt(util.vector().blockSurface(util.grid().at(2, 2, 5), Direction.NORTH))
+                .text("Whenever Fishing Nets are moved as part of an animated Contraption...");
+        scene.idle(70);
+
+        scene.world().rotateBearing(util.grid().at(4, 1, 4), -360, 140);
+        scene.world().rotateSection(contraption, 0, -360, 0, 140);
+        scene.overlay().showText(100)
+                .pointAt(util.vector().blockSurface(util.grid().at(2, 2, 5), Direction.EAST))
+                .text("They will fish in open water, like a player fishing with a Fishing Rod")
+                .placeNearTarget();
+        scene.idle(140);
+
+        scene.overlay().showText(80)
+                .placeNearTarget()
+                .attachKeyFrame()
+                .pointAt(util.vector().blockSurface(util.grid().at(2, 2, 5), Direction.NORTH))
+                .text("Fishing Net will catch small aquatic animal");
+        scene.world().hideSection(util.select().fromTo(0, 1, 0, 5, 3, 2), Direction.NORTH);
+        var salmon = scene.world().createEntity(level -> {
+            var fish = EntityType.SALMON.create(level);
+            var pos = util.vector().centerOf(2, 2, 1);
+            fish.setPos(pos.x, pos.y, pos.z);
+            return fish;
+        });
+        scene.idle(10);
+
+        scene.world().rotateBearing(util.grid().at(4, 1, 4), -360, 140);
+        scene.world().rotateSection(contraption, 0, -360, 0, 140);
+        scene.idle(28);
+        scene.world().modifyEntity(salmon, Entity::discard);
+        scene.idle(10);
+        scene.overlay().showControls(util.vector().centerOf(4, 4, 4), Pointing.UP, 60).rightClick()
+                .withItem(Items.SALMON.getDefaultInstance());
+        scene.idle(102);
     }
 }

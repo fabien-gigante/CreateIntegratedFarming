@@ -162,7 +162,7 @@ public class ChickenRoostBlockEntity extends SmartBlockEntity {
         assert level != null;
         ItemStack stack = transported.stack.copy();
         if (feedItem(stack, simulate)) {
-            if(!simulate) stack.shrink(1);
+            if (!simulate) stack.shrink(1);
         }
         return stack;
     }
