@@ -19,10 +19,15 @@
 package plus.dragons.createintegratedfarming.client.ponder;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import net.createmod.catnip.registry.RegisteredObjectsHelper;
 import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.ItemLike;
 import plus.dragons.createintegratedfarming.common.CIFCommon;
 import plus.dragons.createintegratedfarming.common.registry.CIFBlocks;
+
+import static com.simibubi.create.infrastructure.ponder.AllCreatePonderTags.ARM_TARGETS;
+import static vectorwing.farmersdelight.common.registry.ModBlocks.BASKET;
 
 public class CIFPonderTags {
     public static final ResourceLocation FARMING_APPLIANCES = CIFCommon.asResource("farming_appliances");
@@ -30,10 +35,13 @@ public class CIFPonderTags {
     public static void register(PonderTagRegistrationHelper<ResourceLocation> helper) {
         PonderTagRegistrationHelper<RegistryEntry<?, ?>> HELPER = helper.withKeyFunction(RegistryEntry::getId);
 
+        PonderTagRegistrationHelper<ItemLike> itemHelper = helper.withKeyFunction(
+                RegisteredObjectsHelper::getKeyOrThrow);
+
         helper.registerTag(FARMING_APPLIANCES)
                 .addToIndex()
                 .item(CIFBlocks.ROOST, true, false)
-                .title("Farming Related")
+                .title("Farming Appliances")
                 .description("Components about farming, fishing and ranching")
                 .register();
 
@@ -41,5 +49,11 @@ public class CIFPonderTags {
                 .add(CIFBlocks.ROOST)
                 .add(CIFBlocks.CHICKEN_ROOST)
                 .add(CIFBlocks.FISHING_NET);
+
+        HELPER.addToTag(ARM_TARGETS)
+                .add(CIFBlocks.CHICKEN_ROOST);
+
+        itemHelper.addToTag(ARM_TARGETS)
+                .add(BASKET.get());
     }
 }

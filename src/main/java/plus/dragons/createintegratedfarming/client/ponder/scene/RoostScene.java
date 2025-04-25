@@ -18,6 +18,8 @@
 
 package plus.dragons.createintegratedfarming.client.ponder.scene;
 
+import com.simibubi.create.content.kinetics.mechanicalArm.ArmBlockEntity;
+import com.simibubi.create.content.logistics.depot.DepotBlockEntity;
 import com.simibubi.create.foundation.ponder.CreateSceneBuilder;
 import net.createmod.catnip.math.Pointing;
 import net.createmod.ponder.api.PonderPalette;
@@ -28,6 +30,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Chicken;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.Vec3;
 import plus.dragons.createintegratedfarming.common.registry.CIFBlocks;
@@ -170,9 +173,78 @@ public class RoostScene {
 
     public static void operate(SceneBuilder builder, SceneBuildingUtil util) {
         CreateSceneBuilder scene = new CreateSceneBuilder(builder);
+        scene.title("roost.raise", "Raising poultry");
+        scene.configureBasePlate(0, 0, 5);
+        scene.showBasePlate();
+        scene.world().showSection(util.select().position(2,2,2), Direction.DOWN);
+        scene.idle(10);
+
+        scene.overlay().showControls(util.vector().centerOf(2,3,2), Pointing.DOWN, 40).rightClick().withItem(Items.WHEAT_SEEDS.getDefaultInstance());
+        scene.overlay().showText(60)
+                .text("For Poultry to produce, it must be fed")
+                .pointAt(util.vector().centerOf(2,2,2))
+                .placeNearTarget();
+        scene.idle(70);
+
+        scene.world().showSection(util.select().position(2,1,0), Direction.DOWN);
+        scene.world().showSection(util.select().position(2,2,1), Direction.DOWN);
+        scene.idle(10);
+        scene.world().setKineticSpeed(util.select().position(2,1,0),64);
+        scene.world().setKineticSpeed(util.select().position(2,2,1),64);
+        scene.overlay().showText(60)
+                .text("Conveyor belt allows feeding from the front of the Roost")
+                .pointAt(util.vector().blockSurface(util.grid().at(2,2,2),Direction.EAST))
+                .attachKeyFrame()
+                .placeNearTarget();
+        scene.world().createItemOnBelt(util.grid().at(2, 1, 0), Direction.UP, new ItemStack(Items.WHEAT_SEEDS));
+        scene.idle(80);
+
+        BlockPos armPos = util.grid().at(0, 1, 4);
+        scene.world().showSection(util.select().fromTo(0,1,3,0,1,4), Direction.DOWN);
+        scene.world().modifyBlockEntity(util.grid().at(0,1,3), DepotBlockEntity.class, depot->depot.setHeldItem(Items.WHEAT_SEEDS.getDefaultInstance()));
+        scene.idle(10);
+        scene.world().setKineticSpeed(util.select().position(0,1,4),128);
+        scene.overlay().showText(60)
+                .text("Mechanical Arm can also feed")
+                .pointAt(util.vector().centerOf(0,1,4))
+                .attachKeyFrame()
+                .placeNearTarget();
+        scene.world().instructArm(armPos, ArmBlockEntity.Phase.MOVE_TO_INPUT, ItemStack.EMPTY, 0);
+        scene.idle(20);
+        scene.world().modifyBlockEntity(util.grid().at(0,1,3), DepotBlockEntity.class, depot->depot.setHeldItem(ItemStack.EMPTY));
+        scene.world().instructArm(armPos, ArmBlockEntity.Phase.SEARCH_OUTPUTS, Items.WHEAT_SEEDS.getDefaultInstance(), -1);
+        scene.idle(20);
+        scene.world().instructArm(armPos, ArmBlockEntity.Phase.MOVE_TO_OUTPUT, Items.WHEAT_SEEDS.getDefaultInstance(), 0);
+        scene.idle(20);
+        scene.world().instructArm(armPos, ArmBlockEntity.Phase.MOVE_TO_INPUT, ItemStack.EMPTY, -1);
+        scene.idle(20);
+
+        scene.world().setKineticSpeed(util.select().position(0,1,4),0);
+        scene.world().showSection(util.select().position(1,2,2), Direction.EAST);
+        scene.world().showSection(util.select().fromTo(0,1,2,5,1,2), Direction.EAST);
+        scene.idle(10);
+        scene.world().setKineticSpeed(util.select().fromTo(0,1,2,5,1,2),32);
+        scene.overlay().showText(60)
+                .text("Keep feeding to produce livestock products")
+                .pointAt(util.vector().centerOf(1,1,2))
+                .attachKeyFrame()
+                .placeNearTarget();
+        scene.idle(30);
+        scene.world().flapFunnel(util.grid().at(1,2,2), true);
+        scene.world().createItemOnBelt(util.grid().at(1,1,2), Direction.DOWN, Items.EGG.getDefaultInstance());
+        scene.idle(40);
     }
 
     public static void fluid(SceneBuilder builder, SceneBuildingUtil util) {
         CreateSceneBuilder scene = new CreateSceneBuilder(builder);
+        scene.title("roost.fluid", "Feeding via Spout");
+        scene.configureBasePlate(0, 0, 3);
+        scene.world().showSection(util.select().everywhere(),Direction.DOWN);
+
+        scene.overlay().showText(100)
+                .text("Poultry can also be fed via Spout if there is suitable liquid food (from other mods)")
+                .pointAt(util.vector().centerOf(1,3,1))
+                .placeNearTarget();
+        scene.idle(100);
     }
 }
