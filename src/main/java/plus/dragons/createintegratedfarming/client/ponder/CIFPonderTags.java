@@ -66,7 +66,8 @@ public class CIFPonderTags {
                 .add(AllBlocks.MECHANICAL_HARVESTER);
 
         HELPER.addToTag(FISHING_APPLIANCES)
-                .add(CIFBlocks.FISHING_NET);
+                .add(CIFBlocks.FISHING_NET)
+                .add(AllBlocks.DEPLOYER);
 
         HELPER.addToTag(ARM_TARGETS)
                 .add(CIFBlocks.CHICKEN_ROOST);
