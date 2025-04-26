@@ -1,4 +1,3 @@
 {
-  "block.create_integrated_farming.heat_resistant_fishing_net.tooltip.summary": "Heat-Resistant Fishing Net is capable to _fish_ in _lava_. It _only_ fishes in _lava_.",
-  "block.create_integrated_farming.crimson_heat_resistant_fishing_net.tooltip.summary": "Heat-Resistant Fishing Net is capable to _fish_ in _lava_. It _only_ fishes in _lava_."
+  "block.create_integrated_farming.lava_fishing_net.tooltip.summary": "Like the Lava Fishing Rod, the Lava Fishing Net _can only_ _fish_ in _lava_."
 }

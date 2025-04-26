@@ -1,10 +1,8 @@
 {
   "block.create_integrated_farming.chicken_roost": "Chicken Roost",
-  "block.create_integrated_farming.crimson_heat_resistant_fishing_net": "Crimson Heat-Resistant Fishing Net",
-  "block.create_integrated_farming.crimson_heat_resistant_fishing_net.tooltip.summary": "Heat-Resistant Fishing Net is capable to _fish_ in _lava_. It _only_ fishes in _lava_.",
   "block.create_integrated_farming.fishing_net": "Fishing Net",
-  "block.create_integrated_farming.heat_resistant_fishing_net": "Heat-Resistant Fishing Net",
-  "block.create_integrated_farming.heat_resistant_fishing_net.tooltip.summary": "Heat-Resistant Fishing Net is capable to _fish_ in _lava_. It _only_ fishes in _lava_.",
+  "block.create_integrated_farming.lava_fishing_net": "Lava Fishing Net",
+  "block.create_integrated_farming.lava_fishing_net.tooltip.summary": "Lava Fishing Net is capable to _fish_ in _lava_. It _only_ fishes in _lava_.",
   "block.create_integrated_farming.roost": "Roost",
   "create_integrated_farming.ponder.fishing_net.header": "Using Fishing Net on Contraptions",
   "create_integrated_farming.ponder.fishing_net.text_1": "Whenever Fishing Nets are moved as part of an animated Contraption...",

@@ -1,10 +1,8 @@
 {
   "block.create_integrated_farming.chicken_roost": "鸡舍",
-  "block.create_integrated_farming.crimson_heat_resistant_fishing_net": "绯红耐高温渔网",
-  "block.create_integrated_farming.crimson_heat_resistant_fishing_net.tooltip.summary": "耐高温渔网能在_岩浆_中_捕鱼_。它也_只能_在_岩浆_中捕鱼。",
   "block.create_integrated_farming.fishing_net": "渔网",
-  "block.create_integrated_farming.heat_resistant_fishing_net": "耐高温渔网",
-  "block.create_integrated_farming.heat_resistant_fishing_net.tooltip.summary": "耐高温渔网能在_岩浆_中_捕鱼_。它也_只能_在_岩浆_中捕鱼。",
+  "block.create_integrated_farming.lava_fishing_net": "熔岩渔网",
+  "block.create_integrated_farming.lava_fishing_net.tooltip.summary": "熔岩渔网能在_熔岩_中_捕鱼_。它也_只能_在_熔岩_中捕鱼。",
   "block.create_integrated_farming.roost": "空禽舍",
   "create_integrated_farming.ponder.fishing_net.header": "在动态结构上使用渔网",
   "create_integrated_farming.ponder.fishing_net.text_1": "当渔网作为动态结构的一部分移动时……",
