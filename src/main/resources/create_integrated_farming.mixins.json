@@ -6,6 +6,7 @@
   "refmap": "create_integrated_farming.refmap.json",
   "mixins": [
     "BlockBreakingMovementBehaviourMixin",
+    "ContraptionMixin",
     "HarvesterMovementBehaviourMixin",
     "SawBlockEntityMixin",
     "SawMovementBehaviourMixin",

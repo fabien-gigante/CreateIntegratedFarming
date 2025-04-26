@@ -39,7 +39,7 @@ public class HeatResistantFishingNetContext {
     }
 
     public boolean visitNewPositon(ServerLevel level, BlockPos pos) {
-        boolean inLava = ((LavaFishingBobberEntityInvoker)fishingHook).invokeCalculateOpenLava(pos);
+        boolean inLava = ((LavaFishingBobberEntityInvoker)fishingHook).createintegratedfarming$invokeCalculateOpenLava(pos);
         if (!inLava)
             return false;
         if (visitedBlocks.size() < CIFConfig.server().fishingNetMaxRecordedBlocks.get())

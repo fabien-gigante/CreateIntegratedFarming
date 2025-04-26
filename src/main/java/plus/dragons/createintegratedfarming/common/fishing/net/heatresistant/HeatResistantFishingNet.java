@@ -35,6 +35,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+import plus.dragons.createintegratedfarming.api.multifluidlogged.WaterAndLavaLoggedBlock;
 
 import java.util.List;
 import java.util.Optional;
