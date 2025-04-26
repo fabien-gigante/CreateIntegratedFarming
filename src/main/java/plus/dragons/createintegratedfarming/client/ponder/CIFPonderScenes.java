@@ -31,7 +31,7 @@ public class CIFPonderScenes {
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> helper) {
         PonderSceneRegistrationHelper<ItemProviderEntry<?, ?>> HELPER = helper.withKeyFunction(RegistryEntry::getId);
         HELPER.forComponents(CIFBlocks.FISHING_NET)
-                .addStoryBoard("fishing_net", FishingNetScene::fishing, CIFPonderTags.FARMING_APPLIANCES, AllCreatePonderTags.CONTRAPTION_ACTOR);
+                .addStoryBoard("fishing_net", FishingNetScene::fishing, CIFPonderTags.FISHING_APPLIANCES, AllCreatePonderTags.CONTRAPTION_ACTOR);
 
         HELPER.forComponents(CIFBlocks.ROOST)
                 .addStoryBoard("roost/catch", RoostScene::capture, CIFPonderTags.FARMING_APPLIANCES)

@@ -26,6 +26,8 @@
   "create_integrated_farming.ponder.roost.raise.text_3": "Mechanical Arm can also feed",
   "create_integrated_farming.ponder.roost.raise.text_4": "Keep feeding to produce livestock products",
   "create_integrated_farming.ponder.tag.farming_appliances": "Farming Appliances",
-  "create_integrated_farming.ponder.tag.farming_appliances.description": "Components about farming, fishing and ranching",
+  "create_integrated_farming.ponder.tag.farming_appliances.description": "Components about farming and ranching",
+  "create_integrated_farming.ponder.tag.fishing_appliances": "Fishing Appliances",
+  "create_integrated_farming.ponder.tag.fishing_appliances.description": "Components about fishing",
   "itemGroup.create_integrated_farming.base": "机械动力：集成农业"
 }

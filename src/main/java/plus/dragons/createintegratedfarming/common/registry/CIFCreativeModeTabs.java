@@ -55,8 +55,6 @@ public class CIFCreativeModeTabs {
     private static void buildBaseContents(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
         output.accept(AllBlocks.MECHANICAL_HARVESTER);
         output.accept(FISHING_NET);
-        output.accept(ROOST);
-        output.accept(CHICKEN_ROOST);
 
         Holder<Block> heatResistantFishingNet = DeferredHolder.create(Registries.BLOCK,
                 CIFCommon.asResource("heat_resistant_fishing_net"));
@@ -69,5 +67,8 @@ public class CIFCreativeModeTabs {
         if(crimsonHeatResistantFishingNet.isBound()){
             output.accept(crimsonHeatResistantFishingNet.value());
         }
+
+        output.accept(ROOST);
+        output.accept(CHICKEN_ROOST);
     }
 }
