@@ -18,16 +18,12 @@
 
 package plus.dragons.createintegratedfarming.data;
 
-import static com.scouter.netherdepthsupgrade.items.NDUItems.*;
 import static com.simibubi.create.AllItems.*;
 import static net.minecraft.world.item.Items.*;
 import static plus.dragons.createdragonsplus.data.recipe.VanillaRecipeBuilders.*;
 import static plus.dragons.createintegratedfarming.common.registry.CIFBlocks.*;
-import static plus.dragons.createintegratedfarming.common.registry.integration.NetherDepthsUpgradeBlocks.CRIMSON_HEAT_RESISTANT_FISHING_NET;
-import static plus.dragons.createintegratedfarming.common.registry.integration.NetherDepthsUpgradeBlocks.HEAT_RESISTANT_FISHING_NET;
 import static vectorwing.farmersdelight.common.registry.ModItems.*;
 
-import com.scouter.netherdepthsupgrade.items.NDUItems;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup.Provider;
@@ -35,7 +31,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.neoforged.neoforge.common.Tags;
 import plus.dragons.createintegratedfarming.common.CIFCommon;
-import plus.dragons.createintegratedfarming.integration.CIFIntegration;
 
 public class CIFRecipeProvider extends RegistrateRecipeProvider {
     public CIFRecipeProvider(PackOutput output, CompletableFuture<Provider> registries) {
@@ -62,25 +57,16 @@ public class CIFRecipeProvider extends RegistrateRecipeProvider {
                 .unlockedBy("has_safety_net", has(SAFETY_NET.get()))
                 .unlockedBy("has_andesite_alloy", has(ANDESITE_ALLOY))
                 .accept(output);
-        shaped().output(HEAT_RESISTANT_FISHING_NET, 2)
-                .define('#', WARPED_KELP_BLOCK)
-                .define('/', WARPED_KELP)
+        shaped().output(LAVA_FISHING_NET, 2)
+                .define('#', CHAIN)
+                .define('/', BLAZE_ROD)
                 .define('a', ANDESITE_ALLOY)
-                .pattern("#/")
-                .pattern("/a")
-                .unlockedBy("has_warped_kelp", has(WARPED_KELP.get()))
+                .pattern("###")
+                .pattern("##/")
+                .pattern("#/a")
+                .unlockedBy("has_chain", has(CHAIN))
+                .unlockedBy("has_blaze_rod", has(BLAZE_ROD))
                 .unlockedBy("has_andesite_alloy", has(ANDESITE_ALLOY))
-                .withCondition(CIFIntegration.NETHER_DEPTHS_UPGRADE.condition())
-                .accept(output);
-        shaped().output(CRIMSON_HEAT_RESISTANT_FISHING_NET, 2)
-                .define('#', CRIMSON_KELP_BLOCK)
-                .define('/', CRIMSON_KELP)
-                .define('a', ANDESITE_ALLOY)
-                .pattern("#/")
-                .pattern("/a")
-                .unlockedBy("has_crimson_kelp", has(CRIMSON_KELP.get()))
-                .unlockedBy("has_andesite_alloy", has(ANDESITE_ALLOY))
-                .withCondition(CIFIntegration.NETHER_DEPTHS_UPGRADE.condition())
                 .accept(output);
     }
 }

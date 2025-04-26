@@ -1,10 +1,4 @@
 {
-  "neoforge:conditions": [
-    {
-      "type": "neoforge:mod_loaded",
-      "modid": "netherdepthsupgrade"
-    }
-  ],
   "criteria": {
     "has_andesite_alloy": {
       "conditions": {
@@ -16,33 +10,44 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "create_integrated_farming:heat_resistant_fishing_net"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_warped_kelp": {
+    "has_blaze_rod": {
       "conditions": {
         "items": [
           {
-            "items": "netherdepthsupgrade:warped_kelp"
+            "items": "minecraft:blaze_rod"
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "has_chain": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:chain"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "create_integrated_farming:lava_fishing_net"
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "has_warped_kelp",
+      "has_chain",
+      "has_blaze_rod",
       "has_andesite_alloy"
     ]
   ],
   "rewards": {
     "recipes": [
-      "create_integrated_farming:heat_resistant_fishing_net"
+      "create_integrated_farming:lava_fishing_net"
     ]
   },
   "sends_telemetry_event": true

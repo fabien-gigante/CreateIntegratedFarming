@@ -22,24 +22,17 @@ import plus.dragons.createintegratedfarming.api.harvester.CustomHarvestBehaviour
 import plus.dragons.createintegratedfarming.common.farming.harvest.HighCropHarvestBehaviour;
 import plus.dragons.createintegratedfarming.common.farming.harvest.MushroomColonyHarvestBehaviour;
 import plus.dragons.createintegratedfarming.common.farming.harvest.TomatoHarvestBehaviour;
-import plus.dragons.createintegratedfarming.integration.CIFIntegration;
 import vectorwing.farmersdelight.common.block.TomatoVineBlock;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
 
 public class CIFHarvestBehaviours {
-    public static void register() {
-        registerFarmersDelightIntegration();
-        if (CIFIntegration.MMLIB.isLoaded())
-            registerMmlibIntegration();
-    }
-
-    private static void registerFarmersDelightIntegration() {
+    public static void registerFarmersDelight() {
         CustomHarvestBehaviour.REGISTRY.registerProvider(MushroomColonyHarvestBehaviour::create);
         var tomato = (TomatoVineBlock) ModBlocks.TOMATO_CROP.get();
         CustomHarvestBehaviour.REGISTRY.register(tomato, new TomatoHarvestBehaviour(tomato));
     }
 
-    private static void registerMmlibIntegration() {
+    public static void registerMmlib() {
         CustomHarvestBehaviour.REGISTRY.registerProvider(HighCropHarvestBehaviour::create);
     }
 }

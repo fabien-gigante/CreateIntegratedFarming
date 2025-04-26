@@ -25,7 +25,9 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLConstructModEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import plus.dragons.createdragonsplus.common.CDPRegistrate;
@@ -35,11 +37,9 @@ import plus.dragons.createintegratedfarming.common.registry.CIFBlockSpoutingBeha
 import plus.dragons.createintegratedfarming.common.registry.CIFBlocks;
 import plus.dragons.createintegratedfarming.common.registry.CIFCreativeModeTabs;
 import plus.dragons.createintegratedfarming.common.registry.CIFDataMaps;
-import plus.dragons.createintegratedfarming.common.registry.CIFHarvestBehaviours;
 import plus.dragons.createintegratedfarming.common.registry.CIFRoostCapturables;
-import plus.dragons.createintegratedfarming.common.registry.integration.NetherDepthsUpgradeBlocks;
 import plus.dragons.createintegratedfarming.config.CIFConfig;
-import plus.dragons.createintegratedfarming.integration.CIFIntegration;
+import plus.dragons.createintegratedfarming.integration.ModIntegration;
 
 @Mod(CIFCommon.ID)
 public class CIFCommon {
@@ -57,15 +57,32 @@ public class CIFCommon {
         CIFDataMaps.register(modBus);
         modBus.register(this);
         modBus.register(new CIFConfig(modContainer));
-
-        CIFIntegration.NETHER_DEPTHS_UPGRADE.executeIfLoaded(()-> NetherDepthsUpgradeBlocks::register);
     }
 
     @SubscribeEvent
-    public void setup(final FMLCommonSetupEvent event) {
+    public void onConstructMod(final FMLConstructModEvent event) {
+        for (ModIntegration integration : ModIntegration.values()) {
+            if (integration.enabled())
+                event.enqueueWork(integration::onConstructMod);
+        }
+    }
+
+    @SubscribeEvent
+    public void onCommonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(CIFBlockSpoutingBehaviours::register);
-        event.enqueueWork(CIFHarvestBehaviours::register);
         event.enqueueWork(CIFRoostCapturables::register);
+        for (ModIntegration integration : ModIntegration.values()) {
+            if (integration.enabled())
+                event.enqueueWork(integration::onCommonSetup);
+        }
+    }
+
+    @SubscribeEvent
+    public void onClientSetup(final FMLClientSetupEvent event) {
+        for (ModIntegration integration : ModIntegration.values()) {
+            if (integration.enabled())
+                event.enqueueWork(integration::onClientSetup);
+        }
     }
 
     public static ResourceLocation asResource(String path) {

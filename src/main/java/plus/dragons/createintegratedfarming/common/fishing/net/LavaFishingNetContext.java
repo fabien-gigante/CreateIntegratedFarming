@@ -18,43 +18,45 @@
 
 package plus.dragons.createintegratedfarming.common.fishing.net;
 
+import com.scouter.netherdepthsupgrade.entity.NDUEntity;
+import com.scouter.netherdepthsupgrade.entity.entities.LavaFishingBobberEntity;
+import com.scouter.netherdepthsupgrade.loot.NDULootTables;
 import com.simibubi.create.content.contraptions.behaviour.MovementContext;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.projectile.FishingHook;
-import net.minecraft.world.entity.projectile.FishingHook.OpenWaterType;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
-import plus.dragons.createintegratedfarming.config.CIFConfig;
+import plus.dragons.createintegratedfarming.mixin.integration.LavaFishingBobberEntityInvoker;
 
-public class FishingNetContext extends AbstractFishingNetContext<FishingHook> {
-    public FishingNetContext(ServerLevel level, ItemStack fishingRod) {
+public class LavaFishingNetContext extends AbstractFishingNetContext<LavaFishingBobberEntity> {
+    public LavaFishingNetContext(ServerLevel level, ItemStack fishingRod) {
         super(level, fishingRod);
     }
 
     @Override
-    protected FishingHook createFishingHook(ServerLevel level) {
-        return new FishingHook(EntityType.FISHING_BOBBER, level);
+    protected LavaFishingBobberEntity createFishingHook(ServerLevel level) {
+        return new LavaFishingBobberEntity(NDUEntity.LAVA_BOBBER.get(), level);
     }
 
     @Override
     protected boolean isPosValidForFishing(ServerLevel level, BlockPos pos) {
-        return fishingHook.getOpenWaterTypeForBlock(pos) == OpenWaterType.INSIDE_WATER;
+        return level.getFluidState(pos).is(FluidTags.LAVA) &&
+                level.getBlockState(pos).getCollisionShape(level, pos).isEmpty();
     }
 
     @Override
     public LootTable getLootTable(ServerLevel level, BlockPos pos) {
-        return level.getServer().reloadableRegistries().getLootTable(BuiltInLootTables.FISHING);
+        var registries = level.getServer().reloadableRegistries();
+        if (level.dimension() == Level.NETHER)
+            return level.getServer().reloadableRegistries().getLootTable(NDULootTables.NETHER_FISHING);
+        return level.getServer().reloadableRegistries().getLootTable(NDULootTables.LAVA_FISHING);
     }
 
     public LootParams buildFishingLootContext(MovementContext context, ServerLevel level, BlockPos pos) {
-        if (CIFConfig.server().fishingNetChecksOpenWater.get()) {
-            fishingHook.openWater = fishingHook.getOpenWaterTypeForArea(
-                    pos.offset(-2, 0, -2), pos.offset(2, 0, 2)) == OpenWaterType.INSIDE_WATER;
-        } else fishingHook.openWater = false;
+        fishingHook.openWater = ((LavaFishingBobberEntityInvoker) fishingHook).invokeCalculateOpenLava(pos);
         return super.buildFishingLootContext(context, level, pos);
     }
 }

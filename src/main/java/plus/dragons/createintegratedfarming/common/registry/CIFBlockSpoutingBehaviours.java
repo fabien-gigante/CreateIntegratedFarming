@@ -21,35 +21,33 @@ package plus.dragons.createintegratedfarming.common.registry;
 import com.simibubi.create.api.behaviour.spouting.BlockSpoutingBehaviour;
 import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import plus.dragons.createintegratedfarming.common.ranching.roost.chicken.ChickenRoostBlockEntity;
-import plus.dragons.createintegratedfarming.integration.CIFIntegration;
+import plus.dragons.createintegratedfarming.integration.ModIntegration;
 import vectorwing.farmersdelight.common.registry.ModBlocks;
 
 public class CIFBlockSpoutingBehaviours {
-    private static final Holder<Block> LETIOS_COMPOST = DeferredHolder.create(Registries.BLOCK,
-            CIFIntegration.MY_NETHERS_DELIGHT.asResource("letios_compost"));
-
     public static void register() {
         BlockSpoutingBehaviour.BY_BLOCK.register(
                 CIFBlocks.CHICKEN_ROOST.get(),
                 CIFBlockSpoutingBehaviours::fillChickenCoop);
+    }
+
+    public static void registerFarmersDelight() {
         BlockSpoutingBehaviour.BY_BLOCK.register(
                 ModBlocks.ORGANIC_COMPOST.get(),
                 CIFBlockSpoutingBehaviours::fillOrganicCompost);
-        if (LETIOS_COMPOST.isBound()) {
-            BlockSpoutingBehaviour.BY_BLOCK.register(
-                    LETIOS_COMPOST.value(),
-                    CIFBlockSpoutingBehaviours::fillLetiosCompost);
-        }
+    }
+
+    public static void registerMyNethersDelight() {
+        BlockSpoutingBehaviour.BY_BLOCK.register(
+                BuiltInRegistries.BLOCK.get(ModIntegration.MYNETHERSDELIGHT.asResource("letios_compost")),
+                CIFBlockSpoutingBehaviours::fillLetiosCompost);
     }
 
     private static int fillChickenCoop(Level level, BlockPos pos, SpoutBlockEntity spout, FluidStack fluid, boolean simulate) {

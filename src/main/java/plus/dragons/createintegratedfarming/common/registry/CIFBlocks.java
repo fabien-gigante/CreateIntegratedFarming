@@ -27,9 +27,12 @@ import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.BlockStateGen;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import plus.dragons.createintegratedfarming.common.fishing.net.FishingNetBlock;
 import plus.dragons.createintegratedfarming.common.fishing.net.FishingNetMovementBehaviour;
 import plus.dragons.createintegratedfarming.common.ranching.roost.RoostBlock;
@@ -50,6 +53,8 @@ public class CIFBlocks {
             .onRegister(block -> MovementBehaviour.REGISTRY.register(block, new FishingNetMovementBehaviour()))
             .simpleItem()
             .register();
+    public static final BlockEntry<Block> LAVA_FISHING_NET = new BlockEntry<>(REGISTRATE,
+            DeferredHolder.create(Registries.BLOCK, REGISTRATE.asResource("lava_fishing_net")));
     public static final BlockEntry<RoostBlock> ROOST = REGISTRATE
             .block("roost", RoostBlock::new)
             .properties(prop -> prop.strength(1.5F).sound(SoundType.BAMBOO_WOOD))

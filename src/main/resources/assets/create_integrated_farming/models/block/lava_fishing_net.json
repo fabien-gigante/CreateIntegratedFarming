@@ -3,9 +3,9 @@
   "parent": "block/block",
   "render_type": "minecraft:cutout",
   "textures": {
-    "particle": "farmersdelight:block/safety_net",
-    "net": "farmersdelight:block/safety_net",
-    "frame": "create:block/sail/frame"
+    "particle": "create_integrated_farming:block/lava_fishing_net",
+    "net": "create_integrated_farming:block/lava_fishing_net",
+    "frame": "create_integrated_farming:block/lava_fishing_net_frame"
   },
   "elements": [
     {
@@ -14,7 +14,7 @@
       "to": [16, 10, 16],
       "faces": {
         "north": {"uv": [0, 15, 16, 16], "texture": "#net"},
-        "east": {"uv": [0, 0, 1, 16], "rotation": 270, "texture": "#net"},
+        "east": {"uv": [7, 0, 8, 16], "rotation": 270, "texture": "#net"},
         "south": {"uv": [0, 0, 16, 1], "rotation": 180, "texture": "#net"},
         "west": {"uv": [15, 0, 16, 16], "rotation": 90, "texture": "#net"},
         "up": {"uv": [16, 16, 0, 0], "texture": "#net"},

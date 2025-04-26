@@ -26,12 +26,8 @@ import com.simibubi.create.AllBlocks;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.createmod.catnip.registry.RegisteredObjectsHelper;
 import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;
-import net.minecraft.core.Holder;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import plus.dragons.createintegratedfarming.common.CIFCommon;
 import plus.dragons.createintegratedfarming.common.registry.CIFBlocks;
 
@@ -41,7 +37,7 @@ public class CIFPonderTags {
     public static final ResourceLocation FISHING_APPLIANCES = CIFCommon.asResource("fishing_appliances");
 
     public static void register(PonderTagRegistrationHelper<ResourceLocation> helper) {
-        PonderTagRegistrationHelper<RegistryEntry<?, ?>> HELPER = helper.withKeyFunction(RegistryEntry::getId);
+        PonderTagRegistrationHelper<RegistryEntry<?, ?>> entryHelper = helper.withKeyFunction(RegistryEntry::getId);
 
         PonderTagRegistrationHelper<ItemLike> itemHelper = helper.withKeyFunction(
                 RegisteredObjectsHelper::getKeyOrThrow);
@@ -60,39 +56,26 @@ public class CIFPonderTags {
                 .description("Components about fishing")
                 .register();
 
-        HELPER.addToTag(FARMING_APPLIANCES)
+        entryHelper.addToTag(FARMING_APPLIANCES)
                 .add(CIFBlocks.ROOST)
                 .add(CIFBlocks.CHICKEN_ROOST)
                 .add(AllBlocks.MECHANICAL_HARVESTER);
 
-        HELPER.addToTag(FISHING_APPLIANCES)
+        entryHelper.addToTag(FISHING_APPLIANCES)
                 .add(CIFBlocks.FISHING_NET);
 
-        HELPER.addToTag(ARM_TARGETS)
+        entryHelper.addToTag(ARM_TARGETS)
                 .add(CIFBlocks.CHICKEN_ROOST);
 
         itemHelper.addToTag(ARM_TARGETS)
                 .add(BASKET.get());
 
-        HELPER.addToTag(CONTRAPTION_ACTOR)
+        entryHelper.addToTag(CONTRAPTION_ACTOR)
                 .add(CIFBlocks.FISHING_NET);
 
-        Holder<Block> heatResistantFishingNet = DeferredHolder.create(Registries.BLOCK,
-                CIFCommon.asResource("heat_resistant_fishing_net"));
-        Holder<Block> crimsonHeatResistantFishingNet = DeferredHolder.create(Registries.BLOCK,
-                CIFCommon.asResource("crimson_heat_resistant_fishing_net"));
-
-        if(heatResistantFishingNet.isBound()){
-            itemHelper.addToTag(CONTRAPTION_ACTOR)
-                    .add(heatResistantFishingNet.value());
-            itemHelper.addToTag(FISHING_APPLIANCES)
-                    .add(heatResistantFishingNet.value());
-        }
-        if(crimsonHeatResistantFishingNet.isBound()){
-            itemHelper.addToTag(CONTRAPTION_ACTOR)
-                    .add(crimsonHeatResistantFishingNet.value());
-            itemHelper.addToTag(FISHING_APPLIANCES)
-                    .add(crimsonHeatResistantFishingNet.value());
-        }
+        CIFBlocks.LAVA_FISHING_NET.asOptional().ifPresent(block -> {
+            itemHelper.addToTag(CONTRAPTION_ACTOR).add(block);
+            itemHelper.addToTag(FISHING_APPLIANCES).add(block);
+        });
     }
 }

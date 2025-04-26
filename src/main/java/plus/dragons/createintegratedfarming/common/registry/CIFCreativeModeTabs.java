@@ -27,12 +27,9 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import plus.dragons.createintegratedfarming.common.CIFCommon;
-import plus.dragons.createintegratedfarming.integration.CIFIntegration;
 
 public class CIFCreativeModeTabs {
     private static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister
@@ -55,19 +52,7 @@ public class CIFCreativeModeTabs {
     private static void buildBaseContents(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
         output.accept(AllBlocks.MECHANICAL_HARVESTER);
         output.accept(FISHING_NET);
-
-        Holder<Block> heatResistantFishingNet = DeferredHolder.create(Registries.BLOCK,
-                CIFCommon.asResource("heat_resistant_fishing_net"));
-        Holder<Block> crimsonHeatResistantFishingNet = DeferredHolder.create(Registries.BLOCK,
-                CIFCommon.asResource("crimson_heat_resistant_fishing_net"));
-
-        if(heatResistantFishingNet.isBound()){
-            output.accept(heatResistantFishingNet.value());
-        }
-        if(crimsonHeatResistantFishingNet.isBound()){
-            output.accept(crimsonHeatResistantFishingNet.value());
-        }
-
+        LAVA_FISHING_NET.asOptional().ifPresent(output::accept);
         output.accept(ROOST);
         output.accept(CHICKEN_ROOST);
     }
