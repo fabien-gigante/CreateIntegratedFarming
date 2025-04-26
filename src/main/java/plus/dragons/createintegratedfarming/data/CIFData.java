@@ -36,6 +36,7 @@ public class CIFData {
         if (!DatagenModLoader.isRunningDataGen())
             return;
         REGISTRATE.addDataGenerator(ProviderType.LOOT, CIFLootTables::generate);
+        REGISTRATE.registerBuiltinLocalization("tooltips");
         REGISTRATE.registerForeignLocalization();
         REGISTRATE.registerPonderLocalization(CIFPonderPlugin::new);
         modBus.register(this);

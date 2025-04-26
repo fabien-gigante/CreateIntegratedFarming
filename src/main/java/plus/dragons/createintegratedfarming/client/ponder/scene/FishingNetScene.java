@@ -64,7 +64,7 @@ public class FishingNetScene {
                 .placeNearTarget()
                 .attachKeyFrame()
                 .pointAt(util.vector().blockSurface(util.grid().at(2, 2, 5), Direction.NORTH))
-                .text("Fishing Net will catch small aquatic animal");
+                .text("Fishing Net will catch small animal in water");
         scene.world().hideSection(util.select().fromTo(0, 1, 0, 5, 3, 2), Direction.NORTH);
         var salmon = scene.world().createEntity(level -> {
             var fish = EntityType.SALMON.create(level);
