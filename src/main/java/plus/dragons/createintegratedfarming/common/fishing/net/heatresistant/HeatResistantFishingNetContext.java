@@ -12,6 +12,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import plus.dragons.createintegratedfarming.common.fishing.net.FishingNetFakePlayer;
 import plus.dragons.createintegratedfarming.config.CIFConfig;
 import plus.dragons.createintegratedfarming.mixin.integration.LavaFishingBobberEntityInvoker;
 
@@ -28,6 +29,7 @@ public class HeatResistantFishingNetContext {
     public HeatResistantFishingNetContext(ServerLevel level, ItemStack fishingRod) {
         this.fishingRod = fishingRod;
         this.fishingHook = new LavaFishingBobberEntity(NDUEntity.LAVA_BOBBER.get(), level);
+        this.fishingHook.setOwner(new FishingNetFakePlayer(level,null));
         this.reset(level);
     }
 

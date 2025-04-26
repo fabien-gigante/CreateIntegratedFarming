@@ -44,6 +44,7 @@ public class FishingNetContext {
     public FishingNetContext(ServerLevel level, ItemStack fishingRod) {
         this.fishingRod = fishingRod;
         this.fishingHook = new FishingHook(EntityType.FISHING_BOBBER, level);
+        this.fishingHook.setOwner(new FishingNetFakePlayer(level,null));
         this.reset(level);
     }
 
