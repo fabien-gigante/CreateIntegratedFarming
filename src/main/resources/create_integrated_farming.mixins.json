@@ -14,7 +14,8 @@
     "accessor.BasketBlockEntityAccessor",
     "integration.EnchantableHarvesterMovementBehaviourMixin",
     "integration.EnchantableSawMovementBehaviourMixin",
-    "integration.IWrenchableMixin"
+    "integration.IWrenchableMixin",
+    "integration.LavaFishingBobberEntityInvoker"
   ],
   "client": [],
   "injectors": {

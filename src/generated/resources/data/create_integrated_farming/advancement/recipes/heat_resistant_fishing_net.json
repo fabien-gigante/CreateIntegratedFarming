@@ -1,0 +1,49 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "netherdepthsupgrade"
+    }
+  ],
+  "criteria": {
+    "has_andesite_alloy": {
+      "conditions": {
+        "items": [
+          {
+            "items": "create:andesite_alloy"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "create_integrated_farming:heat_resistant_fishing_net"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_warped_kelp": {
+      "conditions": {
+        "items": [
+          {
+            "items": "netherdepthsupgrade:warped_kelp"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_warped_kelp",
+      "has_andesite_alloy"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "create_integrated_farming:heat_resistant_fishing_net"
+    ]
+  },
+  "sends_telemetry_event": true
+}

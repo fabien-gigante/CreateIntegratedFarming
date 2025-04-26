@@ -37,7 +37,9 @@ import plus.dragons.createintegratedfarming.common.registry.CIFCreativeModeTabs;
 import plus.dragons.createintegratedfarming.common.registry.CIFDataMaps;
 import plus.dragons.createintegratedfarming.common.registry.CIFHarvestBehaviours;
 import plus.dragons.createintegratedfarming.common.registry.CIFRoostCapturables;
+import plus.dragons.createintegratedfarming.common.registry.integration.NetherDepthsUpgradeBlocks;
 import plus.dragons.createintegratedfarming.config.CIFConfig;
+import plus.dragons.createintegratedfarming.integration.CIFIntegration;
 
 @Mod(CIFCommon.ID)
 public class CIFCommon {
@@ -55,6 +57,8 @@ public class CIFCommon {
         CIFDataMaps.register(modBus);
         modBus.register(this);
         modBus.register(new CIFConfig(modContainer));
+
+        CIFIntegration.NETHER_DEPTHS_UPGRADE.executeIfLoaded(()-> NetherDepthsUpgradeBlocks::register);
     }
 
     @SubscribeEvent

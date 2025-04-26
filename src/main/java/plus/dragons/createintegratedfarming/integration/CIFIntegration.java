@@ -23,6 +23,9 @@ import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import org.jetbrains.annotations.ApiStatus.Internal;
 
+import java.util.Optional;
+import java.util.function.Supplier;
+
 @Internal
 public class CIFIntegration {
     public static final CIFIntegration FARMERS_DELIGHT = new CIFIntegration("farmersdelight");
@@ -30,6 +33,7 @@ public class CIFIntegration {
     public static final CIFIntegration MMLIB = new CIFIntegration("mysterious_mountain_lib");
     public static final CIFIntegration CREATE_ENCHANTABLE_MACHINERY = new CIFIntegration("createenchantablemachinery");
     public static final CIFIntegration CREATE_CRAFT_AND_ADDITIONS = new CIFIntegration("createadditions");
+    public static final CIFIntegration NETHER_DEPTHS_UPGRADE = new CIFIntegration("netherdepthsupgrade");
 
     private final String modId;
 
@@ -51,5 +55,9 @@ public class CIFIntegration {
 
     public ResourceLocation asResource(String location) {
         return ResourceLocation.fromNamespaceAndPath(modId, location);
+    }
+
+    public void executeIfLoaded(Supplier<Runnable> task) {
+        if (isLoaded()) task.get().run();
     }
 }
