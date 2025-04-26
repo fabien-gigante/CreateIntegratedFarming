@@ -27,6 +27,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -53,8 +54,7 @@ public class FishingNetMovementBehaviour implements MovementBehaviour {
                 fishing.timeUntilCatch--;
             if (level.getGameTime() % 20 == 0 && CIFConfig.server().fishingNetCaptureCreatureInWater.get()) {
                 AABB effectiveArea = context.state.getShape(level, context.localPos).bounds().expandTowards(context.motion.multiply(5, 5, 5)).move(context.position).inflate(0.2);
-                // TODO: Support all entities if possible?
-                var entities = level.getEntities(EntityTypeTest.forClass(WaterAnimal.class), effectiveArea, entity -> entity.getBbWidth() <= CIFConfig.server().fishingNetCapturedCreatureMaxSize.get() &&
+                var entities = level.getEntities(EntityTypeTest.forClass(LivingEntity.class), effectiveArea, entity -> entity.getBbWidth() <= CIFConfig.server().fishingNetCapturedCreatureMaxSize.get() &&
                         entity.getBbHeight() <= CIFConfig.server().fishingNetCapturedCreatureMaxSize.get());
                 entities.forEach(entity -> {
                     if (!entity.isBaby() && level.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
