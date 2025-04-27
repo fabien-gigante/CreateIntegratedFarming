@@ -41,6 +41,7 @@ public class NethersDepthsUpgradeIntegration {
                         .sound(SoundType.CHAIN)
                         .noOcclusion())
                 .transform(axeOnly())
+                .asOptional()
                 .tag(AllTags.AllBlockTags.WINDMILL_SAILS.tag)
                 .blockstate(BlockStateGen.directionalBlockProvider(false))
                 .onRegister(block -> MovementBehaviour.REGISTRY.register(block, new LavaFishingNetMovementBehaviour()))

@@ -1,5 +1,8 @@
-### Create: Integrated Farming 1.0.0
+### Create: Integrated Farming 1.0.1
 
-First Release.  
-If you find any issue, please report to issue board or discord #bugs-and-issues channel.  
-If you are using Create: Enchantable Machinery, you must use at least 3.3.2. They made significant method changes on this version.
+#### Update
+* Add Ponder for Spout catalyzing Organic Compost
+
+#### Fix
+* Fix Lava Fishing Net nonexist breaking `minecraft:mineable/axe` tag.
+* Fix incorrect ponder entity position
