@@ -24,22 +24,30 @@ import com.simibubi.create.content.kinetics.saw.SawMovementBehaviour;
 import com.simibubi.create.content.kinetics.saw.TreeCutter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Pseudo;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import plus.dragons.createintegratedfarming.api.saw.SawableBlockTags;
 
+import java.util.Map;
+
 @Pseudo
 @Mixin(targets = "io.github.cotrin8672.cem.content.block.saw.EnchantableSawMovementBehaviour")
 public class EnchantableSawMovementBehaviourMixin extends SawMovementBehaviour {
+    @Final
+    @Shadow
+    private Map<MovementContext, ItemStack> enchantedTools;
+
     @Inject(method = "destroyBlock", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/foundation/utility/BlockHelper;destroyBlockAs(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;FLjava/util/function/Consumer;)V"))
-    private void createintegratedfarming$handleFragileVerticalPlants(MovementContext context, BlockPos pos, CallbackInfo ci, @Local ItemStack tool) {
+    private void createintegratedfarming$handleFragileVerticalPlants(MovementContext context, BlockPos pos, CallbackInfo ci) {
         var level = context.world;
         var state = level.getBlockState(pos);
         if (state.is(SawableBlockTags.FRAGILE_VERTICAL_PLANTS)) {
-            TreeCutter.findTree(context.world, pos, state).destroyBlocks(level, tool, null,
+            TreeCutter.findTree(context.world, pos, state).destroyBlocks(level, enchantedTools.get(context), null,
                     (dropPos, stack) -> this.dropItemFromCutTree(context, dropPos, stack));
         }
     }
