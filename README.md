@@ -7,4 +7,4 @@ Feel free to open a PR to either translate the mod or to add another feature! Al
 Please use language file in `src/generated/` and submit to `src/translations/`.
 
 ## Download
-Currently under development.
+[<img src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/curseforge_vector.svg">](https://www.curseforge.com/minecraft/mc-mods/create-integrated-farming) [<img src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg">](https://modrinth.com/mod/create-integrated-farming)
