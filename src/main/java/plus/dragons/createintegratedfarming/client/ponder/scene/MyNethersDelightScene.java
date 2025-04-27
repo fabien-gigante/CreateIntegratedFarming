@@ -1,4 +1,24 @@
+/*
+ * Copyright (C) 2025  DragonsPlus
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package plus.dragons.createintegratedfarming.client.ponder.scene;
+
+import static com.soytutta.mynethersdelight.common.block.LetiosCompostBlock.FORGOTING;
 
 import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
 import com.simibubi.create.foundation.ponder.CreateSceneBuilder;
@@ -6,8 +26,6 @@ import com.soytutta.mynethersdelight.common.registry.MNDBlocks;
 import net.createmod.ponder.api.scene.SceneBuilder;
 import net.createmod.ponder.api.scene.SceneBuildingUtil;
 import net.minecraft.core.Direction;
-
-import static com.soytutta.mynethersdelight.common.block.LetiosCompostBlock.FORGOTING;
 
 public class MyNethersDelightScene {
     public static void catalyze(SceneBuilder builder, SceneBuildingUtil util) {
@@ -25,31 +43,31 @@ public class MyNethersDelightScene {
 
         scene.world().modifyBlockEntityNBT(spout, SpoutBlockEntity.class, nbt -> nbt.putInt("ProcessingTicks", 20));
         scene.idle(20);
-        scene.world().modifyBlock(leteosCompost, bs-> bs.setValue(FORGOTING,2),false);
+        scene.world().modifyBlock(leteosCompost, bs -> bs.setValue(FORGOTING, 2), false);
         scene.idle(10);
 
         scene.world().modifyBlockEntityNBT(spout, SpoutBlockEntity.class, nbt -> nbt.putInt("ProcessingTicks", 20));
         scene.idle(20);
-        scene.world().modifyBlock(leteosCompost, bs-> bs.setValue(FORGOTING,4),false);
+        scene.world().modifyBlock(leteosCompost, bs -> bs.setValue(FORGOTING, 4), false);
         scene.idle(10);
 
         scene.world().modifyBlockEntityNBT(spout, SpoutBlockEntity.class, nbt -> nbt.putInt("ProcessingTicks", 20));
         scene.idle(20);
-        scene.world().modifyBlock(leteosCompost, bs-> bs.setValue(FORGOTING,7),false);
+        scene.world().modifyBlock(leteosCompost, bs -> bs.setValue(FORGOTING, 7), false);
         scene.idle(10);
 
         scene.world().modifyBlockEntityNBT(spout, SpoutBlockEntity.class, nbt -> nbt.putInt("ProcessingTicks", 20));
         scene.idle(20);
-        scene.world().modifyBlock(leteosCompost, bs-> bs.setValue(FORGOTING,9),false);
+        scene.world().modifyBlock(leteosCompost, bs -> bs.setValue(FORGOTING, 9), false);
         scene.idle(10);
 
         scene.world().modifyBlockEntityNBT(spout, SpoutBlockEntity.class, nbt -> nbt.putInt("ProcessingTicks", 20));
         scene.idle(20);
-        scene.world().modifyBlock(leteosCompost, bs-> bs.setValue(FORGOTING,9),false);
+        scene.world().modifyBlock(leteosCompost, bs -> bs.setValue(FORGOTING, 9), false);
         scene.idle(10);
 
         scene.world().modifyBlockEntityNBT(spout, SpoutBlockEntity.class, nbt -> nbt.putInt("ProcessingTicks", 20));
         scene.idle(20);
-        scene.world().modifyBlock(leteosCompost, bs-> MNDBlocks.RESURGENT_SOIL.get().defaultBlockState(),false);
+        scene.world().modifyBlock(leteosCompost, bs -> MNDBlocks.RESURGENT_SOIL.get().defaultBlockState(), false);
     }
 }

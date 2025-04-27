@@ -30,7 +30,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import plus.dragons.createintegratedfarming.common.CIFCommon;
 import plus.dragons.createintegratedfarming.common.registry.CIFBlocks;
-import plus.dragons.createintegratedfarming.integration.ModIntegration;
 
 public class CIFPonderTags {
     public static final ResourceLocation FARMING_APPLIANCES = CIFCommon.asResource("farming_appliances");
@@ -67,7 +66,8 @@ public class CIFPonderTags {
                 .register();
 
         entryHelper.addToTag(FARMING_APPLIANCES)
-                .add(AllBlocks.MECHANICAL_HARVESTER);
+                .add(AllBlocks.MECHANICAL_HARVESTER)
+                .add(AllBlocks.SPOUT);
 
         entryHelper.addToTag(RANCHING_APPLIANCES)
                 .add(CIFBlocks.ROOST)
@@ -90,10 +90,5 @@ public class CIFPonderTags {
             itemHelper.addToTag(CONTRAPTION_ACTOR).add(block);
             itemHelper.addToTag(FISHING_APPLIANCES).add(block);
         });
-
-        if(ModIntegration.MYNETHERSDELIGHT.enabled()){
-            entryHelper.addToTag(FARMING_APPLIANCES)
-                    .add(AllBlocks.SPOUT);
-        }
     }
 }

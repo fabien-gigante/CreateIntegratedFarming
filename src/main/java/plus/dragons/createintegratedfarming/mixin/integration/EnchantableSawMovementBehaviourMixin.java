@@ -18,10 +18,10 @@
 
 package plus.dragons.createintegratedfarming.mixin.integration;
 
-import com.llamalad7.mixinextras.sugar.Local;
 import com.simibubi.create.content.contraptions.behaviour.MovementContext;
 import com.simibubi.create.content.kinetics.saw.SawMovementBehaviour;
 import com.simibubi.create.content.kinetics.saw.TreeCutter;
+import java.util.Map;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Final;
@@ -32,8 +32,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import plus.dragons.createintegratedfarming.api.saw.SawableBlockTags;
-
-import java.util.Map;
 
 @Pseudo
 @Mixin(targets = "io.github.cotrin8672.cem.content.block.saw.EnchantableSawMovementBehaviour")

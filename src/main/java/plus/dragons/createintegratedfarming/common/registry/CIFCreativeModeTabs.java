@@ -53,7 +53,7 @@ public class CIFCreativeModeTabs {
 
     private static void buildBaseContents(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
         output.accept(AllBlocks.MECHANICAL_HARVESTER);
-        if(ModIntegration.MYNETHERSDELIGHT.enabled()){
+        if (ModIntegration.MYNETHERSDELIGHT.enabled()) {
             output.accept(SPOUT);
         }
         output.accept(FISHING_NET);
