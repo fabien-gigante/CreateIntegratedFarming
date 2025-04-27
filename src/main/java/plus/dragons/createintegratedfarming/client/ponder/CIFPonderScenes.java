@@ -18,14 +18,18 @@
 
 package plus.dragons.createintegratedfarming.client.ponder;
 
+import com.simibubi.create.AllBlocks;
 import com.simibubi.create.infrastructure.ponder.AllCreatePonderTags;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.minecraft.resources.ResourceLocation;
 import plus.dragons.createintegratedfarming.client.ponder.scene.FishingNetScene;
+import plus.dragons.createintegratedfarming.client.ponder.scene.MyNethersDelightScene;
+import plus.dragons.createintegratedfarming.client.ponder.scene.NetherDepthsUpgradeScene;
 import plus.dragons.createintegratedfarming.client.ponder.scene.RoostScene;
 import plus.dragons.createintegratedfarming.common.registry.CIFBlocks;
+import plus.dragons.createintegratedfarming.integration.ModIntegration;
 
 public class CIFPonderScenes {
     public static void register(PonderSceneRegistrationHelper<ResourceLocation> helper) {
@@ -34,11 +38,19 @@ public class CIFPonderScenes {
                 .addStoryBoard("fishing_net", FishingNetScene::fishing, CIFPonderTags.FISHING_APPLIANCES, AllCreatePonderTags.CONTRAPTION_ACTOR);
 
         HELPER.forComponents(CIFBlocks.ROOST)
-                .addStoryBoard("roost/catch", RoostScene::capture, CIFPonderTags.FARMING_APPLIANCES)
+                .addStoryBoard("roost/catch", RoostScene::capture, CIFPonderTags.RANCHING_APPLIANCES)
                 .addStoryBoard("roost/lead", RoostScene::lead);
 
         HELPER.forComponents(CIFBlocks.CHICKEN_ROOST)
-                .addStoryBoard("roost/operate", RoostScene::operate, CIFPonderTags.FARMING_APPLIANCES, AllCreatePonderTags.ARM_TARGETS)
+                .addStoryBoard("roost/operate", RoostScene::operate, CIFPonderTags.RANCHING_APPLIANCES, AllCreatePonderTags.ARM_TARGETS)
                 .addStoryBoard("roost/spout", RoostScene::fluid);
+
+        CIFBlocks.LAVA_FISHING_NET.asOptional().ifPresent(block -> HELPER.forComponents(CIFBlocks.LAVA_FISHING_NET)
+                .addStoryBoard("integration/lava_fishing_net", NetherDepthsUpgradeScene::lavaFishing, CIFPonderTags.FISHING_APPLIANCES, AllCreatePonderTags.CONTRAPTION_ACTOR));
+
+        if(ModIntegration.MYNETHERSDELIGHT.enabled()){
+            HELPER.forComponents(AllBlocks.SPOUT)
+                    .addStoryBoard("integration/letios_compost_catalyze", MyNethersDelightScene::catalyze, CIFPonderTags.FARMING_APPLIANCES);
+        }
     }
 }

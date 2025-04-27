@@ -39,10 +39,8 @@ public class FishingNetScene {
                 .add(util.select().position(4, 4, 4))
                 .add(util.select().fromTo(3, 3, 5, 0, 1, 5));
         scene.world().showSection(util.select().everywhere().substract(contraptionSelection), Direction.DOWN);
-        ElementLink<WorldSectionElement> contraption = scene.world().showIndependentSection(util.select().fromTo(4, 2, 4, 4, 3, 5)
-                .add(util.select().position(4, 4, 4))
-                .add(util.select().fromTo(3, 3, 5, 0, 1, 5)), Direction.DOWN);
-        scene.idle(5);
+        ElementLink<WorldSectionElement> contraption = scene.world().showIndependentSection(contraptionSelection, Direction.DOWN);
+        scene.idle(10);
 
         scene.world().configureCenterOfRotation(contraption, util.vector().centerOf(4, 1, 4));
         scene.overlay().showText(60)
@@ -78,9 +76,9 @@ public class FishingNetScene {
         scene.world().rotateSection(contraption, 0, -360, 0, 140);
         scene.idle(28);
         scene.world().modifyEntity(salmon, Entity::discard);
-        scene.idle(10);
-        scene.overlay().showControls(util.vector().centerOf(4, 4, 4), Pointing.UP, 60).rightClick()
+        scene.idle(20);
+        scene.overlay().showControls(util.vector().centerOf(4, 3, 4), Pointing.UP, 60).rightClick()
                 .withItem(Items.SALMON.getDefaultInstance());
-        scene.idle(102);
+        scene.idle(82);
     }
 }

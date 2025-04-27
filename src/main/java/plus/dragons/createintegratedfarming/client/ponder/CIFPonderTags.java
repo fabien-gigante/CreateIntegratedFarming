@@ -30,9 +30,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import plus.dragons.createintegratedfarming.common.CIFCommon;
 import plus.dragons.createintegratedfarming.common.registry.CIFBlocks;
+import plus.dragons.createintegratedfarming.integration.ModIntegration;
 
 public class CIFPonderTags {
     public static final ResourceLocation FARMING_APPLIANCES = CIFCommon.asResource("farming_appliances");
+
+    public static final ResourceLocation RANCHING_APPLIANCES = CIFCommon.asResource("ranching_appliances");
 
     public static final ResourceLocation FISHING_APPLIANCES = CIFCommon.asResource("fishing_appliances");
 
@@ -44,9 +47,16 @@ public class CIFPonderTags {
 
         helper.registerTag(FARMING_APPLIANCES)
                 .addToIndex()
-                .item(CIFBlocks.ROOST, true, false)
+                .item(AllBlocks.MECHANICAL_HARVESTER, true, false)
                 .title("Farming Appliances")
-                .description("Components about farming and ranching")
+                .description("Components about farming")
+                .register();
+
+        helper.registerTag(RANCHING_APPLIANCES)
+                .addToIndex()
+                .item(CIFBlocks.ROOST, true, false)
+                .title("Ranching Appliances")
+                .description("Components about ranching")
                 .register();
 
         helper.registerTag(FISHING_APPLIANCES)
@@ -57,9 +67,11 @@ public class CIFPonderTags {
                 .register();
 
         entryHelper.addToTag(FARMING_APPLIANCES)
-                .add(CIFBlocks.ROOST)
-                .add(CIFBlocks.CHICKEN_ROOST)
                 .add(AllBlocks.MECHANICAL_HARVESTER);
+
+        entryHelper.addToTag(RANCHING_APPLIANCES)
+                .add(CIFBlocks.ROOST)
+                .add(CIFBlocks.CHICKEN_ROOST);
 
         entryHelper.addToTag(FISHING_APPLIANCES)
                 .add(CIFBlocks.FISHING_NET)
@@ -78,5 +90,10 @@ public class CIFPonderTags {
             itemHelper.addToTag(CONTRAPTION_ACTOR).add(block);
             itemHelper.addToTag(FISHING_APPLIANCES).add(block);
         });
+
+        if(ModIntegration.MYNETHERSDELIGHT.enabled()){
+            entryHelper.addToTag(FARMING_APPLIANCES)
+                    .add(AllBlocks.SPOUT);
+        }
     }
 }
