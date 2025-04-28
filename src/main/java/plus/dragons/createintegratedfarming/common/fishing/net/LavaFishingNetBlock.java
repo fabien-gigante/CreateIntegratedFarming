@@ -54,7 +54,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
-import plus.dragons.createintegratedfarming.api.block.WaterAndLavaLoggedBlock;
+import plus.dragons.createdragonsplus.common.fluids.WaterAndLavaLoggedBlock;
 import plus.dragons.createintegratedfarming.config.CIFConfig;
 
 public class LavaFishingNetBlock extends WrenchableDirectionalBlock implements WaterAndLavaLoggedBlock, SchematicStateFilter {

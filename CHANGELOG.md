@@ -1,8 +1,6 @@
-### Create: Integrated Farming 1.0.1
+### Create: Integrated Farming 1.0.2
+
+Require Create: Dragons Plus 1.4.1. Which includes an important bugfix.
 
 #### Update
-* Add Ponder for Spout catalyzing Organic Compost
-
-#### Fix
-* Fix Lava Fishing Net nonexist breaking `minecraft:mineable/axe` tag.
-* Fix incorrect ponder entity position
+* Add Russian Translation by @Korben

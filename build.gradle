@@ -88,6 +88,7 @@ repositories {
     maven { url "https://www.cursemaven.com" }
     maven { url "https://api.modrinth.com/maven" }
     maven { url "https://raw.githubusercontent.com/Fuzss/modresources/main/maven" } // NeoForge config api port, needed by ponder
+    maven { url 'https://maven.fallenbreath.me/releases' } // Conditional Mixin
 }
 
 dependencies {
@@ -205,6 +206,7 @@ publishMods {
         requires {
             slug = "create"
             slug = "create-dragons-plus"
+            slug = "farmers-delight"
         }
     }
 
@@ -216,6 +218,7 @@ publishMods {
         requires {
             slug = "create"
             slug = "create-dragons-plus"
+            slug = "farmers-delight"
         }
     }
 }
