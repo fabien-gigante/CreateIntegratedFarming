@@ -14,6 +14,7 @@
     "accessor.BasketBlockEntityAccessor",
     "integration.EnchantableHarvesterMovementBehaviourMixin",
     "integration.EnchantableSawMovementBehaviourMixin",
+    "integration.ForgeEventsMixin",
     "integration.IWrenchableMixin",
     "integration.LavaFishingBobberEntityInvoker"
   ],
