@@ -45,7 +45,11 @@ public class MiscScene {
         var contraptionSelection = util.select().fromTo(4, 2, 4, 4, 3, 5)
                 .add(util.select().position(4, 4, 4))
                 .add(util.select().fromTo(3, 3, 5, 0, 1, 5));
-        scene.world().showSection(util.select().everywhere().substract(contraptionSelection), Direction.DOWN);
+        scene.world().showSection(util.select().everywhere().substract(contraptionSelection).substract(util.select().fromTo(0,0,6,5,3,7)), Direction.DOWN);
+        ElementLink<WorldSectionElement> fillSpaceWater = scene.world().showIndependentSection(util.select().fromTo(0,1,6,4,3,6),Direction.DOWN);
+        ElementLink<WorldSectionElement> fillSpaceWater2 = scene.world().showIndependentSection(util.select().fromTo(4,1,7,4,3,7),Direction.DOWN);
+        scene.world().moveSection(fillSpaceWater, util.vector().of(0, 0, -1), 0);
+        scene.world().moveSection(fillSpaceWater2, util.vector().of(0, 0, -2), 0);
         ElementLink<WorldSectionElement> contraption = scene.world().showIndependentSection(contraptionSelection, Direction.DOWN);
         scene.idle(10);
 
@@ -99,6 +103,7 @@ public class MiscScene {
             tank.getPrimaryHandler().setFluid(new FluidStack(Fluids.WATER, 1000));
         });
         scene.world().showSection(util.select().everywhere(), Direction.DOWN);
+
         var spout = util.select().position(1, 3, 1);
         var compost = util.grid().at(1, 1, 1);
 
