@@ -1,6 +1,9 @@
-### Create: Integrated Farming 1.0.2
+### Create: Integrated Farming 1.0.3
 
-Require Create: Dragons Plus 1.4.1. Which includes an important bugfix.
+Require Create: Dragons Plus 1.4.1.
 
 #### Update
-* Add Russian Translation by @Korben
+* Ponder animation has been improved
+
+#### Fix
+* Fix random crashing issue caused by null player in ItemFishedEvent
