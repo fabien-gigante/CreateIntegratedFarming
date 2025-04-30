@@ -31,6 +31,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.neoforged.neoforge.common.Tags;
 import plus.dragons.createintegratedfarming.common.CIFCommon;
+import plus.dragons.createintegratedfarming.integration.ModIntegration;
 
 public class CIFRecipeProvider extends RegistrateRecipeProvider {
     public CIFRecipeProvider(PackOutput output, CompletableFuture<Provider> registries) {
@@ -67,6 +68,7 @@ public class CIFRecipeProvider extends RegistrateRecipeProvider {
                 .unlockedBy("has_chain", has(CHAIN))
                 .unlockedBy("has_blaze_rod", has(BLAZE_ROD))
                 .unlockedBy("has_andesite_alloy", has(ANDESITE_ALLOY))
+                .withCondition(ModIntegration.NETHER_DEPTHS_UPGRADE.condition())
                 .accept(output);
     }
 }
