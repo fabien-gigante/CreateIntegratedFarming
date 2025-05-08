@@ -209,6 +209,11 @@ public class RoostScene {
                 .pointAt(util.vector().centerOf(0, 1, 4))
                 .attachKeyFrame()
                 .placeNearTarget();
+        var inputDepot = util.select().position(0, 1, 3);
+        var roost = util.select().position(2, 2, 2);
+        scene.overlay().showOutline(PonderPalette.INPUT, inputDepot, inputDepot, 40);
+        scene.overlay().showOutline(PonderPalette.OUTPUT, roost, roost, 40);
+        scene.idle(40);
         scene.world().instructArm(armPos, ArmBlockEntity.Phase.MOVE_TO_INPUT, ItemStack.EMPTY, 0);
         scene.idle(20);
         scene.world().modifyBlockEntity(util.grid().at(0, 1, 3), DepotBlockEntity.class, depot -> depot.setHeldItem(ItemStack.EMPTY));
