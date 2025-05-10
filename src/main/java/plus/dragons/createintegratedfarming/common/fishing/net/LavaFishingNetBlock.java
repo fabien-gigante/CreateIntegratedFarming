@@ -125,7 +125,7 @@ public class LavaFishingNetBlock extends WrenchableDirectionalBlock implements W
         if (entity.isSuppressingBounce()) {
             super.fallOn(level, state, pos, entity, fallDistance);
         } else {
-            entity.causeFallDamage(fallDistance, 0.0F, level.damageSources().fall());
+            entity.causeFallDamage(fallDistance, 0.5F, level.damageSources().fall());
         }
     }
 
@@ -141,7 +141,7 @@ public class LavaFishingNetBlock extends WrenchableDirectionalBlock implements W
     protected void bounceEntity(Entity entity) {
         Vec3 vec3d = entity.getDeltaMovement();
         if (vec3d.y < 0.0) {
-            double entityWeightOffset = entity instanceof LivingEntity ? 0.6 : 0.8;
+            double entityWeightOffset = entity instanceof LivingEntity ? 0.3 : 0.4;
             entity.setDeltaMovement(vec3d.x, -vec3d.y * entityWeightOffset, vec3d.z);
         }
     }

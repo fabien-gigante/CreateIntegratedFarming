@@ -51,13 +51,15 @@ public class RoostBlockItem extends BlockItem {
 
     @Override
     public InteractionResult useOn(UseOnContext context) {
-        Level world = context.getLevel();
-        BlockPos pos = context.getClickedPos();
-        BlockEntity be = world.getBlockEntity(pos);
         Player player = context.getPlayer();
-        if (!(be instanceof SpawnerBlockEntity))
+        if (player == null)
             return super.useOn(context);
-        BaseSpawner spawner = ((SpawnerBlockEntity) be).getSpawner();
+        Level level = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        if (!(blockEntity instanceof SpawnerBlockEntity))
+            return super.useOn(context);
+        BaseSpawner spawner = ((SpawnerBlockEntity) blockEntity).getSpawner();
         List<SpawnData> possibleSpawns = spawner.spawnPotentials.unwrap()
                 .stream()
                 .map(WeightedEntry.Wrapper::data)
@@ -66,13 +68,17 @@ public class RoostBlockItem extends BlockItem {
             possibleSpawns = new ArrayList<>();
             possibleSpawns.add(spawner.nextSpawnData);
         }
-        for (SpawnData e : possibleSpawns) {
-            Optional<EntityType<?>> optionalEntity = EntityType.by(e.entityToSpawn());
-            if (optionalEntity.isEmpty())
+        for (SpawnData spawnData : possibleSpawns) {
+            Optional<EntityType<?>> optional = EntityType.by(spawnData.entityToSpawn());
+            if (optional.isEmpty())
                 continue;
-            var capturable = RoostCapturable.REGISTRY.get(optionalEntity.get());
-            if (capturable == null) continue;
-            return capturable.captureItem(world, player.getItemInHand(context.getHand()), context.getHand(), player, optionalEntity.get().create(world));
+            var capturable = RoostCapturable.REGISTRY.get(optional.get());
+            if (capturable == null)
+                continue;
+            var entity = optional.get().create(level);
+            if (entity == null)
+                continue;
+            return capturable.captureItem(level, context.getItemInHand(), context.getHand(), player, entity);
         }
         return super.useOn(context);
     }

@@ -16,14 +16,19 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package plus.dragons.createintegratedfarming.mixin.integration;
+package plus.dragons.createintegratedfarming.mixin.create;
 
-import com.simibubi.create.content.equipment.wrench.IWrenchable;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.simibubi.create.content.kinetics.saw.TreeCutter;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Pseudo;
+import org.spongepowered.asm.mixin.injection.At;
+import plus.dragons.createintegratedfarming.api.saw.SawableBlockTags;
 
-@Pseudo
-@Mixin(targets = {
-        "vectorwing.farmersdelight.common.block.BasketBlock"
-})
-public class IWrenchableMixin implements IWrenchable {}
+@Mixin(TreeCutter.class)
+public class TreeCutterMixin {
+    @ModifyReturnValue(method = "isVerticalPlant", at = @At("TAIL"))
+    private static boolean createintegratedfarming$addFragileVerticalPlants(boolean original, BlockState state) {
+        return state.is(SawableBlockTags.VERTICAL_PLANTS) || original;
+    }
+}

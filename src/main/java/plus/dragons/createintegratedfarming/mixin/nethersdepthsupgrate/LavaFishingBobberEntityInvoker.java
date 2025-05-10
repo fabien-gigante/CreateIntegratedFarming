@@ -16,13 +16,17 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package plus.dragons.createintegratedfarming.mixin.integration;
+package plus.dragons.createintegratedfarming.mixin.nethersdepthsupgrate;
 
 import com.scouter.netherdepthsupgrade.entity.entities.LavaFishingBobberEntity;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.core.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
+import plus.dragons.createintegratedfarming.integration.ModIntegration.Constants;
 
+@Restriction(require = @Condition(Constants.NETHER_DEPTHS_UPGRADE))
 @Mixin(LavaFishingBobberEntity.class)
 public interface LavaFishingBobberEntityInvoker {
     @Invoker(value = "calculateOpenLava")

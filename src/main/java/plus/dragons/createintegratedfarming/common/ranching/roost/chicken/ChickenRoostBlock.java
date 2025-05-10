@@ -158,12 +158,9 @@ public class ChickenRoostBlock extends RoostBlock implements IBE<ChickenRoostBlo
     @Override
     public InteractionResult captureItem(Level level, ItemStack stack, InteractionHand hand, Player player, Entity entity) {
         if (entity instanceof Chicken chicken && !chicken.isBaby()) {
-            if (!player.isCreative())
+            if (!player.hasInfiniteMaterials())
                 stack.shrink(1);
-            if (stack.isEmpty())
-                player.setItemInHand(hand, new ItemStack(this));
-            else
-                player.getInventory().placeItemBackInInventory(new ItemStack(this));
+            player.getInventory().placeItemBackInInventory(new ItemStack(this));
             chicken.playSound(SoundEvents.CHICKEN_HURT);
             chicken.discard();
             return InteractionResult.sidedSuccess(player.level().isClientSide);

@@ -20,7 +20,7 @@ package plus.dragons.createintegratedfarming.common.logistics.basket;
 
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
-import plus.dragons.createintegratedfarming.mixin.accessor.BasketBlockEntityAccessor;
+import plus.dragons.createintegratedfarming.mixin.farmersdelight.BasketBlockEntityAccessor;
 import vectorwing.farmersdelight.common.block.entity.BasketBlockEntity;
 
 public class BasketInvWrapper extends InvWrapper {

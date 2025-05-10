@@ -116,8 +116,7 @@ public abstract class AbstractFishingNetContext<T extends FishingHook> {
     }
 
     public void invalidate(ServerLevel level) {
-        reset(level);
-        player.discard();
         fishingHook.discard();
+        player.discard();
     }
 }

@@ -29,7 +29,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
-import plus.dragons.createintegratedfarming.mixin.integration.LavaFishingBobberEntityInvoker;
+import plus.dragons.createintegratedfarming.mixin.nethersdepthsupgrate.LavaFishingBobberEntityInvoker;
 
 public class LavaFishingNetContext extends AbstractFishingNetContext<LavaFishingBobberEntity> {
     public LavaFishingNetContext(ServerLevel level, ItemStack fishingRod) {
@@ -51,8 +51,8 @@ public class LavaFishingNetContext extends AbstractFishingNetContext<LavaFishing
     public LootTable getLootTable(ServerLevel level, BlockPos pos) {
         var registries = level.getServer().reloadableRegistries();
         if (level.dimension() == Level.NETHER)
-            return level.getServer().reloadableRegistries().getLootTable(NDULootTables.NETHER_FISHING);
-        return level.getServer().reloadableRegistries().getLootTable(NDULootTables.LAVA_FISHING);
+            return registries.getLootTable(NDULootTables.NETHER_FISHING);
+        return registries.getLootTable(NDULootTables.LAVA_FISHING);
     }
 
     public LootParams buildFishingLootContext(MovementContext context, ServerLevel level, BlockPos pos) {

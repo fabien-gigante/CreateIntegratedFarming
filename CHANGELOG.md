@@ -1,9 +1,7 @@
-### Create: Integrated Farming 1.0.3
+### Create: Integrated Farming 1.0.4
 
-Require Create: Dragons Plus 1.4.1.
-
-#### Update
-* Ponder animation has been improved
+Require Create: Dragons Plus 1.5.0
 
 #### Fix
-* Fix random crashing issue caused by null player in ItemFishedEvent
+- Fix not returning Chicken Roost when capturing Chicken with a single Roost.
+- Fix Lava Fishing Net not collecting items when Nether's Depths Upgrade's fish entities config is enabled.

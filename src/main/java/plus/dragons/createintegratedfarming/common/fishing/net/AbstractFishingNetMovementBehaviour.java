@@ -104,8 +104,9 @@ public abstract class AbstractFishingNetMovementBehaviour<T extends AbstractFish
 
     @Override
     public void stopMoving(MovementContext context) {
-        if (context.temporaryData instanceof FishingNetContext fishing && context.world instanceof ServerLevel level) {
+        if (context.world instanceof ServerLevel level && context.temporaryData instanceof AbstractFishingNetContext<?> fishing) {
             fishing.invalidate(level);
+            context.temporaryData = null;
         }
     }
 }

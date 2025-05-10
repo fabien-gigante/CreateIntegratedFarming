@@ -16,37 +16,30 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package plus.dragons.createintegratedfarming.mixin.integration;
+package plus.dragons.createintegratedfarming.mixin.create;
 
 import com.simibubi.create.content.contraptions.behaviour.MovementContext;
+import com.simibubi.create.content.kinetics.base.BlockBreakingMovementBehaviour;
 import com.simibubi.create.content.kinetics.saw.SawMovementBehaviour;
 import com.simibubi.create.content.kinetics.saw.TreeCutter;
-import java.util.Map;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.item.ItemStack;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Pseudo;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import plus.dragons.createintegratedfarming.api.saw.SawableBlockTags;
 
-@Pseudo
-@Mixin(targets = "io.github.cotrin8672.cem.content.block.saw.EnchantableSawMovementBehaviour")
-public class EnchantableSawMovementBehaviourMixin extends SawMovementBehaviour {
-    @Final
-    @Shadow
-    private Map<MovementContext, ItemStack> enchantedTools;
-
-    @Inject(method = "destroyBlock", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/foundation/utility/BlockHelper;destroyBlockAs(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;FLjava/util/function/Consumer;)V"))
+@Mixin(value = BlockBreakingMovementBehaviour.class, priority = 2000)
+public class BlockBreakingMovementBehaviourMixin {
+    @Inject(method = "destroyBlock", at = @At(value = "INVOKE", target = "Lcom/simibubi/create/foundation/utility/BlockHelper;destroyBlock(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;FLjava/util/function/Consumer;)V"))
     private void createintegratedfarming$handleFragileVerticalPlants(MovementContext context, BlockPos pos, CallbackInfo ci) {
-        var level = context.world;
-        var state = level.getBlockState(pos);
-        if (state.is(SawableBlockTags.FRAGILE_VERTICAL_PLANTS)) {
-            TreeCutter.findTree(context.world, pos, state).destroyBlocks(level, enchantedTools.get(context), null,
-                    (dropPos, stack) -> this.dropItemFromCutTree(context, dropPos, stack));
+        if ((Object) this instanceof SawMovementBehaviour saw) {
+            var level = context.world;
+            var state = level.getBlockState(pos);
+            if (state.is(SawableBlockTags.FRAGILE_VERTICAL_PLANTS)) {
+                TreeCutter.findTree(context.world, pos, state).destroyBlocks(level, null,
+                        (stack, dropPos) -> saw.dropItemFromCutTree(context, stack, dropPos));
+            }
         }
     }
 }

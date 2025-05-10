@@ -37,9 +37,9 @@ public class NetherDepthsUpgradeScene {
         scene.scaleSceneView(0.76f);
         var contraptionSelection = util.select().fromTo(0, 1, 5, 3, 3, 5)
                 .add(util.select().position(4, 2, 5));
-        scene.world().showSection(util.select().everywhere().substract(contraptionSelection).substract(util.select().fromTo(0,0,6,5,3,7)), Direction.DOWN);
-        ElementLink<WorldSectionElement> fillSpaceLava = scene.world().showIndependentSection(util.select().fromTo(0,1,6,4,3,6),Direction.DOWN);
-        ElementLink<WorldSectionElement> fillSpaceLava2 = scene.world().showIndependentSection(util.select().fromTo(4,1,7,4,3,7),Direction.DOWN);
+        scene.world().showSection(util.select().everywhere().substract(contraptionSelection).substract(util.select().fromTo(0, 0, 6, 5, 3, 7)), Direction.DOWN);
+        ElementLink<WorldSectionElement> fillSpaceLava = scene.world().showIndependentSection(util.select().fromTo(0, 1, 6, 4, 3, 6), Direction.DOWN);
+        ElementLink<WorldSectionElement> fillSpaceLava2 = scene.world().showIndependentSection(util.select().fromTo(4, 1, 7, 4, 3, 7), Direction.DOWN);
         scene.world().moveSection(fillSpaceLava, util.vector().of(0, 0, -1), 0);
         scene.world().moveSection(fillSpaceLava2, util.vector().of(0, 0, -2), 0);
         ElementLink<WorldSectionElement> contraption = scene.world().showIndependentSection(contraptionSelection, Direction.DOWN);
@@ -69,6 +69,7 @@ public class NetherDepthsUpgradeScene {
         scene.world().hideSection(util.select().fromTo(0, 1, 0, 5, 3, 2), Direction.NORTH);
         var salmon = scene.world().createEntity(level -> {
             var fish = NDUEntity.OBSIDIAN_FISH.get().create(level);
+            assert fish != null;
             var pos = util.vector().centerOf(2, 1, 1);
             fish.setPos(pos.x, pos.y, pos.z);
             return fish;

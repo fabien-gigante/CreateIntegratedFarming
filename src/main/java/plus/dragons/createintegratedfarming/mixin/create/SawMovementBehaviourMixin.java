@@ -16,19 +16,23 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package plus.dragons.createintegratedfarming.mixin;
+package plus.dragons.createintegratedfarming.mixin.create;
 
-import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import com.simibubi.create.content.kinetics.saw.SawBlockEntity;
+import com.simibubi.create.content.contraptions.behaviour.MovementContext;
+import com.simibubi.create.content.kinetics.saw.SawMovementBehaviour;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import plus.dragons.createintegratedfarming.api.saw.SawableBlockTags;
 
-@Mixin(SawBlockEntity.class)
-public class SawBlockEntityMixin {
-    @ModifyReturnValue(method = "isSawable", at = @At("TAIL"))
-    private static boolean createintegratedfarming$addVerticalPlants(boolean original, BlockState state) {
-        return state.is(SawableBlockTags.VERTICAL_PLANTS) || original;
+@Mixin(SawMovementBehaviour.class)
+public class SawMovementBehaviourMixin {
+    @Inject(method = "onBlockBroken", at = @At("HEAD"), cancellable = true)
+    private void createintegratedfarming$skipFragileVerticalPlants(MovementContext context, BlockPos pos, BlockState state, CallbackInfo ci) {
+        if (state.is(SawableBlockTags.FRAGILE_VERTICAL_PLANTS))
+            ci.cancel();
     }
 }

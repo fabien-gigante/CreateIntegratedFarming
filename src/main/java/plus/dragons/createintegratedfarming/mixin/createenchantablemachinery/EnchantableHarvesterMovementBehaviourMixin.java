@@ -16,21 +16,23 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package plus.dragons.createintegratedfarming.mixin.integration;
+package plus.dragons.createintegratedfarming.mixin.createenchantablemachinery;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import com.simibubi.create.content.contraptions.actors.harvester.HarvesterMovementBehaviour;
 import com.simibubi.create.content.contraptions.behaviour.MovementContext;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import plus.dragons.createintegratedfarming.api.harvester.CustomHarvestBehaviour;
+import plus.dragons.createintegratedfarming.integration.ModIntegration.Constants;
 
-@Pseudo
+@Restriction(require = @Condition(Constants.CREATE_ENCHANTABLE_MACHINERY))
 @Mixin(targets = "io.github.cotrin8672.cem.content.block.harvester.EnchantableHarvesterMovementBehaviour")
 public class EnchantableHarvesterMovementBehaviourMixin extends HarvesterMovementBehaviour {
     @Inject(method = "visitNewPosition", at = @At(value = "INVOKE", target = "Lio/github/cotrin8672/cem/content/block/harvester/EnchantableHarvesterMovementBehaviour;isValidCrop(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z"), cancellable = true)
