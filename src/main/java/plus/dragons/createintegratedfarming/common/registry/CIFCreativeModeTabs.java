@@ -18,7 +18,6 @@
 
 package plus.dragons.createintegratedfarming.common.registry;
 
-import static com.simibubi.create.AllBlocks.SPOUT;
 import static plus.dragons.createintegratedfarming.common.CIFCommon.REGISTRATE;
 import static plus.dragons.createintegratedfarming.common.registry.CIFBlocks.*;
 
@@ -31,7 +30,6 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import plus.dragons.createintegratedfarming.common.CIFCommon;
-import plus.dragons.createintegratedfarming.integration.ModIntegration;
 
 public class CIFCreativeModeTabs {
     private static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister
@@ -52,10 +50,6 @@ public class CIFCreativeModeTabs {
     }
 
     private static void buildBaseContents(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
-        output.accept(AllBlocks.MECHANICAL_HARVESTER);
-        if (ModIntegration.MYNETHERSDELIGHT.enabled()) {
-            output.accept(SPOUT);
-        }
         output.accept(FISHING_NET);
         LAVA_FISHING_NET.asOptional().ifPresent(output::accept);
         output.accept(ROOST);
