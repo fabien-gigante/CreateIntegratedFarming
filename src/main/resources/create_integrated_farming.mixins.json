@@ -16,7 +16,8 @@
     "createenchantablemachinery.EnchantableSawMovementBehaviourMixin",
     "farmersdelight.BasketBlockEntityAccessor",
     "nethersdepthsupgrate.ForgeEventsMixin",
-    "nethersdepthsupgrate.LavaFishingBobberEntityInvoker"
+    "nethersdepthsupgrate.LavaFishingBobberEntityInvoker",
+    "registrate.RegistrateBlockLootTablesMixin"
   ],
   "client": [],
   "injectors": {

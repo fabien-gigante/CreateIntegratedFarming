@@ -40,9 +40,13 @@ public class NethersDepthsUpgradeIntegration {
                         .mapColor(MapColor.METAL)
                         .sound(SoundType.CHAIN)
                         .noOcclusion())
-                .transform(axeOnly())
                 .asOptional()
+                .transform(axeOnly())
                 .tag(AllTags.AllBlockTags.WINDMILL_SAILS.tag)
+                .loot((loots, block) -> {})
+                // Do not datagen loot table since loot table data provider doesn't implement load conditions.
+                // We should write this loot table manually.
+                // Need extra mixin workaround on RegistrateBlockLootTables to prevent Registrate from forcedly datagen loot table for every block. Should do no harm since it only runs when datagen.
                 .blockstate(BlockStateGen.directionalBlockProvider(false))
                 .onRegister(block -> MovementBehaviour.REGISTRY.register(block, new LavaFishingNetMovementBehaviour()))
                 .simpleItem()
