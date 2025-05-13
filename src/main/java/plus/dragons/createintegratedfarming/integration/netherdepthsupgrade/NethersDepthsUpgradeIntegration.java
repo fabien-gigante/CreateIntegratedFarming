@@ -27,6 +27,7 @@ import com.simibubi.create.foundation.data.BlockStateGen;
 import com.simibubi.create.foundation.data.SharedProperties;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MapColor;
+import net.neoforged.neoforge.data.loading.DatagenModLoader;
 import plus.dragons.createintegratedfarming.common.fishing.net.LavaFishingNetBlock;
 import plus.dragons.createintegratedfarming.common.fishing.net.LavaFishingNetMovementBehaviour;
 
@@ -36,17 +37,16 @@ public class NethersDepthsUpgradeIntegration {
                 .block("lava_fishing_net", LavaFishingNetBlock::new)
                 .lang("Lava Fishing Net")
                 .initialProperties(SharedProperties::softMetal)
-                .properties(prop -> prop
-                        .mapColor(MapColor.METAL)
-                        .sound(SoundType.CHAIN)
-                        .noOcclusion())
+                .properties(prop -> {
+                    var result = prop.mapColor(MapColor.METAL)
+                            .sound(SoundType.CHAIN)
+                            .noOcclusion();
+                    // Do not datagen loot table since loot table data provider doesn't implement load conditions. We should write this loot table manually.
+                    return DatagenModLoader.isRunningDataGen()? result.noLootTable(): result;
+                })
                 .asOptional()
                 .transform(axeOnly())
                 .tag(AllTags.AllBlockTags.WINDMILL_SAILS.tag)
-                .loot((loots, block) -> {})
-                // Do not datagen loot table since loot table data provider doesn't implement load conditions.
-                // We should write this loot table manually.
-                // Need extra mixin workaround on RegistrateBlockLootTables to prevent Registrate from forcedly datagen loot table for every block. Should do no harm since it only runs when datagen.
                 .blockstate(BlockStateGen.directionalBlockProvider(false))
                 .onRegister(block -> MovementBehaviour.REGISTRY.register(block, new LavaFishingNetMovementBehaviour()))
                 .simpleItem()
