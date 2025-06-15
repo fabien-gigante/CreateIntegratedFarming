@@ -18,6 +18,7 @@
 
 package plus.dragons.createintegratedfarming.common.ranching.roost.chicken;
 
+import com.simibubi.create.content.kinetics.mechanicalArm.ArmBlockEntity;
 import com.simibubi.create.content.kinetics.mechanicalArm.ArmInteractionPoint;
 import com.simibubi.create.content.kinetics.mechanicalArm.ArmInteractionPointType;
 import net.minecraft.core.BlockPos;
@@ -41,7 +42,7 @@ public class ChickenRoostArmInteractionPoint extends ArmInteractionPoint {
     }
 
     @Override
-    public ItemStack insert(ItemStack stack, boolean simulate) {
+    public ItemStack insert(ArmBlockEntity armBlockEntity, ItemStack stack, boolean simulate) {
         if (stack.isEmpty())
             return ItemStack.EMPTY;
         if (level.getBlockEntity(pos) instanceof ChickenRoostBlockEntity coop && coop.feedItem(stack, simulate)) {

@@ -42,7 +42,7 @@ public class NethersDepthsUpgradeIntegration {
                             .sound(SoundType.CHAIN)
                             .noOcclusion();
                     // Do not datagen loot table since loot table data provider doesn't implement load conditions. We should write this loot table manually.
-                    return DatagenModLoader.isRunningDataGen()? result.noLootTable(): result;
+                    return DatagenModLoader.isRunningDataGen() ? result.noLootTable() : result;
                 })
                 .asOptional()
                 .transform(axeOnly())

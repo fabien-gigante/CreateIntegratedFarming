@@ -1,7 +1,6 @@
-### Create: Integrated Farming 1.0.5
+### Create: Integrated Farming 1.0.6
+
+Update for Create 6.0.6
 
 #### Change
-- Remove Create items from Creative tab
-
-#### Fix
-- Fix Unknown registry key create_integrated_farming:lava_fishing_net in loot table when Nether Depths Upgrade is not installed.
+- Add Japanese Translation by @YukkuriOfuton
