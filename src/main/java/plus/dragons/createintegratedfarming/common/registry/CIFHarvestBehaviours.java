@@ -18,10 +18,9 @@
 
 package plus.dragons.createintegratedfarming.common.registry;
 
+import create_winery.block.*;
 import create_winery.init.CreateWineryModBlocks;
 import create_winery.init.CreateWineryModItems;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 import plus.dragons.createintegratedfarming.api.harvester.CustomHarvestBehaviour;
 import plus.dragons.createintegratedfarming.common.farming.harvest.HighCropHarvestBehaviour;
 import plus.dragons.createintegratedfarming.common.farming.harvest.MushroomColonyHarvestBehaviour;
@@ -42,17 +41,19 @@ public class CIFHarvestBehaviours {
     }
 
     public static void registerCreateWinery() {
-        Block mature, harvested;
-        Item item;
-        // Red grapes
-        mature = CreateWineryModBlocks.RED_GRAPE_BUSH_STAGE_3.get();
-        harvested = CreateWineryModBlocks.RED_GRAPE_BUSH_STAGE_1.get();
-        item = CreateWineryModItems.RED_GRAPES.get();
-        CustomHarvestBehaviour.REGISTRY.register(mature, new SimpleHarvestBehaviour(harvested, item));
-        // White grapes
-        mature = CreateWineryModBlocks.WHITE_GRAPE_BUSH_STAGE_3.get();
-        harvested = CreateWineryModBlocks.WHITE_GRAPE_BUSH_STAGE_1.get();
-        item = CreateWineryModItems.WHITE_GRAPES.get();
-        CustomHarvestBehaviour.REGISTRY.register(mature, new SimpleHarvestBehaviour(harvested, item));
+        var harvestedRed = CreateWineryModBlocks.RED_GRAPE_BUSH_STAGE_1.get();
+        var harvestedWhite = CreateWineryModBlocks.WHITE_GRAPE_BUSH_STAGE_1.get();
+        var grapesRed = CreateWineryModItems.RED_GRAPES.get();
+        var grapesWhite = CreateWineryModItems.WHITE_GRAPES.get();
+        CustomHarvestBehaviour.REGISTRY.registerProvider(
+                block -> {
+                    if (block instanceof RedGrapeBushStage3Block) return new SimpleHarvestBehaviour(harvestedRed, grapesRed);
+                    if (block instanceof WhiteGrapeBushStage3Block) return new SimpleHarvestBehaviour(harvestedWhite, grapesWhite);
+                    if (CustomHarvestBehaviour.partial()) {
+                        if (block instanceof RedGrapeBushStage2Block) return new SimpleHarvestBehaviour(harvestedRed, null);
+                        if (block instanceof RedGrapeBushStage2Block) return new SimpleHarvestBehaviour(harvestedWhite, null);
+                    }
+                    return null;
+                });
     }
 }

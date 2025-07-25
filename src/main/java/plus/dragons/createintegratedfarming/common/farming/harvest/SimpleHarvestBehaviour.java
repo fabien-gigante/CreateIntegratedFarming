@@ -44,7 +44,7 @@ public class SimpleHarvestBehaviour implements CustomHarvestBehaviour {
         var level = context.world;
         if (CustomHarvestBehaviour.replant()) {
             if (item != null) behaviour.dropItem(context, new ItemStack(item));
-            level.setBlock(pos, harvested.defaultBlockState(), Block.UPDATE_NEIGHBORS | Block.UPDATE_CLIENTS);
+            level.setBlockAndUpdate(pos, harvested.defaultBlockState());
         } else
             BlockHelper.destroyBlockAs(level, pos, null,
                     CustomHarvestBehaviour.getHarvestTool(context), 1, stack -> behaviour.dropItem(context, stack));

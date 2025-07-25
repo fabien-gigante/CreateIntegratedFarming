@@ -18,6 +18,7 @@
 
 package plus.dragons.createintegratedfarming.integration;
 
+import create_winery.block.*;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -25,6 +26,7 @@ import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import plus.dragons.createintegratedfarming.common.registry.CIFBlockSpoutingBehaviours;
 import plus.dragons.createintegratedfarming.common.registry.CIFHarvestBehaviours;
+import plus.dragons.createintegratedfarming.integration.createwinery.CreateWineryIntegration;
 import plus.dragons.createintegratedfarming.integration.netherdepthsupgrade.NethersDepthsUpgradeIntegration;
 
 public enum ModIntegration {
@@ -59,6 +61,7 @@ public enum ModIntegration {
         @Override
         public void onCommonSetup() {
             CIFHarvestBehaviours.registerCreateWinery();
+            CreateWineryIntegration.register();
         }
     };
 
