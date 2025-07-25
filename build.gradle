@@ -109,6 +109,7 @@ dependencies {
     compileOnly("maven.modrinth:create-enchantable-machinery:${create_enchantable_machinery_version}")
     localImplementation("maven.modrinth:geckolib:${geckolib_version}")
     localImplementation("maven.modrinth:nether-depths-upgrade:${nether_depths_upgrade_version}")
+    localImplementation("maven.modrinth:create-winery:${create_winery_version}")
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {

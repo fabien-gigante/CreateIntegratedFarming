@@ -54,6 +54,12 @@ public enum ModIntegration {
         public void onConstructMod() {
             NethersDepthsUpgradeIntegration.register();
         }
+    },
+    CREATE_WINERY(Constants.CREATE_WINERY) {
+        @Override
+        public void onCommonSetup() {
+            CIFHarvestBehaviours.registerCreateWinery();
+        }
     };
 
     private final String id;
@@ -92,5 +98,6 @@ public enum ModIntegration {
         public static final String CREATE_ENCHANTABLE_MACHINERY = "createenchantablemachinery";
         public static final String CREATE_CRAFT_AND_ADDITIONS = "createadditions";
         public static final String NETHER_DEPTHS_UPGRADE = "netherdepthsupgrade";
+        public static final String CREATE_WINERY = "create_winery";
     }
 }
