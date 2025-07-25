@@ -42,21 +42,17 @@ public class CIFHarvestBehaviours {
     }
 
     public static void registerCreateWinery() {
-        Block mature, partial, harvested;
+        Block mature, harvested;
         Item item;
         // Red grapes
         mature = CreateWineryModBlocks.RED_GRAPE_BUSH_STAGE_3.get();
-        partial = CreateWineryModBlocks.RED_GRAPE_BUSH_STAGE_2.get();
         harvested = CreateWineryModBlocks.RED_GRAPE_BUSH_STAGE_1.get();
         item = CreateWineryModItems.RED_GRAPES.get();
         CustomHarvestBehaviour.REGISTRY.register(mature, new SimpleHarvestBehaviour(harvested, item));
-        if (CustomHarvestBehaviour.partial()) CustomHarvestBehaviour.REGISTRY.register(partial, new SimpleHarvestBehaviour(harvested, null));
         // White grapes
         mature = CreateWineryModBlocks.WHITE_GRAPE_BUSH_STAGE_3.get();
-        partial = CreateWineryModBlocks.RED_GRAPE_BUSH_STAGE_2.get();
         harvested = CreateWineryModBlocks.WHITE_GRAPE_BUSH_STAGE_1.get();
         item = CreateWineryModItems.WHITE_GRAPES.get();
         CustomHarvestBehaviour.REGISTRY.register(mature, new SimpleHarvestBehaviour(harvested, item));
-        if (CustomHarvestBehaviour.partial()) CustomHarvestBehaviour.REGISTRY.register(partial, new SimpleHarvestBehaviour(harvested, null));
     }
 }
